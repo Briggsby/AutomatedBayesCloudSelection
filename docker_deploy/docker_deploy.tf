@@ -14,7 +14,7 @@ provider "docker" {
 }
 
 resource "docker_image" "nginx" {
-  name = "nginx:latest"
+  name = "${var.image}:${var.image_version}"
 }
 
 resource "docker_container" "nginx" {

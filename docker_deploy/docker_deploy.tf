@@ -35,6 +35,10 @@ output "config_details" {
   value = "${data.terraform_remote_state.state.config_details}"
 }
 
+output "timestamp" {
+  value = "${timestamp()}"
+}
+
 output "docker_logs" {
   value = "${docker_container.container.container_logs}"
 }

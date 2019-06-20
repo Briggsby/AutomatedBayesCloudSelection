@@ -7,4 +7,7 @@ terraform apply -auto-approve
 cd ../../docker_deploy
 terraform init
 terraform apply -auto-approve
-terraform output -json >> ../logs.json
+terraform output -json > ../newlogs.json
+cd ../
+touch logs.json
+jq -s '.[1] + { ((.[1]|length)|tostring) :.[0]}' logs.json newlogs.json >> logs.json

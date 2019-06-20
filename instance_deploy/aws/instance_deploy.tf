@@ -104,3 +104,7 @@ resource "aws_instance" "docker_host" {
 output "docker_host_ip" {
   value = "${aws_instance.docker_host.public_ip}"
 }
+
+output "config_details" {
+  value = {provider = "aws", instance_type = "${var.instance_type}"}
+}

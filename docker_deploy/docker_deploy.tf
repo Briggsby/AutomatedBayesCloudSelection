@@ -31,6 +31,10 @@ resource "docker_container" "container" {
   logs = true
 }
 
+output "config_details" {
+  value = "${data.terraform_remote_state.state.config_details}"
+}
+
 output "docker_logs" {
   value = "${docker_container.container.container_logs}"
 }

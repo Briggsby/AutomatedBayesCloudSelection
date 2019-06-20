@@ -7,3 +7,4 @@ terraform apply -auto-approve
 cd ../../docker_deploy
 terraform init
 terraform apply -auto-approve
+terraform output -json >> ../logs.json

@@ -1,6 +1,6 @@
 variable "image" {
-    # default = "severalnines/sysbench"
-    default = "nginx"
+    default = "severalnines/sysbench"
+    # default = "nginx"
 }
 
 variable "image_version" {
@@ -8,11 +8,16 @@ variable "image_version" {
 }
 
 variable "container_name" {
-    default = "nginx"
+    default = "sysbench"
+}
+
+variable "entrypoint" {
+    type = "list"
+    default = ["sysbench"]
 }
 
 variable "commands" {
     type = "list"
-    # default = ["sysbench", "--test=cpu", "--cpu-max-prime=10000", "run"]
-    default = []
+    default = ["--test=cpu", "--cpu-max-prime=5000", "run"]
+    # default = []
 }

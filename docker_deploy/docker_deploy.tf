@@ -24,5 +24,13 @@ resource "docker_container" "container" {
     internal = 80
     external = 8000
   }
+  entrypoint = "${var.entrypoint}"
   command = "${var.commands}"
+  attach = true
+  must_run = false
+  logs = true
+}
+
+output "docker_logs" {
+  value = "${docker_container.container.container_logs}"
 }

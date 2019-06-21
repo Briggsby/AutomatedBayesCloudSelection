@@ -1,3 +1,6 @@
+###########
+# Terraform
+
 # Ignoring any credentials folders
 credentials/
 
@@ -32,3 +35,16 @@ override.tf.json
 # example: *tfplan*
 
 
+
+########
+# Python
+
+venv/
+
+spearmint/
+
+
+
+########
+# VSCode
+.vscode/

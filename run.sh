@@ -10,4 +10,5 @@ terraform apply -auto-approve
 terraform output -json > ../newlogs.json
 cd ../
 touch logs.json
-jq -s '.[1] + { ((.[1]|length)|tostring) :.[0]}' logs.json newlogs.json >> logs.json
+jq -s '.[1] + { ((.[1]|length)|tostring) :.[0]}' newlogs.json logs.json > temp.json
+mv temp.json logs.json

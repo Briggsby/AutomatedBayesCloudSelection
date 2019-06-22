@@ -1,5 +1,0 @@
-Terraform cloud allows you to store state info in the cloud, and access histories etc. for it. While it looks incredibly useful, I think I actively DON'T want it for this. If I think it'll help, I could set one up just for myself, but since I'll want the solution to run locally (probably), I'm going toignore it for now.
-
-Plan:
-    Make engine to edit vars with appropriate instance details
-    Incorporate

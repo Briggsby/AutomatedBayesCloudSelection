@@ -13,4 +13,4 @@ spearmint - https://github.com/JasperSnoek/spearmint
 
         I assume that the _values property used was removed from Google Protocol Buffer
 
-Change the spearmint.sh file to direct to your spearmint folder
+Change the spearmint.sh file to direct to your spearmint folder (it defaults to your active site-packages folder/spearmint)

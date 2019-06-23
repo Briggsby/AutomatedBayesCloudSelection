@@ -48,3 +48,7 @@ spearmint/
 ########
 # VSCode
 .vscode/
+
+#######
+# Other
+.oldfiles/

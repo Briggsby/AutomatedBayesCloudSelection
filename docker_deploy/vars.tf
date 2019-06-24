@@ -1,3 +1,8 @@
+variable "tfstate_path" {
+    type = "string"
+    default = "."
+}
+
 variable "image" {
     default = "severalnines/sysbench"
     # default = "nginx"

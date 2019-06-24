@@ -1,10 +1,17 @@
 variable "region" {
   default = "eu-west-2"
 }
+
 variable "instance_type" {
   type = "string"
   default = "t2.micro"
 }
+
+variable "tfstate_path" {
+  type = "string"
+  default = ".."
+}
+
 variable "amis" {
   type = "map"
   default = {

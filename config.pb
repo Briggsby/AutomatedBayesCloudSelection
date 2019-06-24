@@ -1,6 +1,15 @@
 language: PYTHON
 name: "instance_test"
 
+variable {
+ name: "vCPU"
+ type: INT
+ size: 1
+ min: 1
+ max: 16
+}
+
+
 # Example variable
 #
 # variable {

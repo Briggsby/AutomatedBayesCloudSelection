@@ -43,6 +43,8 @@ venv/
 
 spearmint/
 
+*.pyc
+
 
 
 ########

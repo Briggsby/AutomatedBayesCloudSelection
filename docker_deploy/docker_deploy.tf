@@ -1,7 +1,11 @@
+terraform {
+  backend "local" {}
+}
+
 data "terraform_remote_state" "state" {
   backend = "local"
   config = {
-    path = "../instance_deploy/terraform.tfstate"
+    path = "${var.tfstate_path}/terraform.tfstate"
   }
 }
 

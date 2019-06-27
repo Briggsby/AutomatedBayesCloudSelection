@@ -14,7 +14,7 @@ provider "docker" {
 #  For local runs
 #  host = "unix:///var/run/docker.sock"
   host = "tcp://${data.terraform_remote_state.state.docker_host_ip}:2376"
-  # version = "1.1.1"
+  version = "1.1.1"
 }
 
 resource "docker_image" "image" {

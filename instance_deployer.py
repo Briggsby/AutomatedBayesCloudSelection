@@ -11,9 +11,9 @@ def main(job_id, params, instance_type, provider, base_dir):
 	tfstate_path = base_dir + '/tf_states/' + str(job_id)
 
 	instance_tf.init(backend_config={'path':tfstate_path + '/terraform.tfstate'})
-	docker_tf.init(backend_config={'path':tfstate_path + '/docker_tfstate/terraform.tfstate'})
-
 	instance_tf.apply(var={'instance_type':instance_type}, skip_plan=True)
+
+	docker_tf.init(backend_config={'path':tfstate_path + '/docker_tfstate/terraform.tfstate'})
 	docker_tf.apply(var={'tfstate_path':tfstate_path}, skip_plan=True)
 
 	logs = docker_tf.output()

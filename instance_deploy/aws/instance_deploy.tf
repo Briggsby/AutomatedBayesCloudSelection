@@ -2,13 +2,6 @@ terraform {
   backend "local" {}
 }
 
-data "terraform_remote_state" "state" {
-  backend = "local"
-  config = {
-    path = "${var.tfstate_path}/terraform.tfstate"
-  }
-}
-
 provider "aws" {
   shared_credentials_file = "./credentials/aws_credentials"
   region     = "${var.region}"

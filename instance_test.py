@@ -33,5 +33,3 @@ def main(job_id, params):
 	print 'Anything printed here will end up in the output directory for job #:', str(job_id)
 	print params
 	return instance_test(job_id, params)
-
-main(0, [])

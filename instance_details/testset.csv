@@ -1,0 +1,20 @@
+Provider,Name,API Name,Memory,vCPUs,Instance Storage,Linux On Demand cost,Linux Reserved cost,Burstable,Model Type,Category,StorageType
+aws,T3 Nano,t3.nano,0.5,2,EBS only,0.0059,0.0042,TRUE,T3,General,EBS
+aws,T2 Nano,t2.nano,0.5,1,EBS only,0.0066,0.0045,TRUE,T2,General,EBS
+aws,T3 Micro,t3.micro,1,2,EBS only,0.0118,0.0083,TRUE,T3,General,EBS
+aws,T2 Micro,t2.micro,1,1,EBS only,0.0132,0.0091,TRUE,T2,General,EBS
+aws,T3 Small,t3.small,2,2,EBS only,0.0236,0.0167,TRUE,T3,General,EBS
+aws,T2 Small,t2.small,2,1,EBS only,0.026,0.0182,TRUE,T2,General,EBS
+aws,T3 Medium,t3.medium,4,2,EBS only,0.0472,0.0333,TRUE,T3,General,EBS
+aws,T2 Medium,t2.medium,4,2,EBS only,0.052,0.0363,TRUE,T2,General,EBS
+aws,T3 Large,t3.large,8,2,EBS only,0.0944,0.0667,TRUE,T3,General,EBS
+aws,C5 High-CPU Large,c5.large,4,2,EBS only,0.101,0.069,FALSE,C5,Compute,EBS
+aws,T2 Large,t2.large,8,2,EBS only,0.1056,0.0727,TRUE,T2,General,EBS
+aws,M5 General Purpose Large,m5.large,8,2,EBS only,0.111,0.078,FALSE,M5,General,EBS
+aws,C5 High-CPU Large,c5d.large,4,2,50 GiB               NVMe SSD,0.115,0.079,FALSE,C5,Compute,SSD
+aws,M4 General Purpose Large,m4.large,8,2,EBS only,0.116,0.0787,FALSE,M4,General,EBS
+aws,C4 High-CPU Large,c4.large,3.75,2,EBS only,0.119,0.082,FALSE,C4,Compute,EBS
+aws,M5 General Purpose Large,m5d.large,8,2,75 GiB               NVMe SSD,0.131,0.092,FALSE,M5,General,SSD
+aws,R5 Large,r5.large,16,2,EBS only,0.148,0.093,FALSE,R5,Memory,EBS
+aws,R4 High-Memory Large,r4.large,15.25,2,EBS only,0.156,0.0987,FALSE,R4,Memory,EBS
+aws,R5D Large,r5d.large,16,2,75 GiB               NVMe SSD,0.169,0.108,FALSE,R5D,Memory,SSD

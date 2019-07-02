@@ -1,5 +1,6 @@
 from python_terraform import *
 import os
+import json
 
 
 def instance_test(job_id, params):
@@ -17,10 +18,18 @@ def instance_test(job_id, params):
 
 	# Find instance these params suggest should be tested
 	instance_selector = __import__("instance_selector")
-	instance_type = instance_selector.main(job_id, params)
+	instance_type, price = instance_selector.main(job_id, params, base_dir)
+
+	if instance_type == None:
+		print("No compatible instance type for this config")
+		return None
+
 	# Run test on that instance, get its logs
 	instance_deployer = __import__("instance_deployer")
 	logs = instance_deployer.main(job_id, params, instance_type, provider, base_dir)
+	logs = json.dumps(logs)
+
+	print(type(logs))
 	print(logs)
 
 	# This saves every log, to keep all logs ever made in one json file
@@ -32,14 +41,13 @@ def instance_test(job_id, params):
 
 	# Convert logs into quantitative value
 	log_converter = __import__("log_converter")
-	value = log_converter.main(job_id, params, logs)
+	value = log_converter.main(job_id, params, logs, price)
 	# Return that value
-	return value
+	print("Value:", value, "Price:", price)
+	return value/price
 
 
 def main(job_id, params):
 	print 'Anything printed here will end up in the output directory for job #:', str(job_id)
 	print params
 	return instance_test(job_id, params)
-
-main(0, [])

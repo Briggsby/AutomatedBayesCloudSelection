@@ -2,11 +2,31 @@ language: PYTHON
 name: "instance_test"
 
 variable {
- name: "vCPU"
+ name: "vCPUs"
  type: INT
  size: 1
  min: 1
- max: 16
+ max: 2
+}
+
+variable {
+ name: "Memory"
+ type: ENUM
+ size: 1
+ options: '0.5'
+ options: '1'
+ options: '2'
+ options: '4'
+ options: '8'
+ options: '16'
+}
+
+variable {
+ name: "StorageType"
+ type: ENUM
+ size: 1
+ options: "EBS"
+ options: "SSD"
 }
 
 

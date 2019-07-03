@@ -8,7 +8,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "access" {
-  name = "docker_host"
+  name_prefix = "docker_host"
   description = "Allow SSH inbound, http, docker host, and all outbound traffic"
   # To keep it simple, we allow incoming HTTP requests from any IP. In future, we need to 
   # lock this down to just the IPs of trusted servers (e.g., of a load balancer).

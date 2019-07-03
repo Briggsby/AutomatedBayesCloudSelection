@@ -1,0 +1,9 @@
+#!/bin/bash
+rm -r jobs
+rm -r output
+rm -r tf_states
+rm best_job_and_result.txt
+rm chooser.GPEIOptChooser.pkl
+rm chooser.GPEIOptChooser_hyperparameters.txt
+rm expt-grid.pkl
+rm trace.csv

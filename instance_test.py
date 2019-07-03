@@ -43,8 +43,7 @@ def instance_test(job_id, params):
 	log_converter = __import__("log_converter")
 	value = log_converter.main(job_id, params, logs, price)
 	# Return that value
-	print("Value:", value, "Price:", price)
-	return value/price
+	return value
 
 
 def main(job_id, params):

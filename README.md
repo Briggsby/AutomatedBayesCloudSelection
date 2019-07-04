@@ -4,12 +4,9 @@ Using Bayesian Optimization and Terraform to create an automated cloud configura
 Prequisites:
 Terraform v11 (Docker provider was not yet updated for v12) - https://www.terraform.io/
 jq - https://stedolan.github.io/jq/ (for merging json logs)
-Python 2.7 - https://www.python.org/download/releases/2.7/
-spearmint - https://github.com/JasperSnoek/spearmint
-    -- After setup and installation, must go into code and change the lines at 115-118 in the 'runner.py' file to:
-        dbl_vals = list(param.dbl_val)
-        int_vals = list(param.int_val)
-        str_vals = list(param.str_val)
+Python 3.7 - https://www.python.org/download/releases/3.7/
+spearmint3 - https://github.com/briggsby/spearmint3
+	-- A port of spearmint from https://github.com/JasperSnoek/spearmint made to work with python3 for debugging purposes
 
 Change the spearmint.sh file to direct to your spearmint folder (it defaults to your active site-packages folder/spearmint)
 

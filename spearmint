@@ -1,2 +1,0 @@
-#!/bin/bash
-python $(dirname $(which python))/../lib/python2.7/site-packages/spearmint/main.py "$@"

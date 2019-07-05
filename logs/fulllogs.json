@@ -1,0 +1,555 @@
+{
+  "0": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:36:03Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  1999.26\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0002s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              19997\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.50\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    4.27\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.53\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9973.89\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           19997.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9739/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.nano",
+        "provider": "aws"
+      }
+    }
+  },
+  "1": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:39:41Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2722.41\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0002s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27229\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    3.71\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.94\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27229.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9949/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "2": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:43:27Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2726.33\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0001s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27268\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    0.81\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.80\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27268.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9948/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "3": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:45:49Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2724.15\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0004s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27247\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    1.45\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.87\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27247.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9949/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "4": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:48:45Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2726.51\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0002s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27270\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    1.06\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9995.06\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27270.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9951/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "5": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:50:55Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2797.42\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0001s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27979\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.35\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    2.17\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9995.21\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27979.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9952/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "6": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:54:01Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2795.07\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0003s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27956\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.35\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    1.42\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9995.47\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27956.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9955/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "7": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:56:47Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2796.72\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0001s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27972\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.35\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    0.66\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9995.31\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27972.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9953/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "8": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T12:59:34Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2725.75\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0004s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27263\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    0.56\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9995.24\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27263.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9952/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "9": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T13:02:25Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2791.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0004s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27919\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.35\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    2.39\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9995.01\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27919.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9950/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "10": null,
+  "11": null,
+  "12": null,
+  "13": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T18:39:14Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2239.11\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0002s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              22396\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    4.39\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.46\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9966.08\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           22396.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9661/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.small",
+        "provider": "aws"
+      }
+    }
+  },
+  "14": null,
+  "15": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T18:40:48Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2786.97\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0003s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27875\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.32\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    1.72\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.38\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.68\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27875.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9947/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t3.nano",
+        "provider": "aws"
+      }
+    }
+  },
+  "16": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T18:41:24Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2726.26\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0004s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27268\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    1.09\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.99\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27268.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9950/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "r5.large",
+        "provider": "aws"
+      }
+    }
+  },
+  "17": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T18:41:52Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  1999.89\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0001s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              20003\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.50\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    3.82\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.52\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9973.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           20003.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9734/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.nano",
+        "provider": "aws"
+      }
+    }
+  },
+  "18": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-02T19:04:48Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  1985.57\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0002s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              19860\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.50\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    3.56\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.53\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9970.10\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           19860.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9701/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.micro",
+        "provider": "aws"
+      }
+    }
+  },
+  "19": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:31:47Z"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.small",
+        "provider": "aws"
+      }
+    }
+  },
+  "20": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:31:47Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  1987.40\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0006s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              19879\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.50\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    4.59\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.53\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9969.28\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           19879.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9693/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.small",
+        "provider": "aws"
+      }
+    }
+  },
+  "21": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:31:47Z"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.small",
+        "provider": "aws"
+      }
+    }
+  },
+  "22": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:33:30Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2866.08\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0002s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              28666\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.32\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.35\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    1.14\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.54\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           28666.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9945/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t3.nano",
+        "provider": "aws"
+      }
+    }
+  },
+  "23": null,
+  "24": null,
+  "25": null,
+  "26": null,
+  "27": null,
+  "28": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:52:46Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2236.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0004s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              22369\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.45\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    4.19\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.46\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9965.49\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           22369.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9655/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.small",
+        "provider": "aws"
+      }
+    }
+  },
+  "29": null,
+  "30": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:54:24Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  3015.23\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0001s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              30157\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.32\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.33\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    1.50\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.79\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           30157.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9948/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t3.nano",
+        "provider": "aws"
+      }
+    }
+  },
+  "31": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:55:27Z"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t3.medium",
+        "provider": "aws"
+      }
+    }
+  },
+  "32": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:55:27Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2788.37\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0003s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27889\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.35\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    0.93\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.38\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.09\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27889.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9941/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t3.medium",
+        "provider": "aws"
+      }
+    }
+  },
+  "33": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:59:38Z"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.small",
+        "provider": "aws"
+      }
+    }
+  },
+  "34": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T14:59:38Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2228.14\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0005s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              22287\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.45\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    8.71\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.46\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9963.90\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           22287.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9639/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.small",
+        "provider": "aws"
+      }
+    }
+  },
+  "35": null,
+  "36": {},
+  "37": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T15:22:39Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2233.67\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0004s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              22342\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.43\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.45\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    4.28\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.46\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9966.10\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           22342.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9661/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.small",
+        "provider": "aws"
+      }
+    }
+  },
+  "38": null,
+  "39": {
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-03T15:28:27Z"
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2042.68\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0002s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              20431\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.44\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.49\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    3.56\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.53\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9973.05\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           20431.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9730/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "t2.nano",
+        "provider": "aws"
+      }
+    }
+  },
+  "40": {
+    "config_details": {
+      "sensitive": false,
+      "type": "map",
+      "value": {
+        "instance_type": "m5d.large",
+        "provider": "aws"
+      }
+    },
+    "docker_logs": {
+      "sensitive": false,
+      "type": "string",
+      "value": "\u0002\u0000\u0000\u0000\u0000\u0000\u0000vWARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003sysbench 1.0.17 (using bundled LuaJIT 2.1.0-beta2)\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000)Running the test with following options:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0015Number of threads: 1\n\u0001\u0000\u0000\u0000\u0000\u0000\u00007Initializing random number generator from current time\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001aPrime numbers limit: 5000\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u001fInitializing worker threads...\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0011Threads started!\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000bCPU speed:\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000     events per second:  2788.23\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0014General statistics:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00002    total time:                          10.0004s\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    total number of events:              27888\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u000eLatency (ms):\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         min:                                    0.35\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         avg:                                    0.36\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         max:                                    1.30\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         95th percentile:                        0.38\n\u0001\u0000\u0000\u0000\u0000\u0000\u00006         sum:                                 9994.47\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0012Threads fairness:\n\u0001\u0000\u0000\u0000\u0000\u0000\u00003    events (avg/stddev):           27888.0000/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000/    execution time (avg/stddev):   9.9945/0.00\n\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\n"
+    },
+    "timestamp": {
+      "sensitive": false,
+      "type": "string",
+      "value": "2019-07-04T11:00:47Z"
+    }
+  }
+}

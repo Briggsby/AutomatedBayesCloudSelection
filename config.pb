@@ -1,5 +1,5 @@
 language: PYTHON
-name: "instance_test"
+name: "example"
 
 variable {
  name: "vCPUs"

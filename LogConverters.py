@@ -1,4 +1,4 @@
-import re as re
+import re
 
 def sysbench_to_costpercycles(logs, price):
 	find = re.search(r"events per second\:  [\d.]+", logs)

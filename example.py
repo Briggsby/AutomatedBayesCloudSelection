@@ -1,4 +1,7 @@
 from python_terraform import *
+import Deployers
+import ConfigSelectors
+import LogConverters
 import os
 import json
 
@@ -17,16 +20,14 @@ def instance_test(job_id, params):
 	os.chdir(instance_wkdir)
 
 	# Find instance these params suggest should be tested
-	instance_selector = __import__("instance_selector")
-	instance_type, price = instance_selector.main(job_id, params, base_dir)
+	instance_type, price = ConfigSelectors.main(job_id, params, base_dir)
 
 	if instance_type == None:
 		print("No compatible instance type for this config")
 		return None
 
 	# Run test on that instance, get its logs
-	instance_deployer = __import__("instance_deployer")
-	logs = instance_deployer.main(job_id, params, instance_type, provider, base_dir)
+	logs = Deployers.main(job_id, params, instance_type, provider, base_dir)
 	logs = json.dumps(logs)
 
 	print(type(logs))
@@ -40,8 +41,7 @@ def instance_test(job_id, params):
 	subprocess.call([base_dir+"/logs/logmerger.sh"], cwd=base_dir+"/logs/")
 
 	# Convert logs into quantitative value
-	log_converter = __import__("log_converter")
-	value = log_converter.main(job_id, params, logs, price)
+	value = LogConverters.main(job_id, params, logs, price)
 	# Return that value
 	return value
 
@@ -50,3 +50,5 @@ def main(job_id, params):
 	print('Anything printed here will end up in the output directory for job #:', str(job_id))
 	print(params)
 	return instance_test(job_id, params)
+
+main(1, {"vCPUs":[1], "Memory":['0.5'], "StorageType":["EBS"]})

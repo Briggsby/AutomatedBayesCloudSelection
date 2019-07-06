@@ -4,6 +4,16 @@ import docker
 
 def docker_deploy(config, ip, instance_tf=None):
 	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
+	logs = client.containers.run(config["params"]["docker_image"][0])
+
+	config["logs"] = str(logs, 'utf-8')
+
+	if instance_tf is not None:
+		instance_tf.destroy(auto_approve=True)
+	return config
+
+def sys_docker_deploy(config, ip, instance_tf=None):
+	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
 	logs = client.containers.run(config["params"]["docker_image"][0],
 	 command='sysbench --test=cpu --cpu-max-prime=5000 run')
 

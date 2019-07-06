@@ -32,13 +32,15 @@ def vm_docker_deploy_old(config):
 	docker_tf = Terraform(file_dir + "/docker_deploy")
 	
 	tfstate_path = config["base_dir"] + '/tf_states/' + str(config["job_id"])
+	tfvars = config["base_dir"]+"/tfvars.tfvars"
 
 	## ALSO DIRECT TO A VARS.TF IN THE BASE_DIR
 	instance_tf.init(backend_config={'path':tfstate_path + '/terraform.tfstate'})
-	instance_tf.apply('-lock=false', var={'instance_type':config["selection"]["instance"]}, skip_plan=True)
+	instance_tf.apply(var_file=tfvars,
+	var={'instance_type':config["selection"]["instance"]}, skip_plan=True)
 
 	docker_tf.init(backend_config={'path':tfstate_path + '/docker_tfstate/terraform.tfstate'})
-	docker_tf.apply('-lock=false', var={'tfstate_path':tfstate_path}, skip_plan=True)
+	docker_tf.apply(var_file=tfvars, var={'tfstate_path':tfstate_path}, skip_plan=True)
 
 	logs = docker_tf.output()
 	config["logs"] = logs

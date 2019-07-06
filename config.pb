@@ -28,9 +28,18 @@ variable {
  options: 'sysbench_by_cost'
 }
 
-# The enums from this point are are the variables
-# used by the selector function to pick the appropriate
-# configuration
+# You can use similar enums for specific modules,
+# such as to specify a docker_image
+variable {
+ name: "docker_image"
+ type: ENUM
+ size: 1
+ options: 'severalnines/sysbench'
+}
+
+# Variables from this point are are those
+# used by the selector function to pick
+# the appropriate configuration
 
 variable {
  name: "vCPUs"

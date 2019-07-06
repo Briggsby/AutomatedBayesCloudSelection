@@ -1,5 +1,36 @@
 language: PYTHON
-name: "example"
+name: "driver"
+
+# THESE 3 ENUMS ARE USED TO DECIDE FUNCTIONS USED
+# THEY SHOULD ONLY HAVE ONE OPTION
+# (unless you are intentionally somehow seeing,
+# for example, which selector works better)
+# For available functions, see the python scripts
+
+variable {
+ name: "selector"
+ type: ENUM
+ size: 1
+ options: 'exact_match'
+}
+
+variable {
+ name: "deployer"
+ type: ENUM
+ size: 1
+ options: 'fake_deploy'
+}
+
+variable {
+ name: "log_converter"
+ type: ENUM
+ size: 1
+ options: 'sysbench_by_cost'
+}
+
+# The enums from this point are are the variables
+# used by the selector function to pick the appropriate
+# configuration
 
 variable {
  name: "vCPUs"
@@ -27,6 +58,13 @@ variable {
  size: 1
  options: "EBS"
  options: "SSD"
+}
+
+variable {
+ name: "Provider"
+ type: ENUM
+ size: 1
+ options: "aws"
 }
 
 

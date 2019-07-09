@@ -6,6 +6,11 @@ def sysbench_by_cost(config):
     # convert it into a single value to be minimized through Bayes
 	# Does so by dividing events per second y the price
 	logs = config["logs"]
+
+	if logs is None:
+		config["value"] = None
+		return config
+
 	if type(logs) is dict:
 		logs = json.dumps(logs)
 

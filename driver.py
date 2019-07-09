@@ -4,7 +4,9 @@ import log_converters as converters
 import os
 import json
 import subprocess
+import numpy as np
 from datetime import datetime
+
 
 def standard_test(job_id, params):
 	# Get base directory from file path
@@ -25,7 +27,9 @@ def standard_test(job_id, params):
 	# Log conversion
 	config = getattr(converters, config["params"]["log_converter"][0])(config)
 	# Print logs of the whole config
-	config_logs = json.dumps(config)
+	print("Total configuration test details:")
+	print(config)
+	config_logs = json.dumps(config, cls=NumpyEncoder)
 	logfile = open("jobfiles/"+str(job_id)+".json", "w+")
 	logfile.write(config_logs)
 	logfile.close()
@@ -38,3 +42,18 @@ def standard_test(job_id, params):
 
 	# Return final value
 	return config["value"]
+
+
+class NumpyEncoder(json.JSONEncoder):
+	# An encoder for json dumping nested dictionaries with numpy array components
+	# From: https://stackoverflow.com/questions/26646362/numpy-array-is-not-json-serializable
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return json.JSONEncoder.default(self, obj)
+
+
+def main(job_id, params):
+	print('Anything printed here will end up in the output directory for job #:', str(job_id))
+	print(params)
+	return standard_test(job_id, params)

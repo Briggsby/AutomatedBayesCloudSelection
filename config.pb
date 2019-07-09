@@ -38,6 +38,7 @@ variable {
  type: ENUM
  size: 1
  options: "aws"
+ # options: "google"
 }
 
 

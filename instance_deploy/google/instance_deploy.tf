@@ -4,78 +4,70 @@ terraform {
 
 provider "google" {
   credentials = "${file("./credentials/account.json")}"
-  project     = "${var.project}"
-  region      = "${var.region}"
+  project     = "${var.google_project_id}"
+  region      = "${var.google_region}"
 }
 
+resource "random_string" "random_firewall_name" {
+  length = 16
+  upper = false
+  number = false
+  special = false
+}
 
-resource "aws_security_group" "access" {
-  name_prefix = "docker_host"
-  description = "Allow SSH inbound, http, docker host, and all outbound traffic"
-  # To keep it simple, we allow incoming HTTP requests from any IP. In future, we need to 
+resource "google_compute_firewall" "docker_access" {
+  name = "${random_string.random_firewall_name.result}"
+  network = "default"
+  description = "Allow docker access"
+  # To keep it simple, we allow incoming requests from any IP. In future, we need to 
   # lock this down to just the IPs of trusted servers (e.g., of a load balancer).
-  
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
- # TCP port 2376 for remote docker api
-  ingress {
-    from_port = 2376
-    to_port   = 2376
+
+  # TCP port 2376 for remote docker api
+  allow {
     protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    ports = ["2376"]
   }
- # TCP 9323 for docker metrics api
- ingress {
-    from_port = 9323
-    to_port   = 9323
-    protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  # HTTP
+  allow {
+    protocol = "tcp"
+    ports = ["8000"]
   }
- # TCP 9090 for Prometheus
- ingress {
-    from_port = 9090
-    to_port   = 9090
-    protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  # Docker metrics api
+  allow {
+    protocol = "tcp"
+    ports = ["9323"]
   }
- # Http
-  ingress {
-    from_port = 8000
-    to_port   = 8000
-    protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
- # allow any outbound  traffic
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  target_tags = ["docker-host"]
 }
 
-resource "aws_instance" "docker_host" {
-  instance_type = "${var.instance_type}"
-  ami = "${var.amis[var.region]}"
+resource "google_compute_instance" "docker_host" {
+  name = "docker-host"
+  machine_type = "${var.instance_type}"
+  zone = "${var.google_zone}"
+  tags = ["docker-host"]
 
-  tags = {Name = "docker_host"}
-  vpc_security_group_ids = ["${aws_security_group.access.id}"]
-  key_name = "${var.access_key}"
+  network_interface {
+    network = "projects/${var.google_project_id}/global/networks/default"
+    access_config {
+      // Ephemeral IP
+    }
+  }
+
+  boot_disk {
+    initialize_params {
+      image = "${var.google_image}"
+    }
+  }
 
   connection {
     type = "ssh"
-    host = "${self.public_ip}"
-    user = "ec2-user"
-    private_key = "${file("./credentials/${var.access_key}.pem")}"
+    host = "${self.network_interface.0.access_config.0.nat_ip}"
+    user = "${var.google_username}"
+    private_key = "${file("./credentials/${var.google_access_key}")}"
   }
 
-  # update for remote dockerd API
   provisioner "file" {
-    source      = "../files/docker.service"
+    source      = "../files/google_docker.service"
     destination = "docker.service"
   }
   # update for remote dockerd metrics API
@@ -85,19 +77,23 @@ resource "aws_instance" "docker_host" {
   }
   provisioner "remote-exec" {
     inline = [
-      "sudo yum update -y",
-      "sudo amazon-linux-extras install docker -y",
+      "sudo apt-get update -y",
+      "sudo apt-get install curl -y",
+      "sudo curl -fsSL https://get.docker.com -o get-docker.sh",
+      "sudo sh get-docker.sh",
       "sudo cp docker.service /lib/systemd/system/docker.service",
+      "sudo mkdir -p /etc/docker/",
       "sudo cp daemon.json /etc/docker/daemon.json",
       "sudo systemctl daemon-reload",
       "sudo systemctl restart docker"
     ]
   }
 }
+
 output "docker_host_ip" {
-  value = "${aws_instance.docker_host.public_ip}"
+  value = "${google_compute_instance.docker_host.network_interface.0.access_config.0.nat_ip}"
 }
 
 output "config_details" {
-  value = {provider = "aws", instance_type = "${var.instance_type}"}
+  value = {provider = "gce", instance_type = "${var.instance_type}"}
 }

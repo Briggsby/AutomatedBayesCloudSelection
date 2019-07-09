@@ -1,4 +1,4 @@
-variable "region" {
+variable "aws_region" {
   default = "eu-west-2"
 }
 
@@ -12,13 +12,13 @@ variable "tfstate_path" {
   default = ".."
 }
 
-variable "amis" {
+variable "aws_amis" {
   type = "map"
   default = {
     eu-west-2 = "ami-09ead922c1dad67e4"
   }
 }
 
-variable "access_key" {
+variable "aws_access_key" {
   default = "default_key"
 }

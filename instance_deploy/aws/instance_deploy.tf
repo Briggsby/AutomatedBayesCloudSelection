@@ -4,7 +4,7 @@ terraform {
 
 provider "aws" {
   shared_credentials_file = "./credentials/aws_credentials"
-  region     = "${var.region}"
+  region     = "${var.aws_region}"
 }
 
 resource "aws_security_group" "access" {
@@ -58,17 +58,17 @@ resource "aws_security_group" "access" {
 
 resource "aws_instance" "docker_host" {
   instance_type = "${var.instance_type}"
-  ami = "${var.amis[var.region]}"
+  ami = "${var.aws_amis[var.aws_region]}"
 
   tags = {Name = "docker_host"}
   vpc_security_group_ids = ["${aws_security_group.access.id}"]
-  key_name = "${var.access_key}"
+  key_name = "${var.aws_access_key}"
 
   connection {
     type = "ssh"
     host = "${self.public_ip}"
     user = "ec2-user"
-    private_key = "${file("./credentials/${var.access_key}.pem")}"
+    private_key = "${file("./credentials/${var.aws_access_key}.pem")}"
   }
 
   # update for remote dockerd API

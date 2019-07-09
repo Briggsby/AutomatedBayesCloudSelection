@@ -1,42 +1,6 @@
 language: PYTHON
 name: "driver"
 
-# THESE 3 ENUMS ARE USED TO DECIDE FUNCTIONS USED
-# THEY SHOULD ONLY HAVE ONE OPTION
-# (unless you are intentionally somehow seeing,
-# for example, which selector works better)
-# For available functions, see the python scripts
-
-variable {
- name: "selector"
- type: ENUM
- size: 1
- options: 'exact_match'
-}
-
-variable {
- name: "deployer"
- type: ENUM
- size: 1
- options: 'fake_deploy'
-}
-
-variable {
- name: "log_converter"
- type: ENUM
- size: 1
- options: 'sysbench_by_cost'
-}
-
-# You can use similar enums for specific modules,
-# such as to specify a docker_image
-variable {
- name: "docker_image"
- type: ENUM
- size: 1
- options: 'severalnines/sysbench'
-}
-
 # Variables from this point are are those
 # used by the selector function to pick
 # the appropriate configuration

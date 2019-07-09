@@ -15,17 +15,21 @@ def standard_test(job_id, params):
 	# Set the folder
 	os.makedirs("jobfiles/"+str(job_id), exist_ok=True)
 	os.chdir(base_dir)
+	# Get the variables
+	fp = open(base_dir+"/config.vars", "r")
+	variables = json.load(fp)
+	fp.close()
 	# Start the config dictionary
-	config = {"job_id": job_id, "params": params,
+	config = {"job_id": job_id, "params": params, "vars": variables,
 			  "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
 			  "base_dir": base_dir}
 
 	# Instance selection
-	config = getattr(selectors, config["params"]["selector"][0])(config)
+	config = getattr(selectors, config["vars"]["selector"])(config)
 	# Deployment
-	config = getattr(deployers, config["params"]["deployer"][0])(config)
+	config = getattr(deployers, config["vars"]["deployer"])(config)
 	# Log conversion
-	config = getattr(converters, config["params"]["log_converter"][0])(config)
+	config = getattr(converters, config["vars"]["log_converter"])(config)
 	# Print logs of the whole config
 	print("Total configuration test details:")
 	print(config)

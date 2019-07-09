@@ -4,7 +4,7 @@ import docker
 
 def docker_deploy(config, ip, instance_tf=None):
 	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
-	logs = client.containers.run(config["params"]["docker_image"][0])
+	logs = client.containers.run(config["vars"]["docker_image"])
 
 	config["logs"] = str(logs, 'utf-8')
 
@@ -14,7 +14,7 @@ def docker_deploy(config, ip, instance_tf=None):
 
 def sys_docker_deploy(config, ip, instance_tf=None):
 	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
-	logs = client.containers.run(config["params"]["docker_image"][0],
+	logs = client.containers.run(config["vars"]["docker_image"],
 	 command='sysbench --test=cpu --cpu-max-prime=5000 run')
 
 	config["logs"] = str(logs, 'utf-8')

@@ -64,6 +64,10 @@ resource "aws_instance" "docker_host" {
   vpc_security_group_ids = ["${aws_security_group.access.id}"]
   key_name = "${var.aws_access_key}"
 
+  root_block_device = {
+    volume_size = 15
+  }
+
   connection {
     type = "ssh"
     host = "${self.public_ip}"

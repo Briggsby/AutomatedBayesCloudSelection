@@ -3,7 +3,7 @@ variable "google_region" {
 }
 
 variable "google_zone" {
-  default = "europe-west2-b"
+  default = "europe-west2-c"
 }
 
 variable "google_project_id" {

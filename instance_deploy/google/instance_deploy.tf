@@ -15,6 +15,13 @@ resource "random_string" "random_firewall_name" {
   special = false
 }
 
+resource "random_string" "random_instance_name" {
+  length = 16
+  upper = false
+  number = false
+  special = false
+}
+
 resource "google_compute_firewall" "docker_access" {
   name = "${random_string.random_firewall_name.result}"
   network = "default"
@@ -41,7 +48,7 @@ resource "google_compute_firewall" "docker_access" {
 }
 
 resource "google_compute_instance" "docker_host" {
-  name = "docker-host"
+  name = "${random_string.random_instance_name.result}"
   machine_type = "${var.instance_type}"
   zone = "${var.google_zone}"
   tags = ["docker-host"]

@@ -1,0 +1,19 @@
+API Name,Provider,CPU,Memory,Category,Price,Requests,Replies,Reply Rate,Reply time,Net I/O
+m5.large,aws,2,8,General,0.096,33956,33892,25.75,0.1,299430.4
+m5.xlarge,aws,4,16,General,0.192,33892,33892,25.85,0,299451.6
+m5.2xlarge,aws,8,32,General,0.384,33892,33892,25.8,0,299448.4
+c5.large,aws,2,4,CPU,0.085,33892,33892,25.9,0.1,299454.5
+c5.xlarge,aws,4,8,CPU,0.17,33892,33892,25.9,0,299460.4
+c5.2xlarge,aws,8,16,CPU,0.34,33892,33892,25.9,0,299460.5
+r5.large,aws,2,16,Memory,0.126,33892,33892,25.85,0.1,299451.4
+r5.xlarge,aws,4,32,Memory,0.252,33892,33892,25.9,0,299458.6
+r5.2xlarge,aws,8,64,Memory,0.504,33892,33892,25.8,0,299450
+n1-standard-2,google,2,7.5,General,0.095,31892,31892,25.7,0.62,299298.3
+n1-standard-4,google,4,15,General,0.19,27772,27772,21,0.1,249591.8
+n1-standard-8,google,8,30,General,0.38,33892,33892,25.7,0.1,299399.9
+n1-highcpu-2,google,2,1.8,CPU,0.0709,31892,31892,24.2,0.4,283736.5
+n1-highcpu-4,google,4,3.6,CPU,0.1418,31892,31892,24.2,0.2,283695.3
+n1-highcpu-8,google,8,7.2,CPU,0.2836,33892,33892,25.7,0.2,299395.4
+n1-highmem-2,google,2,13,Memory,0.1184,33892,33892,25.7,0.4,299374
+n1-highmem-4,google,4,26,Memory,0.2368,31892,31892,24.2,0.2,283760.5
+n1-highmem-8,google,8,52,Memory,0.4736,27772,27772,21,0.1,249548.9

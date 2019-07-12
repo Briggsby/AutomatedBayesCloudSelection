@@ -1,6 +1,10 @@
 import re
 import json
 
+def no_value(config):
+	config["value"] = None
+	return config
+
 def sysbench_by_cost(config):
 	# This function should take the terraform output and
     # convert it into a single value to be minimized through Bayes

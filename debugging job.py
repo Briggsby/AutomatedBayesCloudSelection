@@ -2,7 +2,5 @@ import os
 import numpy
 import driver
 
-print(driver.standard_test(1,
- {"vCPUs":numpy.array([1]), "Memory":['1'],
-  "StorageType":["EBS"], "Provider":["aws"]
-  }))
+print(driver.standard_test(10,
+ {"CPU":[2], "Category":["General"], "Provider":["google"]}))

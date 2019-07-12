@@ -9,10 +9,12 @@ def exact_match(config):
 	# Import the dataset
 	file_dir = os.path.dirname(os.path.realpath(__file__))
 	df = pd.read_csv(file_dir +
-					 "/instance_details/testset.csv", sep=",", header='infer')
+					 "/instance_details/sampleset.csv", sep=",", header='infer')
 
 	# Convert any string parameters to float that should be numeric
-	config["params"]["Memory"][0] = float(config["params"]["Memory"][0])
+	
+	# config["params"]["Memory"][0] = float(config["params"]["Memory"][0])
+	config["params"]["CPU"][0] = float(config["params"]["CPU"][0])
 
 	# Narrow down the database according to parameters
 	working_df = df
@@ -28,8 +30,8 @@ def exact_match(config):
 							   }
 		return config
 	else:
-		working_df = working_df.sort_values(by="Linux On Demand cost")
+		working_df = working_df.sort_values(by="Price")
 		config["selection"] = {"instance": working_df.iloc[0]["API Name"],
-							   "price": working_df.iloc[0]["Linux On Demand cost"]
+							   "price": working_df.iloc[0]["Price"]
 							   }
 		return config

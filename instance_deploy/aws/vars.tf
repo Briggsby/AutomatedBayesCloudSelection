@@ -15,7 +15,7 @@ variable "tfstate_path" {
 variable "aws_amis" {
   type = "map"
   default = {
-    eu-west-2 = "ami-09ead922c1dad67e4"
+    eu-west-2 = "ami-0d8e27447ec2c8410"
   }
 }
 

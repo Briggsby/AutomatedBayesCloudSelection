@@ -2,7 +2,11 @@
 
 num_clients_per_machine=4
 min_num_sessions=100
-max_num_sessions=16000
+max_num_sessions=80000
+
+if (($# >= 2)); then
+	max_num_sessions=$2
+fi
 
 streaming_client_dir=..
 #server_ip=$(tail -n 1 hostlist.server)

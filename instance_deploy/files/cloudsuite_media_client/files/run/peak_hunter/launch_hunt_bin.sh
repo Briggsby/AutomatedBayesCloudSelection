@@ -101,7 +101,7 @@ do
   if [ $diff -le 50 ]
   then
     maxThroughput=$[$numSessions*$numTotalClients]
-#    echo "Benchmark succeeded for maximum sessions: $maxThroughput"
+    echo "Benchmark succeeded for maximum sessions: $maxThroughput"
     exit 0
   fi
   delta=$[(maxNumSessions-minNumSessions)/2]

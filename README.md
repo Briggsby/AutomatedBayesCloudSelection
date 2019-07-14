@@ -11,3 +11,5 @@ spearmint3 - https://github.com/briggsby/spearmint3
 Change the spearmint.sh file to direct to your spearmint folder (it defaults to your active site-packages folder/spearmint)
 
 Instance details taken from https://www.ec2instances.info/ on 20190622 (22 June 2019)
+
+Uses cloudsuite3's media streaming benchmark tool (https://github.com/parsa-epfl/cloudsuite)

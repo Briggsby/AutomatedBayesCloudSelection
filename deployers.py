@@ -17,10 +17,14 @@ def cloudsuite3_media(config, ip, instance_tf=None):
 	image = client.images.build(path=config["base_dir"]+"/instance_deploy/files/cloudsuite_media_client",
 	tag = "mine/media-streaming-client")
 
+	# These are values that have been found to reduce times to acceptable levels
+	# while still insuring max sessions is not too low
+	max_sess_dict = {2:10000, 4:200000, 8:400000}
+	max_sessions = max_sess_dict[int(config["params"]["CPU"][0])]
 
 	print("Running cloudsuite")
 
-	logs = client.containers.run("mine/media-streaming-client", "streaming_server",
+	logs = client.containers.run("mine/media-streaming-client", f"streaming_server {max_sessions}",
 	 tty=True, name="streaming_client", volumes={'/logs': {'bind': '/output', 'mode': 'rw'}},
 	  volumes_from=["streaming_dataset"], network="streaming_network")
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$1" = "bash" ]; then
-  exec $@
+  exec "$@"
 else
-  cd /root/run && exec ./benchmark.sh $1
+  cd /root/run && exec ./benchmark.sh "$@"
 fi

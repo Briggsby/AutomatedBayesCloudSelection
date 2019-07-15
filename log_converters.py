@@ -5,6 +5,13 @@ def no_value(config):
 	config["value"] = None
 	return config
 
+def vbench(config):
+	logs = config["logs"]
+	value = float(logs.split(",")[8])
+	print("Value:", value, "Price:", config["selection"]["price"])
+	config["value"] = -value/config["selection"]["price"]
+	return config
+
 def cloudsuite_media_stream(config):
 	logs = config["logs"]
 

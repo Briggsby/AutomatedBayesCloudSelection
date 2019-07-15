@@ -1,0 +1,41 @@
+Running in wrapper mode for '20027'
+
+Running python job.
+
+Anything printed here will end up in the output directory for job #: 20027
+{'CPU': ['2'], 'Provider': ['aws'], 'Category': ['CPU']}
+Provisioning c5.large instance from ['aws']
+----------------------------------------
+Problem running the job:
+(<class 'SystemExit'>, SystemExit(0), <traceback object at 0x7f11b84c5308>)
+Traceback (most recent call last):
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/venv/lib/python3.7/site-packages/spearmint/runner.py", line 41, in job_runner
+    elif job.language == PYTHON: run_python_job(job)
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/venv/lib/python3.7/site-packages/spearmint/runner.py", line 131, in run_python_job
+    result = module.main(job.id, params)
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/abcs_driver.py", line 63, in main
+    return standard_test(job_id, params)
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/abcs_driver.py", line 30, in standard_test
+    config = getattr(deployers, config["vars"]["deployer"])(config)
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/deployers.py", line 7, in vbench
+    config, instance_tf, ip = vm_provision(config)
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/deployers.py", line 115, in vm_provision
+    var={'instance_type':config["selection"]["instance"]}, skip_plan=True)
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/venv/lib/python3.7/site-packages/python_terraform/__init__.py", line 113, in apply
+    return self.cmd('apply', *args, **option_dict)
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/venv/lib/python3.7/site-packages/python_terraform/__init__.py", line 299, in cmd
+    out, err = p.communicate()
+  File "/usr/lib/python3.7/subprocess.py", line 939, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+  File "/usr/lib/python3.7/subprocess.py", line 1681, in _communicate
+    ready = selector.select(timeout)
+  File "/usr/lib/python3.7/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+  File "/home/jack/Documents/AutomatedBayesCloudSelection/venv/bin/../lib/python3.7/site-packages/spearmint/main.py", line 323, in sigint_handler
+    sys.exit(0)
+SystemExit: 0
+None
+----------------------------------------
+Job file reloaded.
+Could not find value in output file.
+Job failed in 59.18 seconds.

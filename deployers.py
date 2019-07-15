@@ -3,6 +3,22 @@ import os
 import docker
 import re
 
+def vbench(config):
+	config, instance_tf, ip = vm_provision(config)
+	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
+	client.images.pull("briggsby/vbench:ubuntu")
+
+	vbench_type = config["vars"]["vbench_type"]
+	vbench_filter = config["vars"]["vbench_filter"]
+
+	print("Performing vbench benchmark")
+	logs = client.containers.run("briggsby/vbench:ubuntu", f"{vbench_type} {vbench_filter}")
+	print(logs)
+	config["logs"] = str(logs, 'utf-8')
+	if instance_tf is not None:
+		vm_destroy(config, instance_tf)
+	return config
+
 def cloudsuite3_media(config, ip, instance_tf=None):
 
 	print("Preparing cloudsuite")

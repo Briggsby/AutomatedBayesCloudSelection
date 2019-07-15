@@ -4,5 +4,5 @@ import multiprocessing
 
 # multiprocessing.set_start_method('spawn', True)
 
-spearmint.main(['--driver=local', '--method=GPEIOptChooser', '--method-args=noiseless=1',
-'./config.pb'])
+spearmint.main(['--driver=local', '--method=GPEIChooser', '--method-args=noiseless=0',
+'-w', '-v','./config.pb'])

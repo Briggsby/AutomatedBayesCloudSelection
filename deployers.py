@@ -2,6 +2,13 @@ from python_terraform import Terraform
 import os
 import docker
 import re
+import signal
+from functools import partial
+
+def keyboard_interrupt_handler(instance_tf, config, signal, frame):
+	print("KeyboardInterrupt (ID: {}) has been caught. Cleaning up...".format(signal))
+	vm_destroy(config, instance_tf)
+	exit(0)
 
 def vbench(config):
 	config, instance_tf, ip = vm_provision(config)
@@ -111,6 +118,7 @@ def vm_provision(config):
 	tfvars = config["base_dir"]+"/tfvars.tfvars"
 
 	instance_tf.init(backend_config={'path':tfstate_path + '/terraform.tfstate'})
+	signal.signal(signal.SIGINT, partial(keyboard_interrupt_handler, instance_tf, config))
 	apply = instance_tf.apply(var_file=tfvars, lock=False,
 	var={'instance_type':config["selection"]["instance"]}, skip_plan=True)
 	print(apply)

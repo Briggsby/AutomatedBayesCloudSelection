@@ -1,12 +1,14 @@
 from python_terraform import Terraform
 import os
 import docker
+import re
 
 def cloudsuite3_media(config, ip, instance_tf=None):
 
 	print("Preparing cloudsuite")
 
 	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
+	client.containers.prune()
 	client.images.pull("cloudsuite/media-streaming", "dataset",)
 	client.containers.create("cloudsuite/media-streaming:dataset", name="streaming_dataset")
 	client.networks.create("streaming_network")
@@ -19,14 +21,16 @@ def cloudsuite3_media(config, ip, instance_tf=None):
 
 	# These are values that have been found to reduce times to acceptable levels
 	# while still insuring max sessions is not too low
-	max_sess_dict = {2:10000, 4:200000, 8:400000}
-	max_sessions = max_sess_dict[int(config["params"]["CPU"][0])]
+	max_sess_dict = {"aws" : {2:60000, 4:2000000, 8:2000000}, "google": {2:8000, 4: 100000, 8: 800000}}
+	max_sessions = max_sess_dict[config["params"]["Provider"][0]][int(config["params"]["CPU"][0])]
+
+	num_sessions = 8
 
 	print("Running cloudsuite")
 
-	logs = client.containers.run("mine/media-streaming-client", f"streaming_server {max_sessions}",
+	logs = client.containers.run("mine/media-streaming-client", f"streaming_server {max_sessions} {num_sessions}",
 	 tty=True, name="streaming_client", volumes={'/logs': {'bind': '/output', 'mode': 'rw'}},
-	  volumes_from=["streaming_dataset"], network="streaming_network")
+	  volumes_from=["streaming_dataset"], network="streaming_network", )
 
 	print("Cloudsuite finished")
 
@@ -93,11 +97,14 @@ def vm_provision(config):
 	instance_tf.init(backend_config={'path':tfstate_path + '/terraform.tfstate'})
 	apply = instance_tf.apply(var_file=tfvars, lock=False,
 	var={'instance_type':config["selection"]["instance"]}, skip_plan=True)
-
 	print(apply)
 
-	instance_tf.init(backend_config={'path':tfstate_path + '/terraform.tfstate'})
-	instance_ip = instance_tf.output()["docker_host_ip"]["value"]
+	find = re.search(r"docker_host_ip = [\d.]+", apply[1])
+	instance_ip = apply[1][(find.regs[0][0]+17):find.regs[0][1]]
+	
+
+	# instance_tf.init(backend_config={'path':tfstate_path + '/terraform.tfstate'})
+	# instance_ip = instance_tf.output()["docker_host_ip"]["value"]
 	
 	print(f"{config['selection']['instance']} instance created at {instance_ip}")
 

@@ -8,6 +8,10 @@ if (($# >= 2)); then
 	max_num_sessions=$2
 fi
 
+if (($# >= 3)); then
+	num_clients_per_machine=$3
+fi
+
 streaming_client_dir=..
 #server_ip=$(tail -n 1 hostlist.server)
 server_ip=$1

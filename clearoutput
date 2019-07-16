@@ -11,6 +11,8 @@ rm expt-grid.pkl
 rm expt-grid.pkl.lock
 rm trace.csv
 rm spearmint.chooser.GPEIOptChooser.pkl
+rm spearmint.chooser.GPEIOptChooser.pkl.lock
 rm spearmint.chooser.GPEIOptChooser_hyperparameters.txt
 rm spearmint.chooser.GPEIChooser.pkl
+rm spearmint.chooser.GPEIChooser.pkl.lock
 rm spearmint.chooser.GPEIChooser_hyperparameters.txt

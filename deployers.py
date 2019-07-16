@@ -3,6 +3,7 @@ import os
 import docker
 import re
 import signal
+import time
 from functools import partial
 
 def keyboard_interrupt_handler(instance_tf, config, signal, frame):
@@ -138,7 +139,7 @@ def fake_deploy(config):
 	# Returns logs as though it did vm_docker_deploy with sysbench
 
 	# file_dir = os.path.dirname(os.path.realpath(__file__))
-
+	time.sleep(10)
 	if config["selection"]["instance"] is None:
 		config["logs"] = None
 		return config

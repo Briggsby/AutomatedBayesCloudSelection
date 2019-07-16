@@ -13,7 +13,7 @@ def standard_test(job_id, params):
 	base_dir = os.path.dirname(os.path.realpath(__file__))
 	os.chdir(base_dir)
 	# Set the folder
-	os.makedirs("jobfiles/"+str(job_id), exist_ok=True)
+	os.makedirs("jobfiles", exist_ok=True)
 	os.chdir(base_dir)
 	# Get the variables
 	fp = open(base_dir+"/config.vars", "r")

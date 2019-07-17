@@ -1,0 +1,9 @@
+Best result: -8.140622
+Job-id: 20003
+Parameters: 
+name: "CPU"
+str_val: "2"
+name: "Provider"
+str_val: "aws"
+name: "Category"
+str_val: "CPU"

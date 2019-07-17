@@ -54,5 +54,4 @@ spearmint/
 #######
 # Other
 .oldfiles/
-jobfiles/
 tf_states/

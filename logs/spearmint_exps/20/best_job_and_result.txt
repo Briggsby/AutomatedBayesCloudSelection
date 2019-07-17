@@ -1,0 +1,9 @@
+Best result: -6.725372
+Job-id: 20004
+Parameters: 
+name: "CPU"
+str_val: "2"
+name: "Provider"
+str_val: "google"
+name: "Category"
+str_val: "CPU"

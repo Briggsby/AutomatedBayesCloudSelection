@@ -102,5 +102,5 @@ output "docker_host_ip" {
 }
 
 output "config_details" {
-  value = {provider = "gce", instance_type = "${var.instance_type}"}
+  value = {provider = "google", instance_type = "${var.instance_type}"}
 }

@@ -98,7 +98,7 @@ def vm_docker_deploy(config):
 def vm_destroy(config, instance_tf):
 	tfstate_path = config["base_dir"] + '/tf_states/' + str(config["job_id"])
 	instance_tf.init(backend_config={'path':tfstate_path + '/terraform.tfstate'})
-	instance_tf.destroy(auto_approve=True)
+	instance_tf.destroy(auto_approve=True, var_file=config["base_dir"]+"/tfvars.tfvars")
 
 def vm_provision(config):
 

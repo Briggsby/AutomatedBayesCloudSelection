@@ -1,0 +1,9 @@
+Best result: -5.148294
+Job-id: 0
+Parameters: 
+name: "CPU"
+str_val: "2"
+name: "Provider"
+str_val: "google"
+name: "Category"
+str_val: "General"

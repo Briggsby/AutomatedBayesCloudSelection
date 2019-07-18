@@ -5,6 +5,23 @@ def no_value(config):
 	config["value"] = None
 	return config
 
+def ping_testserver(config):
+	logs = config["logs"]
+	logs = json.loads(logs,)
+	inputs = []
+	response_times = []
+	for i in logs:
+		results = logs[i].split("\n")
+		for line in results:
+			if "URL" in line and line != "DONE":
+				split_line = line.split("\t")
+				inputs.append(int(split_line[1].split('/')[1]))
+				response_times.append(float(split_line[3]))
+	config["value"] =  -(sum(response_times)/len(response_times))/config["selection"]["price"]
+	print("Value:", config["value"], "Price:", config["selection"]["price"])
+	return config
+		
+
 def vbench(config):
 	logs = config["logs"]
 	value = float(logs.split(",")[8])

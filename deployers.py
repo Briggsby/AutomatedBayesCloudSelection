@@ -4,12 +4,63 @@ import docker
 import re
 import signal
 import time
+import json
 from functools import partial
+import kubernetes as kube
 
 def keyboard_interrupt_handler(instance_tf, config, signal, frame):
 	print("KeyboardInterrupt (ID: {}) has been caught. Cleaning up...".format(signal))
 	vm_destroy(config, instance_tf)
 	exit(0)
+
+def ping_testserver(config):
+	config, instance_tf, ip = vm_provision(config)
+	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
+	client.images.pull("briggsby/vbench:notvbenchprimetestserver")
+	client.containers.run("briggsby/vbench:notvbenchprimetestserver", ports={'80/tcp':8000}, detach=True)
+
+	kube.config.load_kube_config(config_file=config["base_dir"]+"/instance_deploy/google/credentials/kube-test")
+	client = kube.client.ApiClient()
+	v1 = kube.client.CoreV1Api()
+	extv1 = kube.client.ExtensionsV1beta1Api()
+	cmap = kube.client.V1ConfigMap()
+
+	cmap.metadata = kube.client.V1ObjectMeta(name="ping-config")
+	cmap.data = {
+		"IPTARGET" : ip,
+		"PORTTARGET":"8000",
+		"PINGTIME": "10",
+		}
+
+	v1.create_namespaced_config_map(namespace="default", body=cmap)
+	
+	kube.utils.create_from_yaml(client, config["base_dir"]+"/instance_deploy/files/exampleping.yaml")
+
+	time.sleep(45)
+
+	ret = v1.list_pod_for_all_namespaces(watch=False)
+	logs = {}
+	for i in ret.items:
+		if "curl-test" in i.metadata.name:
+			pod = i.metadata.name
+			logs[pod] = v1.read_namespaced_pod_log(pod, namespace="default")
+
+	v1.delete_namespaced_config_map(namespace="default", name=cmap.metadata.name)
+	extv1.delete_namespaced_daemon_set(namespace="default", name="curl-test")
+
+	for i in ret.items:
+		if "curl-test" in i.metadata.name:
+			pod = i.metadata.name
+			v1.delete_namespaced_pod(name=pod, namespace="default")
+
+	time.sleep(20)
+
+	config["logs"] = json.dumps(logs, indent=2)
+
+	if instance_tf is not None:
+		vm_destroy(config, instance_tf)
+	return config
+
 
 def vbench(config):
 	config, instance_tf, ip = vm_provision(config)

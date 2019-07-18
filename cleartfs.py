@@ -12,7 +12,8 @@ time.sleep(30) # Give enough time for any leftover instace provisioning process 
 for directory in os.listdir(os.getcwd()+"/tf_states"):
         tfstate_file = json.load(open("tf_states/"+directory+"/terraform.tfstate"))
         if ("config_details" in tfstate_file["modules"][0]["outputs"]):
-                print(f'Removing {tfstate_file["modules"][0]["outputs"]["config_details"]["value"]["instance_type"]}')
+                instance_type = tfstate_file['modules'][0]['outputs']['config_details']['value']['instance_type']
+                print(f'Removing {instance_type}')
                 provider = tfstate_file["modules"][0]["outputs"]["config_details"]["value"]["provider"]
                 tfstate_path = base_dir+ '/tf_states/' + directory
                 tfvars = base_dir + "/tfvars.tfvars"

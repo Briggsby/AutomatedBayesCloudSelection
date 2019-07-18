@@ -15,9 +15,14 @@ def keyboard_interrupt_handler(instance_tf, config, signal, frame):
 
 def ping_testserver(config):
 	config, instance_tf, ip = vm_provision(config)
+
+	print("Deploying test server")
+
 	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
 	client.images.pull("briggsby/vbench:notvbenchprimetestserver")
 	client.containers.run("briggsby/vbench:notvbenchprimetestserver", ports={'80/tcp':8000}, detach=True)
+
+	print("Setting up kubernetes pinging cluster")
 
 	kube.config.load_kube_config(config_file=config["base_dir"]+"/instance_deploy/google/credentials/kube-test")
 	client = kube.client.ApiClient()
@@ -36,7 +41,11 @@ def ping_testserver(config):
 	
 	kube.utils.create_from_yaml(client, config["base_dir"]+"/instance_deploy/files/exampleping.yaml")
 
+	print("Waiting for pings")
+
 	time.sleep(45)
+
+	print("Collecting logs and deleting resources")
 
 	ret = v1.list_pod_for_all_namespaces(watch=False)
 	logs = {}

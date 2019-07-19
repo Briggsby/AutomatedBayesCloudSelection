@@ -1,6 +1,6 @@
 library(ggplot2)
 
-logs <- read.csv("vbench_results.csv")
+logs <- read.csv("curltest_results.csv")
 logs$instance <- as.factor(logs$instance)
 instance_types <- levels(logs$instance)
 

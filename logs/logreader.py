@@ -59,7 +59,33 @@ def vbench():
     print(df)
     df.to_csv("vbench_results.csv")
 
+def curltest():
+    df = pd.DataFrame(columns=['instance', 'score', 'cpu', 'type', 'provider', 'price', 'value'])
+
+    all_logs = json.load(open("fulllogs.json", "r"))
+    row = 0
+    for i in all_logs:
+        if (type(all_logs[i]) is dict):
+            if ('value' in all_logs[i] and all_logs[i]['value'] is not None and
+            'vars' in all_logs[i]):
+                if ('20190719' in all_logs[i]['timestamp']):
+                    if (all_logs[i]['vars']['log_converter'] == 'ping_testserver' and
+                    all_logs[i]['vars']['deployer'] == 'ping_testserver'):
+                        value = abs(all_logs[i]['value'])
+                        price = all_logs[i]['selection']['price']
+                        avg_delay = value*price
+                        instance = all_logs[i]['selection']['instance']
+                        cpu = all_logs[i]['params']['CPU']
+                        provider = all_logs[i]['params']['Provider']
+                        category = all_logs[i]['params']['Category']
+                        df.loc[row] = [instance, avg_delay, cpu, category, provider, price, value]
+                        row += 1
+                        print(value, price, avg_delay, instance)
+
+    print(df)
+    df.to_csv("curltest_results.csv")
 
 copy("fulllogs.json", "backup.json")
 cloudsuite()
 vbench()
+curltest()

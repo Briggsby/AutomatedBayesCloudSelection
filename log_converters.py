@@ -17,8 +17,9 @@ def ping_testserver(config):
 				split_line = line.split("\t")
 				inputs.append(int(split_line[1].split('/')[1]))
 				response_times.append(float(split_line[3]))
-	config["value"] =  -(sum(response_times)/len(response_times))/config["selection"]["price"]
-	print("Value:", config["value"], "Price:", config["selection"]["price"])
+	value = -(sum(response_times)/len(response_times))
+	config["value"] =  value/config["selection"]["price"]
+	print("Value:", value, "Price:", config["selection"]["price"])
 	return config
 		
 

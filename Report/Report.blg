@@ -1,8 +1,48 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: Report.aux
-The style file: IEEEtran.bst
+This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Report.aux
+The style file: ieeetr.bst
 Database file #1: Dissertation.bib
--- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
--- http://www.michaelshell.org/tex/ieeetran/bibtex/
--- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-
-Done.
+Warning--empty booktitle in Scheuner2018a
+You've used 15 entries,
+            1876 wiz_defined-function locations,
+            582 strings with 7298 characters,
+and the built_in function-call counts, 5415 in all, are:
+= -- 517
+> -- 243
+< -- 0
++ -- 86
+- -- 71
+* -- 416
+:= -- 744
+add.period$ -- 15
+call.type$ -- 15
+change.case$ -- 15
+chr.to.int$ -- 0
+cite$ -- 16
+duplicate$ -- 274
+empty$ -- 493
+format.name$ -- 71
+if$ -- 1301
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 15
+newline$ -- 48
+num.names$ -- 15
+pop$ -- 69
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 201
+stack$ -- 0
+substring$ -- 428
+swap$ -- 118
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 60
+width$ -- 17
+write$ -- 150
+(There was 1 warning)

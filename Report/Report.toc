@@ -1,9 +1,28 @@
-\contentsline {section}{\numberline {1}Introduction}{5}{section.1}% 
-\contentsline {section}{\numberline {2}Context Summary}{5}{section.2}% 
-\contentsline {section}{\numberline {3}Requirements Specification}{7}{section.3}% 
-\contentsline {section}{\numberline {4}Software Engineering Process}{7}{section.4}% 
-\contentsline {section}{\numberline {5}Ethics}{7}{section.5}% 
-\contentsline {section}{\numberline {6}Design}{7}{section.6}% 
-\contentsline {section}{\numberline {7}Implementation}{7}{section.7}% 
-\contentsline {section}{\numberline {8}Evaluation and Critical Appraisal}{8}{section.8}% 
-\contentsline {section}{\numberline {9}Conclusions}{8}{section.9}% 
+\contentsline {section}{\numberline {1}Introduction}{6}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}Background}{6}{subsection.1.1}% 
+\contentsline {subsection}{\numberline {1.2}Aims and Objectives}{6}{subsection.1.2}% 
+\contentsline {subsection}{\numberline {1.3}Achievements}{6}{subsection.1.3}% 
+\contentsline {subsection}{\numberline {1.4}Dissertation Overview}{6}{subsection.1.4}% 
+\contentsline {section}{\numberline {2}Context Summary}{6}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Cloud Computing}{6}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Configuration searching}{6}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Performance evaluation}{7}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4}Related Work}{8}{subsection.2.4}% 
+\contentsline {section}{\numberline {3}Requirements Specification}{8}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Functional Requirements}{8}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Non-functional Requirements}{8}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Use-case}{8}{subsection.3.3}% 
+\contentsline {section}{\numberline {4}Software Engineering Process}{8}{section.4}% 
+\contentsline {section}{\numberline {5}Ethics}{9}{section.5}% 
+\contentsline {section}{\numberline {6}Design}{9}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}That cherrypick quote about starting specific}{9}{subsection.6.1}% 
+\contentsline {section}{\numberline {7}Implementation}{9}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Spearmint}{10}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7.2}Wrapper}{10}{subsection.7.2}% 
+\contentsline {subsection}{\numberline {7.3}Selector}{10}{subsection.7.3}% 
+\contentsline {subsection}{\numberline {7.4}Deployer}{10}{subsection.7.4}% 
+\contentsline {subsection}{\numberline {7.5}Interpreter}{10}{subsection.7.5}% 
+\contentsline {section}{\numberline {8}Evaluation}{10}{section.8}% 
+\contentsline {section}{\numberline {9}Critical discussion}{10}{section.9}% 
+\contentsline {subsection}{\numberline {9.1}Future extensions}{10}{subsection.9.1}% 
+\contentsline {section}{\numberline {10}Conclusions}{10}{section.10}% 

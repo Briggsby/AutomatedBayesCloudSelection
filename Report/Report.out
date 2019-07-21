@@ -1,9 +1,28 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Context Summary}{}% 2
-\BOOKMARK [1][-]{section.3}{Requirements Specification}{}% 3
-\BOOKMARK [1][-]{section.4}{Software Engineering Process}{}% 4
-\BOOKMARK [1][-]{section.5}{Ethics}{}% 5
-\BOOKMARK [1][-]{section.6}{Design}{}% 6
-\BOOKMARK [1][-]{section.7}{Implementation}{}% 7
-\BOOKMARK [1][-]{section.8}{Evaluation and Critical Appraisal}{}% 8
-\BOOKMARK [1][-]{section.9}{Conclusions}{}% 9
+\BOOKMARK [2][-]{subsection.1.1}{Background}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Aims and Objectives}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Achievements}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Dissertation Overview}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Context Summary}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Cloud Computing}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Configuration searching}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Performance evaluation}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.4}{Related Work}{section.2}% 10
+\BOOKMARK [1][-]{section.3}{Requirements Specification}{}% 11
+\BOOKMARK [2][-]{subsection.3.1}{Functional Requirements}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Non-functional Requirements}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.3}{Use-case}{section.3}% 14
+\BOOKMARK [1][-]{section.4}{Software Engineering Process}{}% 15
+\BOOKMARK [1][-]{section.5}{Ethics}{}% 16
+\BOOKMARK [1][-]{section.6}{Design}{}% 17
+\BOOKMARK [2][-]{subsection.6.1}{That cherrypick quote about starting specific}{section.6}% 18
+\BOOKMARK [1][-]{section.7}{Implementation}{}% 19
+\BOOKMARK [2][-]{subsection.7.1}{Spearmint}{section.7}% 20
+\BOOKMARK [2][-]{subsection.7.2}{Wrapper}{section.7}% 21
+\BOOKMARK [2][-]{subsection.7.3}{Selector}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.4}{Deployer}{section.7}% 23
+\BOOKMARK [2][-]{subsection.7.5}{Interpreter}{section.7}% 24
+\BOOKMARK [1][-]{section.8}{Evaluation}{}% 25
+\BOOKMARK [1][-]{section.9}{Critical discussion}{}% 26
+\BOOKMARK [2][-]{subsection.9.1}{Future extensions}{section.9}% 27
+\BOOKMARK [1][-]{section.10}{Conclusions}{}% 28

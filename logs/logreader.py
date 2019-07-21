@@ -1,6 +1,7 @@
 import json
 from shutil import copy
 import pandas as pd
+import os
 
 
 def cloudsuite():
@@ -85,7 +86,65 @@ def curltest():
     print(df)
     df.to_csv("curltest_results.csv")
 
+
+def exps():
+    df = pd.DataFrame(columns=['Selector', 'Deployer', 'Interpreter', 'Concurrent_Jobs', 'Multiple_Providers', 'Jobs_completed', 'Best_CPU', 'Best_Provider', 'Best_Category', 'Best_JobID', 'Best_Result'])
+    row = 0
+    for directory in os.listdir(os.getcwd()+"/spearmint_exps"):
+        selector = "exact_match"
+        best_results_file = open("spearmint_exps/"+directory+"/best_job_and_result.txt", "r").read().splitlines()
+
+        jobs_completed = len(os.listdir(os.getcwd()+"/spearmint_exps/"+directory+"/jobfiles"))
+
+        for idx, line in enumerate(best_results_file):
+            split = line.split(":")
+            if idx == 0:
+                    best_result = float(split[1])
+            elif idx == 1:
+                    best_jobid = split[1]
+            elif idx == 4:
+                    best_cpu = int(split[1].strip(' "'))
+            elif idx == 6:
+                    best_provider = split[1].strip(' "')
+            elif idx == 8:
+                    best_category = split[1].strip(' "')
+        if int(directory) < 20:
+            deployer = "vbench"
+            interpreter = "vbench"
+            concurrent_jobs = 3
+            multiple_providers = True
+            row_to_set = [selector, deployer, interpreter, concurrent_jobs, multiple_providers, jobs_completed, best_cpu, best_provider, best_category, best_jobid, best_result]        
+            df.loc[row] = row_to_set
+            row += 1
+        elif int(directory) < 40:
+            deployer = "vbench"
+            interpreter = "vbench"
+            concurrent_jobs = 3
+            multiple_providers = False    
+            row_to_set = [selector, deployer, interpreter, concurrent_jobs, multiple_providers, jobs_completed, best_cpu, best_provider, best_category, best_jobid, best_result]        
+            df.loc[row] = row_to_set
+            row += 1
+        elif int(directory) < 50:
+            deployer = "vbench"
+            interpreter = "vbench"
+            concurrent_jobs = 1
+            multiple_providers = True         
+            df.loc[row] = [selector, deployer, interpreter, concurrent_jobs, multiple_providers, jobs_completed, best_cpu, best_provider, best_category, best_jobid, best_result]
+            row += 1
+        else:
+            deployer = "ping_testserver"
+            interpreter = "ping_testserver"
+            concurrent_jobs = 1
+            multiple_providers = False         
+            df.loc[row] = [selector, deployer, interpreter, concurrent_jobs, multiple_providers, jobs_completed, best_cpu, best_provider, best_category, best_jobid, best_result]
+            row += 1
+    print(df)
+    df.to_csv("exps_results.csv")
+        
+
+
 copy("fulllogs.json", "backup.json")
 cloudsuite()
 vbench()
 curltest()
+exps()

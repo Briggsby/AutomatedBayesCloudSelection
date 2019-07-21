@@ -1,6 +1,6 @@
 library(ggplot2)
 
-logs <- read.csv("curltest_results.csv")
+logs <- read.csv("vbench_results.csv")
 logs$instance <- as.factor(logs$instance)
 instance_types <- levels(logs$instance)
 
@@ -12,6 +12,8 @@ logs$cpu <- vapply(as.character(logs$cpu), function(x) return(strtoi(remove_squa
 google_logs = logs[logs$provider == "['google']",]
 aws_logs = logs[logs$provider == "['aws']",]
 
+
+ns <- c()
 ## Score
 score_means = c()
 score_sds = c()
@@ -19,6 +21,7 @@ score_relsds = c()
 
 for (i in instance_types) {
   print(i)
+  ns <- c(ns, nrow(logs[logs$instance==i,]))
   s_mean <- mean(logs[logs$instance==i,]$score)
   s_sd <- sd(logs[logs$instance==i,]$score)
   print(paste("Mean:", s_mean))
@@ -26,7 +29,13 @@ for (i in instance_types) {
   print(paste("SD:", s_sd))
   score_sds <- c(score_sds, s_sd)
   score_relsds <- c(score_relsds, s_sd/s_mean)
+  qqnorm(logs[logs$instance==i,]$score, main=i)
+  print(shapiro.test(logs[logs$instance==i,]$score))
 }
+
+ggplot(logs, aes(score)) +
+  geom_histogram() +
+  facet_wrap(~instance)
 
 names(score_means) <- instance_types
 names(score_sds) <- instance_types

@@ -13,16 +13,16 @@
 \BOOKMARK [2][-]{subsection.3.2}{Non-functional Requirements}{section.3}% 13
 \BOOKMARK [2][-]{subsection.3.3}{Use-case}{section.3}% 14
 \BOOKMARK [1][-]{section.4}{Software Engineering Process}{}% 15
-\BOOKMARK [1][-]{section.5}{Ethics}{}% 16
-\BOOKMARK [1][-]{section.6}{Design}{}% 17
-\BOOKMARK [2][-]{subsection.6.1}{That cherrypick quote about starting specific}{section.6}% 18
-\BOOKMARK [1][-]{section.7}{Implementation}{}% 19
-\BOOKMARK [2][-]{subsection.7.1}{Spearmint}{section.7}% 20
-\BOOKMARK [2][-]{subsection.7.2}{Wrapper}{section.7}% 21
-\BOOKMARK [2][-]{subsection.7.3}{Selector}{section.7}% 22
-\BOOKMARK [2][-]{subsection.7.4}{Deployer}{section.7}% 23
-\BOOKMARK [2][-]{subsection.7.5}{Interpreter}{section.7}% 24
-\BOOKMARK [1][-]{section.8}{Evaluation}{}% 25
-\BOOKMARK [1][-]{section.9}{Critical discussion}{}% 26
-\BOOKMARK [2][-]{subsection.9.1}{Future extensions}{section.9}% 27
-\BOOKMARK [1][-]{section.10}{Conclusions}{}% 28
+\BOOKMARK [1][-]{section.5}{Design}{}% 16
+\BOOKMARK [2][-]{subsection.5.1}{That cherrypick quote about starting specific}{section.5}% 17
+\BOOKMARK [1][-]{section.6}{Implementation}{}% 18
+\BOOKMARK [2][-]{subsection.6.1}{Searcher}{section.6}% 19
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Bayesian Optimization - Spearmint}{subsection.6.1}% 20
+\BOOKMARK [2][-]{subsection.6.2}{Wrapper}{section.6}% 21
+\BOOKMARK [2][-]{subsection.6.3}{Selector}{section.6}% 22
+\BOOKMARK [2][-]{subsection.6.4}{Deployer}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.5}{Interpreter}{section.6}% 24
+\BOOKMARK [1][-]{section.7}{Evaluation}{}% 25
+\BOOKMARK [1][-]{section.8}{Critical discussion}{}% 26
+\BOOKMARK [2][-]{subsection.8.1}{Future extensions}{section.8}% 27
+\BOOKMARK [1][-]{section.9}{Conclusions}{}% 28

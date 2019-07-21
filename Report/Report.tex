@@ -113,6 +113,22 @@ Any searcher
 \section{Evaluation}
 \textbf{You should evaluate your own work with respect to your original objectives. You should also critically evaluate your work with respect to related work done by others. You should compare and contrast the project to similar work in the public domain, for example as written about in published papers, or as distributed in software available to you.}
 
+\begin{figure}
+  \caption{Distribution of vBench scores}
+  \centering
+   \includegraphics[scale=0.8]{vbench_scores}
+\end{figure}
+\begin{figure}
+  \caption{Distribution of objective function values}
+  \centering
+   \includegraphics[scale=0.8]{vbench_values}
+\end{figure}
+
+With the best option clearly being c5.large, running spearmint with both multiple concurrent jobs (3 simultaneous jobs)and multiple providers (both AWS and GCP), the optimal instance was selection 55\% of the time, with m5.large chosen 35\% of time. Reducing the search space significantly by reducing the number of providers to only one (GCP) causes the optimal instance to be selected instead 75\% of the time. This makes clear that for this experiment a less relaxed stopping condition may be beneficial. To attain the effectiveness that the CherryPick paper claims, we must not allow concurrent jobs. Preventing multiple jobs running at once instead ensures the optimal instance type is selected 80\% of the time. 
+
+\subsection{Ping Test}
+In the ping test evaluation of 10 spearmint experiments using the same stopping condition as above, one of two optimal configurations (AWS m5.large or c5.large instance types), with overlapping distributions for the objective value, was successfully chosen in all runs.
+
 \section{Critical discussion}
 \textbf{You should evaluate your own work with respect to your
 original objectives. You should also critically evaluate
@@ -120,6 +136,8 @@ your work with respect to related work done by others.
 You should compare and contrast the project to similar
 work in the public domain, for example as written about
 in published papers, or as distributed in software available to you. }
+
+As mentioned, the evaluation above likely does not correspond to comparisons with which to base real deployment decisions on. In reality, a small increase in transcoding speed may lead to a far greater increase in customer uptake, rather than the effectively 1:1 ratio between price and transcoding speed assumed in the experiment. However, the evaluation shows that the methodology works very well with a given objective score measure, and it would be trivial for a new objective function to be implemented with a different relationship between the score, price, and 'value' of a given configuration.
 \subsection{Future extensions}
 \section{Conclusions}
 \textbf{You should summarise your project, emphasising your

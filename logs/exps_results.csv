@@ -1,61 +1,61 @@
-,Selector,Deployer,Interpreter,Concurrent_Jobs,Multiple_Providers,Jobs_completed,Best_CPU,Best_Provider,Best_Category,Best_JobID,Best_Result
-0,exact_match,vbench,vbench,3,True,11,2,aws,CPU, 20004,-8.030929
-1,exact_match,vbench,vbench,3,True,8,2,google,CPU, 20000,-6.761013
-2,exact_match,vbench,vbench,3,True,6,2,aws,CPU, 20000,-8.185259
-3,exact_match,vbench,vbench,3,True,6,2,aws,CPU, 20000,-8.024063
-4,exact_match,vbench,vbench,3,True,7,2,aws,General, 0,-6.33192
-5,exact_match,vbench,vbench,3,True,6,2,aws,General, 0,-6.319993
-6,exact_match,vbench,vbench,3,True,6,2,aws,CPU, 20001,-8.050723
-7,exact_match,vbench,vbench,3,True,8,2,aws,CPU, 20002,-8.132601
-8,exact_match,vbench,vbench,3,True,8,2,aws,General, 0,-6.388076
-9,exact_match,vbench,vbench,3,True,7,2,aws,General, 0,-6.339183
-10,exact_match,vbench,vbench,3,True,8,2,aws,General, 0,-6.310441
-11,exact_match,vbench,vbench,3,True,10,2,aws,CPU, 20003,-8.029303
-12,exact_match,vbench,vbench,3,True,8,2,aws,General, 0,-6.367326
-13,exact_match,vbench,vbench,3,False,9,2,google,CPU, 20004,-6.725372
-14,exact_match,vbench,vbench,3,False,6,2,google,CPU, 20001,-6.850692
-15,exact_match,vbench,vbench,3,False,7,2,google,General, 3,-5.190585
-16,exact_match,vbench,vbench,3,False,10,2,google,CPU, 20003,-6.760475
-17,exact_match,vbench,vbench,3,False,9,2,google,CPU, 20003,-6.645396
-18,exact_match,vbench,vbench,3,False,8,2,google,CPU, 20001,-6.784966
-19,exact_match,vbench,vbench,3,False,6,2,google,CPU, 20000,-6.468035
-20,exact_match,vbench,vbench,3,False,12,2,google,CPU, 20005,-6.773775
-21,exact_match,vbench,vbench,3,False,6,2,google,General, 20001,-5.205215
-22,exact_match,vbench,vbench,3,False,7,2,google,General, 0,-5.227769
-23,exact_match,vbench,vbench,3,True,10,2,aws,CPU, 20003,-8.210613
-24,exact_match,vbench,vbench,3,False,6,2,google,CPU, 20000,-6.864835
-25,exact_match,vbench,vbench,3,False,11,2,google,CPU, 20003,-6.879046
-26,exact_match,vbench,vbench,3,False,9,2,google,CPU, 20003,-6.756787
-27,exact_match,vbench,vbench,3,False,7,2,google,CPU, 20002,-6.745371
-28,exact_match,vbench,vbench,3,False,7,2,google,CPU, 20000,-6.694209
-29,exact_match,vbench,vbench,3,False,15,2,google,CPU, 20007,-6.924063
-30,exact_match,vbench,vbench,3,False,7,2,google,CPU, 20000,-6.686381
-31,exact_match,vbench,vbench,3,False,7,2,google,CPU, 20001,-6.843757
-32,exact_match,vbench,vbench,3,False,6,2,google,General, 0,-5.148294
-33,exact_match,vbench,vbench,3,False,6,2,google,General, 3,-5.219151
-34,exact_match,vbench,vbench,3,True,7,2,aws,CPU, 20002,-8.086472
-35,exact_match,vbench,vbench,1,True,6,2,aws,CPU, 20002,-8.112477
-36,exact_match,vbench,vbench,1,True,7,2,aws,CPU, 20001,-8.088271
-37,exact_match,vbench,vbench,1,True,6,2,aws,CPU, 20000,-7.953902
-38,exact_match,vbench,vbench,1,True,6,2,aws,General, 0,-6.359441
-39,exact_match,vbench,vbench,1,True,6,2,aws,CPU, 20003,-8.140622
-40,exact_match,vbench,vbench,1,True,8,2,aws,General, 20006,-6.360355
-41,exact_match,vbench,vbench,1,True,6,2,aws,CPU, 20002,-8.206185
-42,exact_match,vbench,vbench,1,True,11,2,aws,CPU, 20001,-8.108638
-43,exact_match,vbench,vbench,1,True,11,2,aws,CPU, 20008,-8.214836
-44,exact_match,vbench,vbench,1,True,10,2,aws,CPU, 20004,-8.119461
-45,exact_match,vbench,vbench,3,True,10,2,aws,CPU, 20005,-8.206112
-46,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,General, 0,-0.027807
-47,exact_match,ping_testserver,ping_testserver,1,False,7,2,aws,CPU, 20001,-0.030661
-48,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,General, 0,-0.02783
-49,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,General, 0,-0.027248
-50,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,CPU, 20003,-0.030896
-51,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,General, 0,-0.027003
-52,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,General, 0,-0.026849
-53,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,CPU, 20003,-0.02345
-54,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,General, 0,-0.02715
-55,exact_match,ping_testserver,ping_testserver,1,False,6,2,aws,CPU, 20003,-0.030947
-56,exact_match,vbench,vbench,3,True,7,2,aws,General, 0,-6.33925
-57,exact_match,vbench,vbench,3,True,13,2,google,CPU, 20000,-6.700395
-58,exact_match,vbench,vbench,3,True,10,2,aws,CPU, 20004,-8.090482
-59,exact_match,vbench,vbench,3,True,8,2,aws,CPU, 20001,-8.167887
+,Selector,Deployer,Interpreter,Concurrent_Jobs,Multiple_Providers,Jobs_completed,Best_instance,Best_CPU,Best_Provider,Best_Category,Best_JobID,Best_Result
+0,exact_match,vbench,vbench,3,True,11,c5.large,2,aws,CPU,20004,-8.030929
+1,exact_match,vbench,vbench,3,True,8,n1-highcpu-2,2,google,CPU,20000,-6.761013
+2,exact_match,vbench,vbench,3,True,6,c5.large,2,aws,CPU,20000,-8.185259
+3,exact_match,vbench,vbench,3,True,6,c5.large,2,aws,CPU,20000,-8.024063
+4,exact_match,vbench,vbench,3,True,7,m5.large,2,aws,General,0,-6.33192
+5,exact_match,vbench,vbench,3,True,6,m5.large,2,aws,General,0,-6.319993
+6,exact_match,vbench,vbench,3,True,6,c5.large,2,aws,CPU,20001,-8.050723
+7,exact_match,vbench,vbench,3,True,8,c5.large,2,aws,CPU,20002,-8.132601
+8,exact_match,vbench,vbench,3,True,8,m5.large,2,aws,General,0,-6.388076
+9,exact_match,vbench,vbench,3,True,7,m5.large,2,aws,General,0,-6.339183
+10,exact_match,vbench,vbench,3,True,8,m5.large,2,aws,General,0,-6.310441
+11,exact_match,vbench,vbench,3,True,10,c5.large,2,aws,CPU,20003,-8.029303
+12,exact_match,vbench,vbench,3,True,8,m5.large,2,aws,General,0,-6.367326
+13,exact_match,vbench,vbench,3,False,9,n1-highcpu-2,2,google,CPU,20004,-6.725372
+14,exact_match,vbench,vbench,3,False,6,n1-highcpu-2,2,google,CPU,20001,-6.850692
+15,exact_match,vbench,vbench,3,False,7,n1-standard-2,2,google,General,3,-5.190585
+16,exact_match,vbench,vbench,3,False,10,n1-highcpu-2,2,google,CPU,20003,-6.760475
+17,exact_match,vbench,vbench,3,False,9,n1-highcpu-2,2,google,CPU,20003,-6.645396
+18,exact_match,vbench,vbench,3,False,8,n1-highcpu-2,2,google,CPU,20001,-6.784966
+19,exact_match,vbench,vbench,3,False,6,n1-highcpu-2,2,google,CPU,20000,-6.468035
+20,exact_match,vbench,vbench,3,False,12,n1-highcpu-2,2,google,CPU,20005,-6.773775
+21,exact_match,vbench,vbench,3,False,6,n1-standard-2,2,google,General,20001,-5.205215
+22,exact_match,vbench,vbench,3,False,7,n1-standard-2,2,google,General,0,-5.227769
+23,exact_match,vbench,vbench,3,True,10,c5.large,2,aws,CPU,20003,-8.210613
+24,exact_match,vbench,vbench,3,False,6,n1-highcpu-2,2,google,CPU,20000,-6.864835
+25,exact_match,vbench,vbench,3,False,11,n1-highcpu-2,2,google,CPU,20003,-6.879046
+26,exact_match,vbench,vbench,3,False,9,n1-highcpu-2,2,google,CPU,20003,-6.756787
+27,exact_match,vbench,vbench,3,False,7,n1-highcpu-2,2,google,CPU,20002,-6.745371
+28,exact_match,vbench,vbench,3,False,7,n1-highcpu-2,2,google,CPU,20000,-6.694209
+29,exact_match,vbench,vbench,3,False,15,n1-highcpu-2,2,google,CPU,20007,-6.924063
+30,exact_match,vbench,vbench,3,False,7,n1-highcpu-2,2,google,CPU,20000,-6.686381
+31,exact_match,vbench,vbench,3,False,7,n1-highcpu-2,2,google,CPU,20001,-6.843757
+32,exact_match,vbench,vbench,3,False,6,n1-standard-2,2,google,General,0,-5.148294
+33,exact_match,vbench,vbench,3,False,6,n1-standard-2,2,google,General,3,-5.219151
+34,exact_match,vbench,vbench,3,True,7,c5.large,2,aws,CPU,20002,-8.086472
+35,exact_match,vbench,vbench,1,True,6,c5.large,2,aws,CPU,20002,-8.112477
+36,exact_match,vbench,vbench,1,True,7,c5.large,2,aws,CPU,20001,-8.088271
+37,exact_match,vbench,vbench,1,True,6,c5.large,2,aws,CPU,20000,-7.953902
+38,exact_match,vbench,vbench,1,True,6,m5.large,2,aws,General,0,-6.359441
+39,exact_match,vbench,vbench,1,True,6,c5.large,2,aws,CPU,20003,-8.140622
+40,exact_match,vbench,vbench,1,True,8,m5.large,2,aws,General,20006,-6.360355
+41,exact_match,vbench,vbench,1,True,6,c5.large,2,aws,CPU,20002,-8.206185
+42,exact_match,vbench,vbench,1,True,11,c5.large,2,aws,CPU,20001,-8.108638
+43,exact_match,vbench,vbench,1,True,11,c5.large,2,aws,CPU,20008,-8.214836
+44,exact_match,vbench,vbench,1,True,10,c5.large,2,aws,CPU,20004,-8.119461
+45,exact_match,vbench,vbench,3,True,10,c5.large,2,aws,CPU,20005,-8.206112
+46,exact_match,ping_testserver,ping_testserver,1,False,6,m5.large,2,aws,General,0,-0.027807
+47,exact_match,ping_testserver,ping_testserver,1,False,7,c5.large,2,aws,CPU,20001,-0.030661
+48,exact_match,ping_testserver,ping_testserver,1,False,6,m5.large,2,aws,General,0,-0.02783
+49,exact_match,ping_testserver,ping_testserver,1,False,6,m5.large,2,aws,General,0,-0.027248
+50,exact_match,ping_testserver,ping_testserver,1,False,6,c5.large,2,aws,CPU,20003,-0.030896
+51,exact_match,ping_testserver,ping_testserver,1,False,6,m5.large,2,aws,General,0,-0.027003
+52,exact_match,ping_testserver,ping_testserver,1,False,6,m5.large,2,aws,General,0,-0.026849
+53,exact_match,ping_testserver,ping_testserver,1,False,6,c5.large,2,aws,CPU,20003,-0.02345
+54,exact_match,ping_testserver,ping_testserver,1,False,6,m5.large,2,aws,General,0,-0.02715
+55,exact_match,ping_testserver,ping_testserver,1,False,6,c5.large,2,aws,CPU,20003,-0.030947
+56,exact_match,vbench,vbench,3,True,7,m5.large,2,aws,General,0,-6.33925
+57,exact_match,vbench,vbench,3,True,13,n1-highcpu-2,2,google,CPU,20000,-6.700395
+58,exact_match,vbench,vbench,3,True,10,c5.large,2,aws,CPU,20004,-8.090482
+59,exact_match,vbench,vbench,3,True,8,c5.large,2,aws,CPU,20001,-8.167887

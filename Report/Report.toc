@@ -13,16 +13,16 @@
 \contentsline {subsection}{\numberline {3.2}Non-functional Requirements}{8}{subsection.3.2}% 
 \contentsline {subsection}{\numberline {3.3}Use-case}{8}{subsection.3.3}% 
 \contentsline {section}{\numberline {4}Software Engineering Process}{8}{section.4}% 
-\contentsline {section}{\numberline {5}Ethics}{9}{section.5}% 
-\contentsline {section}{\numberline {6}Design}{9}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}That cherrypick quote about starting specific}{9}{subsection.6.1}% 
-\contentsline {section}{\numberline {7}Implementation}{9}{section.7}% 
-\contentsline {subsection}{\numberline {7.1}Spearmint}{10}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7.2}Wrapper}{10}{subsection.7.2}% 
-\contentsline {subsection}{\numberline {7.3}Selector}{10}{subsection.7.3}% 
-\contentsline {subsection}{\numberline {7.4}Deployer}{10}{subsection.7.4}% 
-\contentsline {subsection}{\numberline {7.5}Interpreter}{10}{subsection.7.5}% 
-\contentsline {section}{\numberline {8}Evaluation}{10}{section.8}% 
-\contentsline {section}{\numberline {9}Critical discussion}{10}{section.9}% 
-\contentsline {subsection}{\numberline {9.1}Future extensions}{10}{subsection.9.1}% 
-\contentsline {section}{\numberline {10}Conclusions}{10}{section.10}% 
+\contentsline {section}{\numberline {5}Design}{9}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}That cherrypick quote about starting specific}{9}{subsection.5.1}% 
+\contentsline {section}{\numberline {6}Implementation}{9}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Searcher}{9}{subsection.6.1}% 
+\contentsline {subsubsection}{\numberline {6.1.1}Bayesian Optimization - Spearmint}{10}{subsubsection.6.1.1}% 
+\contentsline {subsection}{\numberline {6.2}Wrapper}{10}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6.3}Selector}{10}{subsection.6.3}% 
+\contentsline {subsection}{\numberline {6.4}Deployer}{10}{subsection.6.4}% 
+\contentsline {subsection}{\numberline {6.5}Interpreter}{10}{subsection.6.5}% 
+\contentsline {section}{\numberline {7}Evaluation}{10}{section.7}% 
+\contentsline {section}{\numberline {8}Critical discussion}{10}{section.8}% 
+\contentsline {subsection}{\numberline {8.1}Future extensions}{10}{subsection.8.1}% 
+\contentsline {section}{\numberline {9}Conclusions}{10}{section.9}% 

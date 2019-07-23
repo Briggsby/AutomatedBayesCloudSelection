@@ -41,9 +41,28 @@ of your success in solving it. You should include the aims
 and objectives of the project in order of importance and
 try to outline key aspects of your project for the reader to look for in the rest of your report.}
 \subsection{Background}
+%Describe the use of cloud servers
+%Describe how picking cloud configurations are difficult
+%Describe how an automated tool can help
+
 \subsection{Aims and Objectives}
+%Safe spot
+Algorithm
+%Generalizable tool to use a given objective fit measure to find the optimal cloud configuration
+%Extensions
+Multiple cloud providers
+Latency/response tests from a separate machine
+Concurrent jobs to reduce search time
 \subsection{Achievements}
+
 \subsection{Dissertation Overview}
+% Context summary, describing previous work and availabe tools that will be used.
+% Formalizng the requirements specification
+% Describing Software engineering process and the design
+% Explaining and describing the final implementation
+% Evaluate and critically discuss it.
+% Conclude by discussing future extensions and ways to make it more consumer-facing
+
 
 \section{Context Summary}
 \textbf{Surveying the context, the background literature and any
@@ -54,26 +73,11 @@ available software. You may also describe potentially
 useful tools and technologies here but do not go into
 project-specific decisions.} \\
 
-\subsection{Cloud Computing}
-Cloud computing, specifically Infrastructure-as-a-Service (IaaS), has opened the doors to allow organizations and developers to utilize a diverse range of computer resources on demand without any up-front commitment or cost \cite{Armbrust2009}. These resources are generally provided in the form of Virtual Machines (VMs) with a diverse range of options, and correctly selecting the most appropriate cloud configuration for a given task or service can reduce costs for the user and free up underutilized resources for the cloud provider. Depending on the task, choosing a sub-optimal configuration can lead to up to 12 times higher costs in the worst case, but choosing randomly can lead, on average, to around twice the cost. \cite{Alipourfard2017}.
-\bigskip
+%First ways of actually evaluating the performance of a black box app
+%Then describing previous configuration testers 
+	% How Cherrypick was extremely effective and used an open-source BO tool spearmint that will be used
+%Problem of making it work across multiple providers, leading to modern Infrastructure as code developments
 
-\subsection{Configuration searching}
-Terraform
-
-\subsection{Performance evaluation}
-
-Selecting the 'optimal' cloud configuration for a given job is not trivial, however. This is due to the large diversity in service, the difficulty in predicting performance, and the flexibility of the term 'optimal.' \\
-The diversity in services provided by different cloud providers creates a large search space. At the time of writing, Amazon EC2\footnote{\url{https://aws.amazon.com/ec2/}} alone offers over 200 predefined instance models\footnote{\url{https://www.ec2instances.info}}, while Google Compute Engine\footnote{\url{https://cloud.google.com/compute/}} allows users to define their own machine types, ranging from small VMs with 1 vCPU and 1 GB of RAM to 96 vCPUs with 624 GB of RAM, and includes options for specifying the CPU platform or adding GPUs. \\
-Once given a specific configuration, predicting its performance for a given job is difficult. A number of recent studies have shown that previously reported variability \cite{Leitner2014} in performance for different instances of a given instance type has dramatically improved \cite{Scheuner2018,Davatz2017,Laaber2019}, particularly for AWS, leading to much more consistent performance on a given instance type. However, even when stable, predicting performance is still far from trivial. \\ 'Larger' VM types may not provide improved performance \cite{Yadwadkar2017}, or may do so at a far less cost-efficient rate. Optimizing for a good mean performance may fail to optimize for the tail when variance or high stress leads to lower than expected performance. In addition, workload resource requirements are hard to model, with jobs using different resources at different times, and performance may have non-linear relationships with these resources\cite{Alipourfard2017}. A method to predict performance should account for these hurdles.
-A costly option is to simply run the job or service itself on the instance type and measure the performance directly. For batch jobs, the cost of the initial performance testing can be offset by later repeats. In 2012, it was reported that up to 40\% of Microsoft's analytics jobs are recurring \cite{Agarwal2012,Ferguson2012b}. Another, faster, option is to run benchmarks or micro-benchmarks on the target machine, and use these to estimate performance. Benchmarking suites such as Cloud workbench \cite{Scheuner2018a} and CloudSuite \cite{Palit2016} allow application-specific performance prediction, and micro-benchmarking has shown success in rapidly estimating performance of appropriate applications with errors between 10-20\% \cite{Scheuner2018, Varghese2016a, Varghese2016}. However, using benchmarks to predict performance requires knowing how the benchmarked resources will relate to job performance, which limits the flexibility of an automated solution. \\
-Finally, what is meant by the 'optimal' configuration may differ. For a batch job, it may simply be the cheapest option to complete the job, or it may be the cheapest option that can complete the job within a given time-constraint. For a service, there will likely be a trade-off between consistency, latency, and cost, and where the optimal balance lies will depend on the user's preferences or requirements. 
-\bigskip
-
-In order to discover the optimal cloud configuration for a job, a user must first decide what 'optimal' means, find a way to evaluate the performance of a configuration given that metric, and search or model the diverse range of available configurations using this evaluation until they are confident they have found the best available configuration.
-
-\subsection{Related Work}
-Unsurprisingly, given the challenges described above, this has been difficult to automate. PARIS \cite{Yadwadkar2017} uses Random Forests to model how benchmarks will relate to an application's performance, in order to improve on performance evaluation. CherryPick \cite{Alipourfard2017} instead focuses on reducing search space, by using Bayesian optimization\cite{Shahriari2016} to minimize the number of samples needed to confidently estimate the optimal configuration. Bayesian Optimisation is perfectly suited to the problem, as it is non-parametric, typically needs only few samples to find a near-optimal solution, and can tolerate uncertainty in both the sampling and performance modelling\cite{Jones1998}. Okta \cite{Davatz2017}, built specifically for web-serving applications, leaves it to the user to input which cloud configurations to test and what 'benchmark driver' to use to test their performance, giving it good generalizability for any service that takes end-user requests. However, none of these examples provide usable implementations for their solutions.
 
 \section{Requirements Specification}
 \textbf{Capturing the properties the software solution must have
@@ -106,12 +110,42 @@ For the sake of generalizability, the available implementation of spearmint was 
 Because of this, spearmint was first updated to be compatible with Python 3 and newer versions of its dependencies such as Google Protocol Buffers. This implementation of spearmint has been made available.\footnote{https://github.com/briggsby/spearmint3}
 Any searcher 
 \subsubsection{Bayesian Optimization - Spearmint}
-\subsection{Wrapper}
+% Variable for CPU can actually be an integer, which is done to the power of 2.
+\subsubsection{Gradient Descent}
+\subsubsection{Exhaustive search}
+\subsection{Driver function}
+
 \subsection{Selector}
+% Why we only evaluated exact match. Problems with closest match. If there are architectural problems the user may want to avoid certain instance types. A selector that uses an API to retreive available instance models may be useful.
+\subsubsection{Exact Match}
+\subsubsection{Closest Match}
+% This would require a record to be kept of previously tested instances so as not to repeat similar instances multiple times. In cases of significant noise it may be beneficial to test multiple times, so can limit this to 3.
+% Driver function reads the files to make a configuration dictionary to be passed to other functons. It reads the variables into this and well as loads the functions specified in the variable file. At the end of each job, this configuration dictionary is saved as a json file for later analysis, as well as being appended to a json file that incorporates all the logs from any previous jobs performed by the function. (This file should be regularly backed up, probably into separate smaller files, as otherwise an error can throw away lots of data)
 \subsection{Deployer}
+\subsubsection{VM Provisioner}
+\subsubsection{Docker Deployer}
+\paragraph{vBench}
+\paragraph{Cloudsuite3}
+\paragraph{Sysbench}
+\subsubsection{Ping server}
+
+%Also fake deploy for debugging, or old_deploy for using already gathered results
+
 \subsection{Interpreter}
+% Interpreters were made for all those listed above (vBench, cloudsuite3 media streaming, sysbench
+% We used very simple metrics of dividing scores (which were various measures of number of users/rate of transcoding/rate of response/number of operations) by the hourly price. This is not likely to correspond to a real metric used in business, where even a small advantage over a competitor can lead to a dramatic uptake in users, but was effective for evaluation.
+
 \section{Evaluation}
 \textbf{You should evaluate your own work with respect to your original objectives. You should also critically evaluate your work with respect to related work done by others. You should compare and contrast the project to similar work in the public domain, for example as written about in published papers, or as distributed in software available to you.}
+
+
+% We were able to successfully run multiple evaluations until convergence using the system, as well as easily running exhaustive searches to then evaluate their success. We could easily replicate both cherrypick's findings, (without the log transformation) and extend to claim that multiple concurrent jobs requires a more extensive search. We showed that this works with multiple providers as well as only a single provider. We then, without using an exhaustive search, performed the experiment with the ping testing, which due to its nature was much more intensive to do exhaustive search for, which appeared to have multiple optimal options, which unsuprisingly made the Bayesian optimization much more effective.
+\subsection{Configuration selection}
+%cloudsuite3 media streaming was found to be extremely variable and unrelated to any hardware specs, so vBench was used for video transcoding. 
+% For vBench we decided to run BO, as well as exhaustive search to them compare those findings.
+\subsection{Search space selection}
+% Chose cheaper options to reduce costs, and also because more powerful machines require quotas to be individually requested from the providers. Went with exact match, and as wanted to use both Amazon and Google had to categorize options. Decided to not use memory, but rather have machine type and number of CPUs, using only the first 3 machines. Further search space was unnecessary as tests always converged on the weakest machines regardless. For other perhaps more real situations, this search space could be dramatically extended, but using CPU as an integer between 1 and 6 rather than categorical, and simply having the number be to the power of 2, as these are all viable CPU options (with some slight fudging for ec2 c machines, and though it skips options of 48 and 96).
+
 
 \begin{figure}
   \caption{Distribution of vBench scores}
@@ -124,7 +158,7 @@ Any searcher
    \includegraphics[scale=0.8]{vbench_values}
 \end{figure}
 
-With the best option clearly being c5.large, running spearmint with both multiple concurrent jobs (3 simultaneous jobs)and multiple providers (both AWS and GCP), the optimal instance was selection 55\% of the time, with m5.large chosen 35\% of time. Reducing the search space significantly by reducing the number of providers to only one (GCP) causes the optimal instance to be selected instead 75\% of the time. This makes clear that for this experiment a less relaxed stopping condition may be beneficial. To attain the effectiveness that the CherryPick paper claims, we must not allow concurrent jobs. Preventing multiple jobs running at once instead ensures the optimal instance type is selected 80\% of the time. 
+% With the best option clearly being c5.large, running spearmint with both multiple concurrent jobs (3 simultaneous jobs)and multiple providers (both AWS and GCP), the optimal instance was selection 55\% of the time, with m5.large chosen 35\% of time. Reducing the search space significantly by reducing the number of providers to only one (GCP) causes the optimal instance to be selected instead 75\% of the time. This makes clear that for this experiment a less relaxed stopping condition may be beneficial. To attain the effectiveness that the CherryPick paper claims, we must not allow concurrent jobs. Preventing multiple jobs running at once instead ensures the optimal instance type is selected 80\% of the time. 
 
 \subsection{Ping Test}
 In the ping test evaluation of 10 spearmint experiments using the same stopping condition as above, one of two optimal configurations (AWS m5.large or c5.large instance types), with overlapping distributions for the objective value, was successfully chosen in all runs.
@@ -139,12 +173,16 @@ in published papers, or as distributed in software available to you. }
 
 As mentioned, the evaluation above likely does not correspond to comparisons with which to base real deployment decisions on. In reality, a small increase in transcoding speed may lead to a far greater increase in customer uptake, rather than the effectively 1:1 ratio between price and transcoding speed assumed in the experiment. However, the evaluation shows that the methodology works very well with a given objective score measure, and it would be trivial for a new objective function to be implemented with a different relationship between the score, price, and 'value' of a given configuration.
 \subsection{Future extensions}
+% There is a really good space to try this with serverless computing, but cloud run is currently not supported with terraform making this more difficult.
+% If time allows could write a quick bash script to try this.
+% When limited to google the search space becomes much better suited for Bayesian Optimization because of the non-categorical choices with vCPU and Memory amounts
 \section{Conclusions}
 \textbf{You should summarise your project, emphasising your
 key achievements and significant drawbacks to your
 work, and discuss future directions your work could be
 taken in.}
 \newpage
+\cite{Agarwal2012} % Just here to stop errors, delete once other citations included
 \bibliographystyle{ieeetr}
 \bibliography{Dissertation}
 \newpage

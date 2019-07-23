@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.6.15)  22 JUL 2019 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.6.15)  23 JUL 2019 20:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -334,92 +334,145 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout5 = `Report.lof'.
 
  [5]
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
 [6]
-<./images/Design.png, id=200, 201.75375pt x 201.75375pt>
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+<./images/Design.png, id=206, 201.75375pt x 201.75375pt>
 File: ./images/Design.png Graphic file (type png)
 <use ./images/Design.png>
-Package pdftex.def Info: ./images/Design.png  used on input line 97.
+Package pdftex.def Info: ./images/Design.png  used on input line 101.
 (pdftex.def)             Requested size: 161.40321pt x 161.40321pt.
- [7pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
- has been already used, duplicate ignored
+[7pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.121 \paragraph
-                {Cloudsuite3} <./images/Design.png>]
-<./images/vbench_scores.png, id=213, 532.23843pt x 506.6428pt>
+l.112 \subsubsection
+                    {Bayesian Optimization - Spearmint} <./images/Design.png>]
+[8] [9]
+<./images/vbench_scores.png, id=236, 557.83406pt x 447.92343pt>
 File: ./images/vbench_scores.png Graphic file (type png)
 <use ./images/vbench_scores.png>
-Package pdftex.def Info: ./images/vbench_scores.png  used on input line 134.
-(pdftex.def)             Requested size: 425.79132pt x 405.31479pt.
-<./images/vbench_values.png, id=214, 626.34pt x 495.35063pt>
+Package pdftex.def Info: ./images/vbench_scores.png  used on input line 173.
+(pdftex.def)             Requested size: 446.26784pt x 358.33922pt.
+<./images/vbench_values.png, id=237, 520.19344pt x 447.92343pt>
 File: ./images/vbench_values.png Graphic file (type png)
 <use ./images/vbench_values.png>
-Package pdftex.def Info: ./images/vbench_values.png  used on input line 139.
-(pdftex.def)             Requested size: 501.07266pt x 396.28105pt.
+Package pdftex.def Info: ./images/vbench_values.png  used on input line 179.
+(pdftex.def)             Requested size: 416.1553pt x 358.33922pt.
+<./images/vbench_dists.png, id=238, 584.93532pt x 384.6872pt>
+File: ./images/vbench_dists.png Graphic file (type png)
+<use ./images/vbench_dists.png>
+Package pdftex.def Info: ./images/vbench_dists.png  used on input line 185.
+(pdftex.def)             Requested size: 467.94888pt x 307.75017pt.
 
-Overfull \hbox (43.2678pt too wide) in paragraph at lines 139--140
+Overfull \hbox (10.14403pt too wide) in paragraph at lines 185--186
  [][] 
  []
 
-[8] [9pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2}) has been already used, duplicate ignored
+<./images/bo_results.png, id=239, 919.18407pt x 495.35063pt>
+File: ./images/bo_results.png Graphic file (type png)
+<use ./images/bo_results.png>
+Package pdftex.def Info: ./images/bo_results.png  used on input line 196.
+(pdftex.def)             Requested size: 459.59091pt x 247.67471pt.
+
+Overfull \hbox (1.78606pt too wide) in paragraph at lines 196--197
+ [][] 
+ []
+
+<./images/paths.png, id=240, 959.83594pt x 566.86781pt>
+File: ./images/paths.png Graphic file (type png)
+<use ./images/paths.png>
+Package pdftex.def Info: ./images/paths.png  used on input line 200.
+(pdftex.def)             Requested size: 479.9168pt x 283.43321pt.
+
+Overfull \hbox (22.11194pt too wide) in paragraph at lines 200--201
+ [][] 
+ []
+
+[10pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.144 \subsection
-                 {Ping Test} <./images/vbench_scores.png>] [10pdfTeX warning (e
-xt4): destination with the same identifier (name{figure.3}) has been already us
-ed, duplicate ignored
+l.206 
+      ] [11pdfTeX warning (ext4): destination with the same identifier (name{fi
+gure.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.144 \subsection
-                 {Ping Test} <./images/vbench_values.png>] [11] (./Report.bbl)
-[12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 173.
- [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 173.
- (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 173.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 173.
+l.206 
+       <./images/vbench_scores.png (PNG copy)>] [12pdfTeX warning (ext4): desti
+nation with the same identifier (name{figure.3}) has been already used, duplica
+te ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.206 
+       <./images/vbench_values.png (PNG copy)>] [13pdfTeX warning (ext4): desti
+nation with the same identifier (name{figure.4}) has been already used, duplica
+te ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.206 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.206 
+       <./images/vbench_dists.png (PNG copy)> <./images/bo_results.png (PNG cop
+y)>] [14pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.212 
+       <./images/paths.png (PNG copy)>] [15] (./Report.bbl) [16]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 239.
+ [17]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 239.
+
+(./Report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 239.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 239.
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: 3948BC93FD4ED72CB68B1DA7B24B3DA3;1992.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 173.
+(rerunfilecheck)             Checksum: 151460699318BA83D42AC9B70F90CDD2;1998.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 239.
  ) 
 Here is how much of TeX's memory you used:
- 5813 strings out of 492701
- 85919 string characters out of 6134504
- 181253 words of memory out of 5000000
- 9576 multiletter control sequences out of 15000+600000
+ 5845 strings out of 492701
+ 86492 string characters out of 6134504
+ 182742 words of memory out of 5000000
+ 9596 multiletter control sequences out of 15000+600000
  8241 words of font info for 29 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
- 28i,8n,28p,731b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,8n,28p,1116b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmti10.pfb>
-Output written on Report.pdf (13 pages, 164756 bytes).
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
+pfb>
+Output written on Report.pdf (17 pages, 416967 bytes).
 PDF statistics:
- 299 PDF objects out of 1000 (max. 8388607)
- 266 compressed objects within 3 object streams
- 61 named destinations out of 1000 (max. 500000)
- 264 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 340 PDF objects out of 1000 (max. 8388607)
+ 300 compressed objects within 3 object streams
+ 70 named destinations out of 1000 (max. 500000)
+ 279 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -138,30 +138,77 @@ Any searcher
 \section{Evaluation}
 \textbf{You should evaluate your own work with respect to your original objectives. You should also critically evaluate your work with respect to related work done by others. You should compare and contrast the project to similar work in the public domain, for example as written about in published papers, or as distributed in software available to you.}
 
+To demonstrate the effectiveness of the implementation of our framework, we wanted to show that it could replicate the methods set out in the Cherrypick paper \cite{Alipourfard2017} by performing Bayesian Optimization to attempt to find an optimal configuration for a given deployment. We then wanted to use the same implementation to perform multiple exhaustive searches so that the results from Bayesian Optimization could be properly compared to the real average results. 
 
-% We were able to successfully run multiple evaluations until convergence using the system, as well as easily running exhaustive searches to then evaluate their success. We could easily replicate both cherrypick's findings, (without the log transformation) and extend to claim that multiple concurrent jobs requires a more extensive search. We showed that this works with multiple providers as well as only a single provider. We then, without using an exhaustive search, performed the experiment with the ping testing, which due to its nature was much more intensive to do exhaustive search for, which appeared to have multiple optimal options, which unsuprisingly made the Bayesian optimization much more effective.
-\subsection{Configuration selection}
-%cloudsuite3 media streaming was found to be extremely variable and unrelated to any hardware specs, so vBench was used for video transcoding. 
-% For vBench we decided to run BO, as well as exhaustive search to them compare those findings.
-\subsection{Search space selection}
-% Chose cheaper options to reduce costs, and also because more powerful machines require quotas to be individually requested from the providers. Went with exact match, and as wanted to use both Amazon and Google had to categorize options. Decided to not use memory, but rather have machine type and number of CPUs, using only the first 3 machines. Further search space was unnecessary as tests always converged on the weakest machines regardless. For other perhaps more real situations, this search space could be dramatically extended, but using CPU as an integer between 1 and 6 rather than categorical, and simply having the number be to the power of 2, as these are all viable CPU options (with some slight fudging for ec2 c machines, and though it skips options of 48 and 96).
+The deployment to be used was originally planned to be Cloudsuite3's media streaming benchmark, however this was found to be extremely variable and dependent entirely on network bandwidth, and so instead the vBench video transcoding benchmark was used. Our objective function measured an instance type's relative rate of transcoding of a single 5 second 1920x1080 video file, returning a score of 0 if the quality was below a given threshold, divided by the hourly price of that instance. Effectively, we maximised the rate of transcoding a unit of video length at a sufficient quality per hourly cost. 
 
+For choosing the boundaries of the search space, we decided to reduce costs by using only machines ranging from 2 vCPUs to 8 vCPUs. This was also convenient as to use more powerful machines would have required requesting additional raised quotas from the providers used, and so would be less easily replicable. Using exact match, and as we wanted to show that the implementation worked with multiple providers, we could not rely on Google cloud platform's custom machine types and had to find some way to categorize possible variables. Rather than including memory as a variable, CPU instead was coded as a categorical variable (2, 4, or 8), along with machine category (General, Memory, CPU), each with a different amount of memory. Table \ref{tab:instance-types} show which machine types corresponded to each option. 
 
+\begin{table}
+\begin{tabular}{ |c||c|c|  }
+ \hline
+ & \multicolumn{2}{|c|}{Provider} \\
+ \hline
+ Machine Category & Amazon EC2 & Google Compute Engine \\
+ \hline
+ General& n1-standard & m5\\
+ Memory & n1-highmem  & r5\\
+ CPU    & n1-highcpu  & c5\\
+ \hline
+\end{tabular}
+\caption{Machine types corresponding to different instance categories for the two providers}
+\label{tab:instance-types}
+\end{table}
+
+For realistic situations, the search space could follow this same pattern, with the CPU variable extended, possibly instead as an integer between 1 and 6 which 2 is raised to the power of to determine vCPU number, as this covers many of the available CPU options.
+
+The 18 machine types decided upon (3 vCPU numbers for 3 machine categories for the 2 providers) were stored in a single dataset for use with the 'Exact match' instance selector. The vBench deployer was used which utilized Terraform to provision a single instance of the given machine type, on which the remote docker api was used to deploy and collect logs from an docker image containing vBench. The vBench interpreter then isolated the vBench score from these logs, and divided it by the hourly cost of that machine type to return the final value.
+
+Where not otherwise specified, statistical results are quoting the p-values returned from a Tukey's Honest Significant differences test to correct for multiple comparisons.
+
+The results of the exhaustive search are shown in figures \ref{fig:vBench-scores} and \ref{fig:vBench-values}. The raw scores (time taken to transcode relative to the reference) show clear overlap between many possible configurations, and in general show a significant difference between 2 vCPUs and either 4 ($P < .001$) or 8 ($P < .001$) vCPUs, with a larger number of vCPUs increasing the score, but show less clear differences between 4 and 8 ($P = .066$), dependent on the provider and machine category, suggesting either diminishing returns or a limit of the benchmark to utilize all vCPU cores.
+ 
 \begin{figure}
-  \caption{Distribution of vBench scores}
   \centering
    \includegraphics[scale=0.8]{vbench_scores}
+   \caption{Distribution of vBench scores}
+  \label{fig:vBench-scores}
 \end{figure}
 \begin{figure}
-  \caption{Distribution of objective function values}
   \centering
    \includegraphics[scale=0.8]{vbench_values}
+   \caption{Distribution of objective function values}
+  \label{fig:vBench-values}
+\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.8]{vbench_dists}
+  \caption{Distribution of vBench scores in frequency polygons}
+  \label{fig:vBench-dists}
 \end{figure}
 
-% With the best option clearly being c5.large, running spearmint with both multiple concurrent jobs (3 simultaneous jobs)and multiple providers (both AWS and GCP), the optimal instance was selection 55\% of the time, with m5.large chosen 35\% of time. Reducing the search space significantly by reducing the number of providers to only one (GCP) causes the optimal instance to be selected instead 75\% of the time. This makes clear that for this experiment a less relaxed stopping condition may be beneficial. To attain the effectiveness that the CherryPick paper claims, we must not allow concurrent jobs. Preventing multiple jobs running at once instead ensures the optimal instance type is selected 80\% of the time. 
+However, once the scores are instead given relative to the machine's hourly costs, there is much less overlap. A clear optimal configuration can be seen in the c5.large machine type, if one is purely interested in getting the most video transcoding for a given cost. The c5.large machine was significantly better than the next best option, the n1-highcpu-2 ($P < .001$). Amazon EC2's  machine types consistently outperformed Google Compute Engine's equivalents of the same category and vCPU number at both raw score (Anova, $F = 32111.456, P < .001$) and value for money (Anova, $F = 22710.7, P < .001$). However, despite this general trend, the provider seemed to be the least important factor in determining the optimal configuration. For example, the n1-highcpu-2 still gave significantly better values than the m5.large ($P < .001$), or the c5.xlarge ($P < .001$) making it the second most cost-efficient option. 
 
-\subsection{Ping Test}
-In the ping test evaluation of 10 spearmint experiments using the same stopping condition as above, one of two optimal configurations (AWS m5.large or c5.large instance types), with overlapping distributions for the objective value, was successfully chosen in all runs.
+\begin{figure}
+  \caption{Optimal configurations found after convergence for Bayesian Optimization}
+  \label{fig:bo-results}
+  \centering
+  \includegraphics[scale=0.5]{bo_results}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{paths}
+	\caption{Paths of example Bayesian Optimization jobs}
+	\label{fig:paths}
+\end{figure}
+
+With the exhaustive search complete, we then used a Spearmint based searcher to perform a Bayesian Optimization search, assuming low noise (-1 to 1) and using the same stopping conditions as used by default in the Cherrypick paper \cite{Alipourfard2017}, namely when the Expected improvement (EI) is less than 10\%, and at least 6 samples have been taken. We were able to successfully run this experiment with both multiple and single providers, as well as with both single jobs and multiple concurrent jobs. The results from these experiments are shown in figure \ref{fig:bo-results}, while examples of the job paths taken during them are shown in figure \ref{fig:paths}.
+
+With only a single concurrent job running, we were able to replicate the previous results, with the correct optimal instance predicted in 8 out of 10 evaluations. It is interesting to note, however, that the incorrectly predicted instance in both failed cases was not the second but third best choice, resulting in a reduction in the score/cost value by ~21.3\%.
+
+While running multiple concurrent jobs could dramatically decrease the search time, it did come at a cost to accuracy. With the same stopping conditions, a successful prediction was made only 12 out of 20 experiments (60\%). This suggests that multiple concurrent jobs is only a good choice when reducing search time is more important than reducing search cost, as more stringent stopping conditions should be used.  Unsurprisingly, reducing the search space to a single provider increased the likelihood of making correct predictions with multiple concurrent jobs, leading to 15 correct predictions out of 20 repeats (75\%).
+
+Having performed evaluation on our implementation for a deployment of a simple docker container, effectively corresponding to running a single batch job or benchmark and interpreting the results, we then wanted to evaluate the same technique applied to an web-based application, which may be better evaluated through its responses to a client. For this a single 5-node Kubernetes cluster was set up for the same of sending repeated requests to the evaluated deployment, as described for the 'Pingserver' deployer and interpreter. This experimet is much more intensive to perform exhaustive search for, as it would require separate pinging clusters to be set up for every sample. The mean response time for requests of a normally distributed load was divided by the hourly cost of the instance to give maximised value. From the samples taken during 10 repetitions of this experiment, it seemed that there were no significant difference between the two optimal configurations of c5.large and m5.large ($\Delta \bar{x}=0.0001, P \approx 1.000$), which the predictions correctly converged upon in all cases.
 
 \section{Critical discussion}
 \textbf{You should evaluate your own work with respect to your

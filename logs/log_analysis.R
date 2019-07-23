@@ -56,6 +56,22 @@ names(value_means) <- instance_types
 names(value_sds) <- instance_types
 names(value_relsds) <- instance_types 
 
+mod <- lm(score ~ instance, data=logs)
+aov <- aov(mod)
+TukeyHSD(aov)
+
+mod2 <- lm(score ~ as.factor(cpu)*provider*type, logs)
+aov2 <- aov(mod2)
+TukeyHSD(aov2)
+
+mod.value <- lm(value ~ instance, data=logs)
+aov.value <- aov(mod.value)
+TukeyHSD(aov.value)
+
+mod.value2 <- lm(value ~ as.factor(cpu)*provider*type, logs)
+aov.value2 <- aov(mod.value2)
+TukeyHSD(aov.value2)
+
 ggplot(logs, aes(score)) +
   geom_histogram() +
   facet_wrap(~instance)
@@ -63,7 +79,7 @@ ggplot(logs, aes(score)) +
 ggplot(logs, aes(as.factor(cpu), score, color=provider)) +
   geom_boxplot() + 
   xlab("vCPU #") + ylab("vBench Score") +
-  labs(title="vbench scores for different cloud configurations") +
+  labs(title="vBench scores for different cloud configurations", color="Provider") +
   facet_grid(cols=vars(type))
 
 ggplot(logs, aes(as.factor(cpu), score)) +
@@ -79,6 +95,12 @@ ggplot(aws_logs, aes(as.factor(cpu), score)) +
 
 ggplot(logs, aes(score, color=as.factor(cpu))) +
   geom_freqpoly(aes(y=..density..), alpha=0.7) +
+  labs(title="Distributions of vBench scores for different instance configurations", 
+       x="Score", y = "Density", color="vCPUs") +
+  facet_grid(rows=vars(provider), cols=vars(type))
+
+ggplot(logs, aes(score, fill=as.factor(cpu))) +
+  geom_histogram(aes(y=..density..), alpha=0.7, position="identity") +
   facet_grid(rows=vars(provider), cols=vars(type))
 
 ggplot(logs, aes(x=cpu, y=score, shape=provider, color=type)) + geom_point(size=3)
@@ -87,7 +109,8 @@ ggplot(logs, aes(x=cpu, y=score, shape=provider, color=type)) + geom_point(size=
 ggplot(logs, aes(as.factor(cpu), value, color=provider)) +
   geom_boxplot() + 
   xlab("vCPU #") + ylab("Score/Price") +
-  labs(title="Objective function result (vbench score / price per hour) for different cloud configurations") +
+  labs(title="Objective function result (vBench score / price per hour) for different cloud configurations",
+       color="Provider") +
   facet_grid(cols=vars(type), scales="free_y")
 
 ggplot(logs, aes(as.factor(cpu), value)) +

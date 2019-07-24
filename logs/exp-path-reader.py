@@ -6,7 +6,7 @@ import pandas as pd
 
 
 for experiment in os.listdir(os.getcwd() + "/spearmint_exps"):
-    df = pd.DataFrame(columns=["Job_number", "vCPUs", "Provider", "Category", "Score", "Value"])
+    df = pd.DataFrame(columns=["Job_number", "vCPUs", "Provider", "Category", "Score", "Value", "Timestamp"])
     job_num = 1
     row = 0
     for file in os.listdir(os.getcwd()+f"/spearmint_exps/{experiment}/jobfiles"):
@@ -18,7 +18,8 @@ for experiment in os.listdir(os.getcwd() + "/spearmint_exps"):
             category = job_dict["params"]["Category"][0]
             value = job_dict["value"]
             score = value * job_dict["selection"]["price"]
-            df.loc[row] = [job_num, vCpus, provider, category, score, value]
+            timestamp = job_dict["timestamp"]
+            df.loc[row] = [job_num, vCpus, provider, category, score, value, timestamp]
             row += 1
             job_num += 1
 

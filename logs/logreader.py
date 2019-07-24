@@ -122,12 +122,14 @@ def exps():
             deployer = "vbench"
             interpreter = "vbench"
             concurrent_jobs = 1
-            multiple_providers = True         
-        else:
+            multiple_providers = True  
+        elif int(directory) < 60:       
             deployer = "ping_testserver"
             interpreter = "ping_testserver"
             concurrent_jobs = 1
-            multiple_providers = False         
+            multiple_providers = False
+        else:
+                     
 
         best_jobfile = open(os.getcwd()+"/spearmint_exps/"+directory+"/jobfiles/"+best_jobid+".json", "r")
         instance_type = json.load(best_jobfile)["selection"]["instance"]

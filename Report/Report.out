@@ -1,31 +1,30 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [2][-]{subsection.1.1}{Background}{section.1}% 2
 \BOOKMARK [2][-]{subsection.1.2}{Aims and Objectives}{section.1}% 3
-\BOOKMARK [2][-]{subsection.1.3}{Achievements}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.3}{Contributions}{section.1}% 4
 \BOOKMARK [2][-]{subsection.1.4}{Dissertation Overview}{section.1}% 5
-\BOOKMARK [1][-]{section.2}{Context Summary}{}% 6
+\BOOKMARK [1][-]{section.2}{Literature Survey}{}% 6
 \BOOKMARK [1][-]{section.3}{Requirements Specification}{}% 7
-\BOOKMARK [2][-]{subsection.3.1}{Functional Requirements}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.2}{Non-functional Requirements}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.3}{Use-case}{section.3}% 10
-\BOOKMARK [1][-]{section.4}{Software Engineering Process}{}% 11
-\BOOKMARK [1][-]{section.5}{Design}{}% 12
-\BOOKMARK [2][-]{subsection.5.1}{That cherrypick quote about starting specific}{section.5}% 13
-\BOOKMARK [1][-]{section.6}{Implementation}{}% 14
-\BOOKMARK [2][-]{subsection.6.1}{Searcher}{section.6}% 15
-\BOOKMARK [3][-]{subsubsection.6.1.1}{Bayesian Optimization - Spearmint}{subsection.6.1}% 16
-\BOOKMARK [3][-]{subsubsection.6.1.2}{Gradient Descent}{subsection.6.1}% 17
-\BOOKMARK [3][-]{subsubsection.6.1.3}{Exhaustive search}{subsection.6.1}% 18
-\BOOKMARK [2][-]{subsection.6.2}{Driver function}{section.6}% 19
-\BOOKMARK [2][-]{subsection.6.3}{Selector}{section.6}% 20
-\BOOKMARK [3][-]{subsubsection.6.3.1}{Exact Match}{subsection.6.3}% 21
-\BOOKMARK [3][-]{subsubsection.6.3.2}{Closest Match}{subsection.6.3}% 22
-\BOOKMARK [2][-]{subsection.6.4}{Deployer}{section.6}% 23
-\BOOKMARK [3][-]{subsubsection.6.4.1}{VM Provisioner}{subsection.6.4}% 24
-\BOOKMARK [3][-]{subsubsection.6.4.2}{Docker Deployer}{subsection.6.4}% 25
-\BOOKMARK [3][-]{subsubsection.6.4.3}{Ping server}{subsection.6.4}% 26
-\BOOKMARK [2][-]{subsection.6.5}{Interpreter}{section.6}% 27
-\BOOKMARK [1][-]{section.7}{Evaluation}{}% 28
-\BOOKMARK [1][-]{section.8}{Critical discussion}{}% 29
-\BOOKMARK [2][-]{subsection.8.1}{Future extensions}{section.8}% 30
-\BOOKMARK [1][-]{section.9}{Conclusions}{}% 31
+\BOOKMARK [2][-]{subsection.3.1}{Use-case}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Design}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Searcher}{section.4}% 10
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Example - Grid/Exhaustive search}{subsection.4.1}% 11
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Example - Bayesian Optimization}{subsection.4.1}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Selector}{section.4}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Example - Exact Match}{subsection.4.2}% 14
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Example - Closest Match}{subsection.4.2}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Deployer}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Example - VM Provisioner}{subsection.4.3}% 17
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Example - Docker Deployer}{subsection.4.3}% 18
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Example - Ping server}{subsection.4.3}% 19
+\BOOKMARK [3][-]{subsubsection.4.3.4}{Example - Fake Deploy/Old Deploy}{subsection.4.3}% 20
+\BOOKMARK [2][-]{subsection.4.4}{Interpreter}{section.4}% 21
+\BOOKMARK [1][-]{section.5}{Implementation}{}% 22
+\BOOKMARK [2][-]{subsection.5.1}{Searcher}{section.5}% 23
+\BOOKMARK [2][-]{subsection.5.2}{Selector}{section.5}% 24
+\BOOKMARK [2][-]{subsection.5.3}{Interpreter}{section.5}% 25
+\BOOKMARK [1][-]{section.6}{Evaluation}{}% 26
+\BOOKMARK [2][-]{subsection.6.1}{Related Work}{section.6}% 27
+\BOOKMARK [1][-]{section.7}{Critical discussion}{}% 28
+\BOOKMARK [2][-]{subsection.7.1}{Future extensions}{section.7}% 29
+\BOOKMARK [1][-]{section.8}{Conclusions}{}% 30

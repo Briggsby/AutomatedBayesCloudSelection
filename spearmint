@@ -1,2 +1,2 @@
 #!/bin/bash
-python "$(dirname "$(which python)")/../lib/python3.6/site-packages/spearmint/main.py" "$@"
+python "$(dirname "$(which python)")/../lib/python3.7/site-packages/spearmint/main.py" "$@"

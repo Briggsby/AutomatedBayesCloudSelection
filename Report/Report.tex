@@ -53,7 +53,9 @@ Algorithm
 Multiple cloud providers
 Latency/response tests from a separate machine
 Concurrent jobs to reduce search time
-\subsection{Achievements}
+\subsection{Contributions}
+% Made a good framework for automated cloud testing
+% Experimentally shown how Bayesian Optimization's effectiveness changes based on search space and parallelisation (reduced search space increases effectiveness, parallelisation reduces search time but also effectiveness without stricter stopping conditions)
 
 \subsection{Dissertation Overview}
 % Context summary, describing previous work and availabe tools that will be used.
@@ -64,7 +66,7 @@ Concurrent jobs to reduce search time
 % Conclude by discussing future extensions and ways to make it more consumer-facing
 
 
-\section{Context Summary}
+\section{Literature Survey}
 \textbf{Surveying the context, the background literature and any
 recent work with similar aims. The context survey
 describes the work already done in this area, either as
@@ -72,6 +74,9 @@ described in textbooks, research papers, or in publicly
 available software. You may also describe potentially
 useful tools and technologies here but do not go into
 project-specific decisions.} \\
+
+% Existing work (Cherrypick (BO), PARIS)
+% Technical background (Terraform, Spearmint)
 
 %First ways of actually evaluating the performance of a black box app
 %Then describing previous configuration testers 
@@ -84,22 +89,65 @@ project-specific decisions.} \\
 in the form of requirements specification. You may wish
 to specify different types of requirements and given them
 priorities if applicable.}
-\subsection{Functional Requirements}
-\subsection{Non-functional Requirements}
+
+Previous solutions to the problem of automated cloud configuration selection have focused on specific use-cases or application types, and have not provided a functional implementation.  Our design should be generalisable to any form of application deployed on the cloud, and should be able to recreate previous solutions. This paper should also come with an associated implementation, which can at least perform a Bayesian Optimization-based search for a given docker container containing a batch job or benchmark.
+
+
 \subsection{Use-case}
-\section{Software Engineering Process}
-\textbf{The development approach taken and justification for its
-adoption.}
 \section{Design}
 \textbf{Indicating the structure of the system, with particular
 focus on main ideas of the design, unusual design
 features, etc. \\}
-\subsection{That cherrypick quote about starting specific}
 \begin{figure}[!ht]
   \caption{A diagram of the design.}
+  \label{fig:design}
   \centering
    \includegraphics[scale=0.8]{Design}
 \end{figure}
+
+Optimisation is the process of minimising or maximising the value of some objective function by adjusting its input variables or parameters. Any optimisation algorithm begin with an initial guess of these variables and iterate through improved estimates until they terminate, hopefully providing an estimated solution. \cite{Nocedal2006} In the generalized case, the optimisation method and objective function are both unknown, but we know that our objective function will always involve selecting some cloud configuration based on the inputs, deploying some application onto this configuration, and interpreting its performance to give some objective measure.
+
+This process can be broken down into four components: A Searcher, which runs the optimisation algorithm, testing out various inputs in an attempt to maximise or minimise the objective function; a Selector, which interprets the inputs to determine what cloud configuration is being tested; a Deployer, which deploys the application onto this cloud configuration and returns any required logs from it; and an Interpreter, which takes these logs to calculate the objective measure which is returned to the Searcher as the returned value for the objective function. A diagram of this breakdown is shown in figure \ref{fig:design}.
+
+It is assumed that in the vast majority of cases, the user would provide their own Interpreter and Selector, that in some cases they must provide their own Deployer, and that only in rare cases would the user be required to provide their own Searcher. This is because optimization algorithms can be applied to any deployments, with only small modifications necessary in rare cases for specific cases. Deployments can often be contained within Docker containers, and aside from occasional setup, for example in multi-node clusters, a Deployer which provisions a given configuration from a given provider, and then deploys and attaches to a user-provided docker image to collect its logs will be sufficient. Interpreters and Selectors, on the other hand, are very dependent on the form these logs will take, and the form the search space will take, and are extremely hard to generalise. For this reason, the modular design of our solution should make it simple for any component to be supplied or replaced by the user. 
+
+For each component
+
+\subsection{Searcher}
+The Searcher component performs an optimisation algorithm, such as Bayesian optimization, coordinate descent, random search, or exhaustive search, and drives the optimization process by iterating through potential input variables. For each set of these inputs, it take a sample from a single 'job,' and run through a single loop of the other three components. The constraints for these input variables must be specified, by describing their type (integer, float, categorical) and limits. A description of how to model cloud configurations into a set of variables is done in the Selector section.
+
+\subsubsection{Example - Grid/Exhaustive search}
+In an exhaustive search, every possible combination of the inputs is sampled, giving a complete analysis of the entire search space. This obviously takes many samples, $n * \prod_{i=1}^{j} x_{i}$ where $x_{i}$ is the number of options for the \textit{i}th of J variables, and n is the number of samples taken from each configuration. This results in a large or even infinite search cost and time, but is almost certain to return the optimal result, depending on the amount of randomness involved in sampling. A grid search is similar, but rather than sampling at every possible option within the search space, samples at regular intervals within it to reduce the number of samples taken. A coarser grid search results in a quicker, cheaper search, but a less confident prediction.
+
+\subsubsection{Example - Bayesian Optimization}
+% Variable for CPU can actually be an integer, which is done to the power of 2.
+
+\subsection{Selector}
+The Selector interprets the variables provided by the Searcher component into the form of a cloud configuration that can be deployed. Cloud configurations have a number of variables that can describe them, such as vCPU number, Memory amount, number of instances, instance category, machine type, and cloud provider. The selector must use whatever combination of these is provided and find either the exact or most similar cloud configuration available, passing this information on to the Deployer.
+
+\subsubsection{Example - Exact Match}
+\subsubsection{Example - Closest Match}
+% This would require a record to be kept of previously tested instances so as not to repeat similar instances multiple times. In cases of significant noise it may be beneficial to test multiple times, so can limit this to 3.
+% Driver function reads the files to make a configuration dictionary to be passed to other functons. It reads the variables into this and well as loads the functions specified in the variable file. At the end of each job, this configuration dictionary is saved as a json file for later analysis, as well as being appended to a json file that incorporates all the logs from any previous jobs performed by the function. (This file should be regularly backed up, probably into separate smaller files, as otherwise an error can throw away lots of data)
+\subsection{Deployer}
+The Deployer deploys the user-provided application, batch job, or benchmark onto the selected cloud configuration, and collect any necessary analysis from it. Typically this will involve provisioning the necessary machines from the given provider, followed by deploying the given application onto these machines, and either collecting logs from them or from a networked instance or cluster. 
+
+\subsubsection{Example - VM Provisioner}
+The deployer should be capable of handling any response from the selector, and must work with multiple providers. This can be simplified using Infrastructure as code (IaC) tools such as Terraform or Chef.
+\subsubsection{Example - Docker Deployer}
+\paragraph{vBench}
+\paragraph{Cloudsuite3}
+\paragraph{Sysbench}
+\subsubsection{Example - Ping server}
+\subsubsection{Example - Fake Deploy/Old Deploy}
+
+%Also fake deploy for debugging, or old_deploy for using already gathered results
+
+\subsection{Interpreter}
+% Interpreters were made for all those listed above (vBench, cloudsuite3 media streaming, sysbench
+
+The Interpreter must interpret whatever information is returned by the Deployer, along with the cost of the cloud configuration, in order to give the searcher an objective measure for the sampled cloud configuration. It is this returned value which will be minimized or maximized. By its nature, the interpreter will most likely be unique for a given application.
+
 \section{Implementation}
 \textbf{How the implementation was done and tested, with
 particular focus on important / novel algorithms and/or
@@ -108,33 +156,12 @@ user interface features, etc.}
 \subsection{Searcher}
 For the sake of generalizability, the available implementation of spearmint was found to be outdated and incompatible with the latest versions of various python modules planned to be used in later steps. 
 Because of this, spearmint was first updated to be compatible with Python 3 and newer versions of its dependencies such as Google Protocol Buffers. This implementation of spearmint has been made available.\footnote{https://github.com/briggsby/spearmint3}
-Any searcher 
-\subsubsection{Bayesian Optimization - Spearmint}
-% Variable for CPU can actually be an integer, which is done to the power of 2.
-\subsubsection{Gradient Descent}
-\subsubsection{Exhaustive search}
-\subsection{Driver function}
 
 \subsection{Selector}
 % Why we only evaluated exact match. Problems with closest match. If there are architectural problems the user may want to avoid certain instance types. A selector that uses an API to retreive available instance models may be useful.
-\subsubsection{Exact Match}
-\subsubsection{Closest Match}
-% This would require a record to be kept of previously tested instances so as not to repeat similar instances multiple times. In cases of significant noise it may be beneficial to test multiple times, so can limit this to 3.
-% Driver function reads the files to make a configuration dictionary to be passed to other functons. It reads the variables into this and well as loads the functions specified in the variable file. At the end of each job, this configuration dictionary is saved as a json file for later analysis, as well as being appended to a json file that incorporates all the logs from any previous jobs performed by the function. (This file should be regularly backed up, probably into separate smaller files, as otherwise an error can throw away lots of data)
-\subsection{Deployer}
-\subsubsection{VM Provisioner}
-\subsubsection{Docker Deployer}
-\paragraph{vBench}
-\paragraph{Cloudsuite3}
-\paragraph{Sysbench}
-\subsubsection{Ping server}
-
-%Also fake deploy for debugging, or old_deploy for using already gathered results
 
 \subsection{Interpreter}
-% Interpreters were made for all those listed above (vBench, cloudsuite3 media streaming, sysbench
 % We used very simple metrics of dividing scores (which were various measures of number of users/rate of transcoding/rate of response/number of operations) by the hourly price. This is not likely to correspond to a real metric used in business, where even a small advantage over a competitor can lead to a dramatic uptake in users, but was effective for evaluation.
-
 \section{Evaluation}
 \textbf{You should evaluate your own work with respect to your original objectives. You should also critically evaluate your work with respect to related work done by others. You should compare and contrast the project to similar work in the public domain, for example as written about in published papers, or as distributed in software available to you.}
 
@@ -208,7 +235,10 @@ With only a single concurrent job running, we were able to replicate the previou
 
 While running multiple concurrent jobs could dramatically decrease the search time, it did come at a cost to accuracy. With the same stopping conditions, a successful prediction was made only 12 out of 20 experiments (60\%). This suggests that multiple concurrent jobs is only a good choice when reducing search time is more important than reducing search cost, as more stringent stopping conditions should be used.  Unsurprisingly, reducing the search space to a single provider increased the likelihood of making correct predictions with multiple concurrent jobs, leading to 15 correct predictions out of 20 repeats (75\%).
 
-Having performed evaluation on our implementation for a deployment of a simple docker container, effectively corresponding to running a single batch job or benchmark and interpreting the results, we then wanted to evaluate the same technique applied to an web-based application, which may be better evaluated through its responses to a client. For this a single 5-node Kubernetes cluster was set up for the same of sending repeated requests to the evaluated deployment, as described for the 'Pingserver' deployer and interpreter. This experimet is much more intensive to perform exhaustive search for, as it would require separate pinging clusters to be set up for every sample. The mean response time for requests of a normally distributed load was divided by the hourly cost of the instance to give maximised value. From the samples taken during 10 repetitions of this experiment, it seemed that there were no significant difference between the two optimal configurations of c5.large and m5.large ($\Delta \bar{x}=0.0001, P \approx 1.000$), which the predictions correctly converged upon in all cases.
+Having performed evaluation on our implementation for a deployment of a simple docker container, effectively corresponding to running a single batch job or benchmark and interpreting the results, we then wanted to evaluate the same technique applied to an web-based application, which may be better evaluated through its responses to a client. For this a single 5-node Kubernetes cluster was set up for the same of sending repeated requests to the evaluated deployment, as described for the 'Pingserver' deployer and interpreter. This experiment is much more intensive to perform exhaustive search for, as it would require separate pinging clusters to be set up for every sample. The mean response time for requests of a normally distributed load was divided by the hourly cost of the instance to give maximised value. From the samples taken during 10 repetitions of this experiment, it seemed that there were no significant difference between the two optimal configurations of c5.large and m5.large ($\Delta \bar{x}=0.0001, P \approx 1.000$), which the predictions correctly converged upon in all cases.
+
+\subsection{Related Work}
+
 
 \section{Critical discussion}
 \textbf{You should evaluate your own work with respect to your
@@ -229,7 +259,6 @@ key achievements and significant drawbacks to your
 work, and discuss future directions your work could be
 taken in.}
 \newpage
-\cite{Agarwal2012} % Just here to stop errors, delete once other citations included
 \bibliographystyle{ieeetr}
 \bibliography{Dissertation}
 \newpage

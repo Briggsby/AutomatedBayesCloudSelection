@@ -1,6 +1,6 @@
 library(ggplot2)
 
-logs <- read.csv("curltest_results.csv")
+logs <- read.csv("vbench_results.csv")
 logs$instance <- as.factor(logs$instance)
 instance_types <- levels(logs$instance)
 
@@ -109,7 +109,7 @@ ggplot(logs, aes(x=cpu, y=score, shape=provider, color=type)) + geom_point(size=
 ggplot(logs, aes(as.factor(cpu), value, color=provider)) +
   geom_boxplot() + 
   xlab("vCPU #") + ylab("Score/Price") +
-  labs(title="Objective function result (vBench score / price per hour) for different cloud configurations",
+  labs(title="Objective function result (vBench score / price per hour) \nfor different cloud configurations",
        color="Provider") +
   facet_grid(cols=vars(type), scales="free_y")
 

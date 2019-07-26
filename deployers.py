@@ -7,6 +7,7 @@ import time
 import json
 from functools import partial
 import kubernetes as kube
+from random import gauss
 
 def keyboard_interrupt_handler(instance_tf, config, signal, frame):
 	print("KeyboardInterrupt (ID: {}) has been caught. Cleaning up...".format(signal))
@@ -34,7 +35,11 @@ def simulate_vbench(config):
 		"r5.large": [0.62428610571595, 0.0168857431525331],
 		"r5.xlarge": [0.657909086988129, 0.00847214059316436]
 	}
-	config["logs"] = f"b,b,b,b,b,b,b,b,{score_dists[config['selection']['instance']]}"
+
+	score = gauss(score_dists[config['selection']['instance']][0], 
+				  score_dists[config['selection']['instance']][1])
+
+	config["logs"] = f"b,b,b,b,b,b,b,b,{score}"
 	return config
 
 def ping_testserver(config):
@@ -150,7 +155,7 @@ def cloudsuite3_media(config, ip, instance_tf=None):
 
 def docker_deploy(config, ip, instance_tf=None):
 	client = docker.DockerClient(base_url='tcp://'+ip+':2376')
-	logs = client.containers.run(config["vars"]["docker_image"])
+	logs = client.containers.run(config["vars"]["docker_image"], **config["vars"]["docker_params"])
 
 	config["logs"] = str(logs, 'utf-8')
 

@@ -73,9 +73,9 @@ describes the work already done in this area, either as
 described in textbooks, research papers, or in publicly
 available software. You may also describe potentially
 useful tools and technologies here but do not go into
-project-specific decisions.} \\
+project-specific decisions.}
 
-% Existing work (Cherrypick (BO), PARIS)
+% Existing work (Cherrypick (BO), PARIS, Ernest)
 % Technical background (Terraform, Spearmint)
 
 %First ways of actually evaluating the performance of a black box app
@@ -85,24 +85,31 @@ project-specific decisions.} \\
 
 
 \section{Requirements Specification}
-\textbf{Capturing the properties the software solution must have
-in the form of requirements specification. You may wish
-to specify different types of requirements and given them
-priorities if applicable.}
-
 Previous solutions to the problem of automated cloud configuration selection have focused on specific use-cases or application types, and have not provided a functional implementation.  Our design should be generalisable to any form of application deployed on the cloud, and should be able to recreate previous solutions. This paper should also come with an associated implementation, which can at least perform a Bayesian Optimization-based search for a given docker container containing a batch job or benchmark.
 
+The solution should be capable of:
+\begin{itemize}
+\item Performing optimization algorithms wrapped around some deployment schema
+\item Specifying cloud configurations based on a collection of input variables
+\item Provisioning specified cloud configurations from multiple providers
+\item Installing or setting up a container platform such as Docker onto provisioned instances
+\item Deploying user-specified images onto provisioned instances
+\item Retrieving logs from remotely deployed containers
+\item Interpreting logs into single values which are returned to the optimization algorithms
+\end{itemize}
+
+The solution will, preferably, also be capable of running multiple concurrent sample 'jobs' for the optimization algorithms.
+While many of these requirements are either met, or a means of performing them provided through APIs or other tools, we hope to provide an implementation that combines them into a single generalizable automated cloud selection tool. 
+
+We should be capable of effectively replicating previous optimization methods such as CherryPick and Ernest in our system. To ensure that any optimization algorithm will be effective, we must encode the search space for cloud configurations such that instances are described in terms of a set of descriptive variables. As of the time of publication, no universal or cross-provider API exists that allows instance types to be looked up based on their specifications, and so we must develop our own method for describing them for lookup by the optimization algorithms. This is just one of the ways that extending a search space to include multiple providers causes additional problems. We must also ensure that our solution is capable of provisioning instance and deploying applications on machines from multiple providers, and as such cannot rely on any provider-specific API or command-line interface, but will use one of several Infrastructure-as-code tools now available.
 
 \subsection{Use-case}
 \section{Design}
-\textbf{Indicating the structure of the system, with particular
-focus on main ideas of the design, unusual design
-features, etc. \\}
 \begin{figure}[!ht]
-  \caption{A diagram of the design.}
-  \label{fig:design}
   \centering
    \includegraphics[scale=0.8]{Design}
+  \caption{A diagram of the design.}
+  \label{fig:design}
 \end{figure}
 
 Optimisation is the process of minimising or maximising the value of some objective function by adjusting its input variables or parameters. Any optimisation algorithm begin with an initial guess of these variables and iterate through improved estimates until they terminate, hopefully providing an estimated solution. \cite{Nocedal2006} In the generalized case, the optimisation method and objective function are both unknown, but we know that our objective function will always involve selecting some cloud configuration based on the inputs, deploying some application onto this configuration, and interpreting its performance to give some objective measure.
@@ -172,21 +179,37 @@ It may be advantageous, especially during debugging or if using a 'closest match
 The Interpreter must interpret whatever logs and other information is returned by the Deployer, along with the cost of the cloud configuration provided by the Selector, in order to return an objective measure for the sampled cloud configuration. It is this returned value that the Searcher will be attempting to minimise or maximize. We leave it to the user to develop an Interpreter for their use-case, incorporating an extraction of relevant information from their application logs with their specific cost and time constraints. 
 
 \section{Implementation}
-\textbf{How the implementation was done and tested, with
-particular focus on important / novel algorithms and/or
-data structures, unusual implementation decisions, novel
-user interface features, etc.}
+Our solution was implemented with a combination of Bash scripts and Python 3. For Selector, Deployer, and Interpreter, a single python script was made to drive the three components. This script would be called by a Searcher component for each sampling job, taking the input variables as its parameters, and returning the objective measurement given from that configuration, as returned by the Interpreter. User-provided options, such as what Selector, Deployer, and Interpreter to use, as well as other user supplied variables can be provided in the form of a JSON file that is read as a Python dictionary by this driver file. This dictionary is passed as input to each component, which are able to update it with any information needed by other components, in the form of key-value pairs. At the end of any job, this dictionary object is saved in JSON format for later analysis and recovery of previous results.
+
 \subsection{Searcher}
-For the sake of generalizability, the available implementation of spearmint was found to be outdated and incompatible with the latest versions of various python modules planned to be used in later steps. 
-Because of this, spearmint was first updated to be compatible with Python 3 and newer versions of its dependencies such as Google Protocol Buffers. This implementation of spearmint has been made available.\footnote{https://github.com/briggsby/spearmint3}
+Exhaustive search was performed using simple shell commands. Bayesian optimization was performed using Spearmint, an implementation of BO written in Python. However, the latest available implementation of Spearmint was found to be outdated and incompatible with the latest versions of various python modules planned to be used in later steps. 
+Because of this, for the sake of generalisability Spearmint was first updated to be compatible with Python 3 and newer versions of its dependencies such as Google Protocol Buffers. This implementation of spearmint has been made available.\footnote{https://github.com/briggsby/spearmint3}
 
 \subsection{Selector}
-% Why we only evaluated exact match. Problems with closest match. If there are architectural problems the user may want to avoid certain instance types. A selector that uses an API to retreive available instance models may be useful.
+A CSV file was created with the following variables for the instance types used in our evaluation:
+
+\begin{itemize}
+\item API Name - Name of instance type used in that provider's APIs (string)
+\item Provider - Cloud provider offering the instance type (string)
+\item CPU - Number of vCPUs (float)
+\item Memory - Amount of memory in GB (float)
+\item Category - Category of machine type, such as Compute or Memory optimized, in a consistent form between providers (string) 	
+\item Price - Hourly cost of the machine for an On-demand Linux image (float)
+\end{itemize}
+
+The selector loads this dataset as a Pandas dataframe, and filters it according to the input variables provided, and returns the API name and hourly cost for the cheapest option remaining.
 
 \subsection{Deployer}
-\subsubsection{vBench}
-\subsubsection{Cloudsuite3}
-\subsubsection{Sysbench}
+\subsubsection{VM Provisioner}
+The first stage of any tested deployment was to first provision the necessary virtual machines from their cloud provider. To this end, a separate folder for each provider was created with a corresponding Terraform configuration file. The configuration files would, when applied using Terraform, provision a number of machines of a given type, and set up a publicly accessible Docker host on each machine. The number of machines, type of machines, and other important variables such as credentials file locations can be specified when the configuration plan is applied, or placed in a single 'tfvars' file in the same folder as our driving Python script. The Terraform plan outputs timestamps, configuration details, and public IPs, which are used used by later Deployment steps.
+
+It was important that we could run multiple Terraform plans at once, but using a separate configuration setup for every job would lead to extremely large disk usage and overhead from downloading necessary modules into every folder. Because of this each deployment uses a different 'local back-end,' storing the state files in a separate folder, and output values are only taken from the output returned when the configuration plan is first applied, as attempting to get the outputs later can lead to returning outputs from different back-ends when separate deployments attempt to obtain this information at the same time.
+
+We used a python library python-terraform\footnote{https://github.com/beelit94/python-terraform} for our implementation.
+\subsubsection{Docker image deployment}
+
+
+
 \subsubsection{Example - Ping server}
 
 
@@ -194,8 +217,6 @@ Because of this, spearmint was first updated to be compatible with Python 3 and 
 % We used very simple metrics of dividing scores (which were various measures of number of users/rate of transcoding/rate of response/number of operations) by the hourly price. This is not likely to correspond to a real metric used in business, where even a small advantage over a competitor can lead to a dramatic uptake in users, but was effective for evaluation.
 % Interpreters were made for all those listed above (vBench, cloudsuite3 media streaming, sysbench
 \section{Evaluation}
-\textbf{You should evaluate your own work with respect to your original objectives. You should also critically evaluate your work with respect to related work done by others. You should compare and contrast the project to similar work in the public domain, for example as written about in published papers, or as distributed in software available to you.}
-
 To demonstrate the effectiveness of the implementation of our framework, we wanted to show that it could replicate the methods set out in the Cherrypick paper \cite{Alipourfard2017} by performing Bayesian Optimization to attempt to find an optimal configuration for a given deployment. We then wanted to use the same implementation to perform multiple exhaustive searches so that the results from Bayesian Optimization could be properly compared to the real average results. 
 
 The deployment to be used was originally planned to be Cloudsuite3's media streaming benchmark, however this was found to be extremely variable and dependent entirely on network bandwidth, and so instead the vBench video transcoding benchmark was used. Our objective function measured an instance type's relative rate of transcoding of a single 5 second 1920x1080 video file, returning a score of 0 if the quality was below a given threshold, divided by the hourly price of that instance. Effectively, we maximised the rate of transcoding a unit of video length at a sufficient quality per hourly cost. We had hoped to show that incorporating the soft constraint on video quality within the value returned by the Interpreter, rather than within the Acquisition function as was done in Cherrypick, did not hinder the optimization process, however no instance type tested failed to achieve the threshold video quality in any case.
@@ -203,6 +224,7 @@ The deployment to be used was originally planned to be Cloudsuite3's media strea
 For choosing the boundaries of the search space, we decided to reduce costs by using only machines ranging from 2 vCPUs to 8 vCPUs. This was also convenient as to use more powerful machines would have required requesting additional raised quotas from the providers used, and so would be less easily replicable. Using exact match, and as we wanted to show that the implementation worked with multiple providers, we could not rely on Google cloud platform's custom machine types and had to find some way to categorize possible variables. Rather than including memory as a variable, CPU instead was coded as a categorical variable (2, 4, or 8), along with machine category (General, Memory, CPU), each with a different amount of memory. Table \ref{tab:instance-types} show which machine types corresponded to each option. 
 
 \begin{table}
+\centering
 \begin{tabular}{ |c||c|c|  }
  \hline
  & \multicolumn{2}{|c|}{Provider} \\
@@ -240,7 +262,7 @@ The results of the exhaustive search are shown in figures \ref{fig:vBench-scores
 \end{figure}
 \begin{figure}
   \centering
-  \includegraphics[scale=0.8]{vbench_dists}
+  \includegraphics[scale=0.7]{vbench_dists}
   \caption{Distribution of vBench scores in frequency polygons}
   \label{fig:vBench-dists}
 \end{figure}
@@ -255,7 +277,7 @@ However, once the scores are instead given relative to the machine's hourly cost
 \end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5]{paths}
+	\includegraphics[scale=0.4]{paths}
 	\caption{Paths of example Bayesian Optimization jobs}
 	\label{fig:paths}
 \end{figure}

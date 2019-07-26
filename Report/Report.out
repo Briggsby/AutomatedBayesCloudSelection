@@ -8,23 +8,25 @@
 \BOOKMARK [2][-]{subsection.3.1}{Use-case}{section.3}% 8
 \BOOKMARK [1][-]{section.4}{Design}{}% 9
 \BOOKMARK [2][-]{subsection.4.1}{Searcher}{section.4}% 10
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Example - Grid/Exhaustive search}{subsection.4.1}% 11
-\BOOKMARK [3][-]{subsubsection.4.1.2}{Example - Bayesian Optimization}{subsection.4.1}% 12
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Exhaustive search}{subsection.4.1}% 11
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Bayesian Optimization}{subsection.4.1}% 12
 \BOOKMARK [2][-]{subsection.4.2}{Selector}{section.4}% 13
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Example - Exact Match}{subsection.4.2}% 14
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Example - Closest Match}{subsection.4.2}% 15
-\BOOKMARK [2][-]{subsection.4.3}{Deployer}{section.4}% 16
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Example - VM Provisioner}{subsection.4.3}% 17
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Example - Docker Deployer}{subsection.4.3}% 18
-\BOOKMARK [3][-]{subsubsection.4.3.3}{Example - Ping server}{subsection.4.3}% 19
-\BOOKMARK [3][-]{subsubsection.4.3.4}{Example - Fake Deploy/Old Deploy}{subsection.4.3}% 20
-\BOOKMARK [2][-]{subsection.4.4}{Interpreter}{section.4}% 21
-\BOOKMARK [1][-]{section.5}{Implementation}{}% 22
-\BOOKMARK [2][-]{subsection.5.1}{Searcher}{section.5}% 23
-\BOOKMARK [2][-]{subsection.5.2}{Selector}{section.5}% 24
-\BOOKMARK [2][-]{subsection.5.3}{Interpreter}{section.5}% 25
-\BOOKMARK [1][-]{section.6}{Evaluation}{}% 26
-\BOOKMARK [2][-]{subsection.6.1}{Related Work}{section.6}% 27
-\BOOKMARK [1][-]{section.7}{Critical discussion}{}% 28
-\BOOKMARK [2][-]{subsection.7.1}{Future extensions}{section.7}% 29
-\BOOKMARK [1][-]{section.8}{Conclusions}{}% 30
+\BOOKMARK [2][-]{subsection.4.3}{Deployer}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.3.1}{VM Provision}{subsection.4.3}% 15
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Docker Deployment}{subsection.4.3}% 16
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Simulated Deployment}{subsection.4.3}% 17
+\BOOKMARK [2][-]{subsection.4.4}{Interpreter}{section.4}% 18
+\BOOKMARK [1][-]{section.5}{Implementation}{}% 19
+\BOOKMARK [2][-]{subsection.5.1}{Searcher}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.2}{Selector}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.3}{Deployer}{section.5}% 22
+\BOOKMARK [3][-]{subsubsection.5.3.1}{vBench}{subsection.5.3}% 23
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Cloudsuite3}{subsection.5.3}% 24
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Sysbench}{subsection.5.3}% 25
+\BOOKMARK [3][-]{subsubsection.5.3.4}{Example - Ping server}{subsection.5.3}% 26
+\BOOKMARK [2][-]{subsection.5.4}{Interpreter}{section.5}% 27
+\BOOKMARK [1][-]{section.6}{Evaluation}{}% 28
+\BOOKMARK [2][-]{subsection.6.1}{Related Work}{section.6}% 29
+\BOOKMARK [1][-]{section.7}{Critical discussion}{}% 30
+\BOOKMARK [2][-]{subsection.7.1}{Future extensions}{section.7}% 31
+\BOOKMARK [1][-]{section.8}{Conclusions}{}% 32

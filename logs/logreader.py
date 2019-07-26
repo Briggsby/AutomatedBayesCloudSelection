@@ -96,6 +96,9 @@ def exps():
 
         jobs_completed = len(os.listdir(os.getcwd()+"/spearmint_exps/"+directory+"/jobfiles"))
 
+        deployer = "vbench"
+        interpreter = "vbench"
+
         for idx, line in enumerate(best_results_file):
             split = line.split(":")
             if idx == 0:
@@ -109,26 +112,28 @@ def exps():
             elif idx == 8:
                     best_category = split[1].strip(' "')
         if int(directory) < 20:
-            deployer = "vbench"
-            interpreter = "vbench"
             concurrent_jobs = 3
             multiple_providers = True
         elif int(directory) < 40:
-            deployer = "vbench"
-            interpreter = "vbench"
             concurrent_jobs = 3
             multiple_providers = False    
         elif int(directory) < 50:
-            deployer = "vbench"
-            interpreter = "vbench"
             concurrent_jobs = 1
             multiple_providers = True  
         elif int(directory) < 60:       
             deployer = "ping_testserver"
             interpreter = "ping_testserver"
             concurrent_jobs = 1
-            multiple_providers = False
+            multiple_providers = True
+        elif int(directory) < 70:
+            concurrent_jobs = 1
+            multiple_providers = True  
+        elif int(directory) < 90:
+            concurrent_jobs = 2
+            multiple_providers = True
         else:
+            concurrent_jobs = 1
+            multiple_providers = False
                      
 
         best_jobfile = open(os.getcwd()+"/spearmint_exps/"+directory+"/jobfiles/"+best_jobid+".json", "r")

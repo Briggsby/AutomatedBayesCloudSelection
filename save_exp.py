@@ -10,6 +10,6 @@ copy("trace.csv", f"{path}/trace.csv")
 copy("config.pb", f"{path}/config.pb")
 copy("config.vars", f"{path}/config.vars")
 copy("tfvars.tfvars", f"{path}/tfvars.tfvars")
-copytree("jobfiles", f"{path}/jobfiles")
 if os.path.isfile("command.txt"):
     copy("command.txt", f"{path}/command.txt")
+copytree("jobfiles", f"{path}/jobfiles")

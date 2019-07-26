@@ -1,26 +1,26 @@
 exps <- read.csv("exps_results.csv")
-vbench <- exps[exps$Deployer=="vbench",]
-curl_test <- exps[exps$Deployer=="ping_testserver",]
 
-vbench$single_concurrent <- vbench$Concurrent_Jobs == 1
-plot(vbench$Best_instance~vbench$Concurrent_Jobs)
+exps$single_concurrent <- exps$Concurrent_Jobs == 1
 
-vbench$success <- ifelse(vbench$Multiple_Providers == "True", vbench$Best_instance=="c5.large", vbench$Best_instance=="n1-highcpu-2")
-
+exps$success <- ifelse(exps$Multiple_Providers == "True", exps$Best_instance=="c5.large", exps$Best_instance=="n1-highcpu-2")
+exps$success <- ifelse(exps$Deployer == "ping_testserver", (exps$Best_instance == "c5.large" | exps$Best_instance == "m5.large"), exps$success)
 # Getting test type:
 test_types <- vector(mode="character", length=nrow(vbench))
-for (i in 1:nrow(vbench)) {
-  if (vbench$Concurrent_Jobs[i] == 2) {
+for (i in 1:nrow(exps)) {
+  if (exps$Deployer[i] == "ping_testserver") {
+    test_types[i] <- "Ping test, 1 concurrent job, multiple providers"
+  }
+  else if (exps$Concurrent_Jobs[i] == 2) {
     test_types[i] <- "Multiple providers, 2 concurrent jobs"
   } else {
-    if (vbench$Multiple_Providers[i] == "True") {
-      if (vbench$single_concurrent[i]) {
+    if (exps$Multiple_Providers[i] == "True") {
+      if (exps$single_concurrent[i]) {
         test_types[i] <- "Multiple providers, single job"
       } else {
         test_types[i] <- "Multiple providers, 3 concurrent jobs"
       }
     } else {
-      if (vbench$single_concurrent[i]) {
+      if (exps$single_concurrent[i]) {
         test_types[i] <- "Single provider, single job"
       } else {
         test_types[i] <- "Single provider, 3 concurrent jobs"
@@ -29,27 +29,86 @@ for (i in 1:nrow(vbench)) {
   }
 }
 
-vbench$test_type <- as.factor(test_types)
+# SHOULD ALSO DO TIME TAKEN USING THE TIMESTAMPS!!!
 
-best_result_mean <- mean(vbench$Best_Result[vbench$Best_instance == "c5.large"])
-best_result_mean.google <- mean(vbench$Best_Result[vbench$Best_instance=="n1-highcpu-2"])
+exps$test_type <- factor(test_types, levels=c("Single provider, single job",
+                          "Single provider, 3 concurrent jobs",
+                          "Multiple providers, single job",
+                          "Multiple providers, 2 concurrent jobs",
+                          "Multiple providers, 3 concurrent jobs",
+                          "Ping test, 1 concurrent job, multiple providers"))
 
-vbench$best_result_relative <- ifelse(vbench$Multiple_Providers == "True",
-                                      vbench$Best_Result/best_result_mean,
-                                      vbench$Best_Result/best_result_mean.google)
+best_result_mean <- mean(exps$Best_Result[exps$Best_instance == "c5.large" & exps$Deployer == "vbench"])
+best_result_mean.google <- mean(exps$Best_Result[exps$Best_instance=="n1-highcpu-2" & exps$Deployer == "vbench"])
+best_result_mean.curltest <- mean(exps$Best_Result[exps$Deployer == "ping_testserver"])
 
+exps$Best_Result_Relative <- ifelse(exps$Multiple_Providers == "True",
+                                      exps$Best_Result/best_result_mean,
+                                      exps$Best_Result/best_result_mean.google)
+exps$Best_Result_Relative <- ifelse(exps$Deployer == "ping_testserver",
+                                      exps$Best_Result/best_result_mean.curltest,
+                                      exps$Best_Result_Relative)
+
+vbench <- exps[exps$Deployer=="vbench",]
+curl_test <- exps[exps$Deployer=="ping_testserver",]
+
+library(dplyr)
 library(ggplot2)
-ggplot(vbench, aes(Best_instance)) +
+ggplot(exps, aes(Best_instance)) +
   geom_bar(aes(fill=success)) + 
   scale_fill_manual(values=c("red4", "chartreuse4")) +
   labs(fill="Sucessful prediction", x="Best predicted instance", y="Count") +
-  facet_grid(cols=vars(test_type))
+  facet_wrap(~test_type)
 
-ggplot(vbench, aes(test_type, -Best_Result, group=test_type)) +
-  geom_boxplot()
+ggplot(exps, aes(test_type, -Best_Result, group=test_type)) +
+  geom_boxplot() +
+  stat_summary(fun.y=mean, colour="darkblue", geom="point", 
+               shape=18, size=3)
 
-ggplot(vbench, aes(test_type, best_result_relative)) +
-  geom_boxplot()
+results.plot <- ggplot(exps, aes(test_type, Best_Result_Relative, group=test_type, fill=test_type)) +
+  geom_boxplot() +
+  stat_summary(fun.y=mean, colour="darkblue", geom="point", 
+               shape=18, size=3) +
+  theme(axis.title.x = element_blank(), axis.text.x = element_blank()) +
+  labs(y = "Best returned result as a proportion \nof mean from potential best machine", fill = "Test Type",
+       title = "Boxplots of best values returned \nfor different Bayesian Optimization searches")
+
+time.plot <- ggplot(exps, aes(test_type, Time, group=test_type, fill=test_type)) +
+  geom_boxplot() +
+  stat_summary(fun.y=mean, colour="darkblue", geom="point", 
+               shape=18, size=3) +
+  coord_cartesian(ylim=c(0, 2000)) +
+  theme(axis.title.x = element_blank(), axis.text.x = element_blank()) +
+  labs(y = "Time in seconds between \nstart of first and last job", fill = "Test Type",
+       title = "Boxplots of time taken for different \nBayesian Optimization searches")
+# One outlier removed where time was > 4000 for 3 concurrent jobs
+
+exps$cost_scale = scale(exps$Cost, 0)
+
+cost.plot <- ggplot(exps, aes(test_type, cost_scale, group=test_type, fill=test_type)) +
+  geom_boxplot() +
+  stat_summary(fun.y=mean, colour="darkblue", geom="point", 
+               shape=18, size=3) +
+  theme(axis.title.x = element_blank(), axis.text.x = element_blank()) +
+  labs(y = "Relative estimated search cost", fill = "Test Type",
+       title = "Boxplots of relative search cost for \ndifferent Bayesian Optimization searches")
+
+exps.summ <- exps %>% group_by(test_type) %>% summarise(mean_rel_result = mean(Best_Result_Relative),
+                                                        sd_rel_result = sd(Best_Result_Relative),
+                                                        n_samples = n(),
+                                                        ci95 = qt(0.975,df=n_samples-1)*sd_rel_result/sqrt(n_samples))
+
+library(ggpubr)
+ggarrange(results.plot + rremove("legend"),
+          time.plot + rremove("legend"),
+          cost.plot +rremove("legend"),
+          cowplot::get_legend(results.plot),
+          labels=c('A', 'B', 'C'))
+
+
+ggplot(exps.summ, aes(test_type, mean_rel_result)) +
+  geom_col() +
+  geom_errorbar(aes(ymin=mean_rel_result-ci95, ymax=mean_rel_result+ci95))
 
 library(ggplot2)
 library(ggrepel)

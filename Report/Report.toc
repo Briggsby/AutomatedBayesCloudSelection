@@ -15,18 +15,18 @@
 \contentsline {subsubsection}{\numberline {4.3.1}VM Provision}{10}{subsubsection.4.3.1}% 
 \contentsline {subsubsection}{\numberline {4.3.2}Docker Deployment}{11}{subsubsection.4.3.2}% 
 \contentsline {subsubsection}{\numberline {4.3.3}Simulated Deployment}{11}{subsubsection.4.3.3}% 
-\contentsline {subsection}{\numberline {4.4}Interpreter}{11}{subsection.4.4}% 
+\contentsline {subsection}{\numberline {4.4}Interpreter}{12}{subsection.4.4}% 
 \contentsline {section}{\numberline {5}Implementation}{12}{section.5}% 
 \contentsline {subsection}{\numberline {5.1}Searcher}{12}{subsection.5.1}% 
-\contentsline {subsection}{\numberline {5.2}Selector}{12}{subsection.5.2}% 
-\contentsline {subsection}{\numberline {5.3}Deployer}{12}{subsection.5.3}% 
-\contentsline {subsubsection}{\numberline {5.3.1}vBench}{12}{subsubsection.5.3.1}% 
-\contentsline {subsubsection}{\numberline {5.3.2}Cloudsuite3}{12}{subsubsection.5.3.2}% 
-\contentsline {subsubsection}{\numberline {5.3.3}Sysbench}{12}{subsubsection.5.3.3}% 
-\contentsline {subsubsection}{\numberline {5.3.4}Example - Ping server}{12}{subsubsection.5.3.4}% 
-\contentsline {subsection}{\numberline {5.4}Interpreter}{12}{subsection.5.4}% 
-\contentsline {section}{\numberline {6}Evaluation}{12}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Related Work}{19}{subsection.6.1}% 
-\contentsline {section}{\numberline {7}Critical discussion}{19}{section.7}% 
-\contentsline {subsection}{\numberline {7.1}Future extensions}{19}{subsection.7.1}% 
-\contentsline {section}{\numberline {8}Conclusions}{19}{section.8}% 
+\contentsline {subsection}{\numberline {5.2}Selector}{13}{subsection.5.2}% 
+\contentsline {subsection}{\numberline {5.3}Deployer}{13}{subsection.5.3}% 
+\contentsline {subsubsection}{\numberline {5.3.1}vBench}{13}{subsubsection.5.3.1}% 
+\contentsline {subsubsection}{\numberline {5.3.2}Cloudsuite3}{13}{subsubsection.5.3.2}% 
+\contentsline {subsubsection}{\numberline {5.3.3}Sysbench}{13}{subsubsection.5.3.3}% 
+\contentsline {subsubsection}{\numberline {5.3.4}Example - Ping server}{13}{subsubsection.5.3.4}% 
+\contentsline {subsection}{\numberline {5.4}Interpreter}{13}{subsection.5.4}% 
+\contentsline {section}{\numberline {6}Evaluation}{13}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Related Work}{20}{subsection.6.1}% 
+\contentsline {section}{\numberline {7}Critical discussion}{20}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Future extensions}{21}{subsection.7.1}% 
+\contentsline {section}{\numberline {8}Conclusions}{21}{section.8}% 

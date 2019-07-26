@@ -2,6 +2,7 @@ import json
 from shutil import copy
 import pandas as pd
 import os
+import datetime
 
 
 def cloudsuite():
@@ -88,7 +89,7 @@ def curltest():
 
 
 def exps():
-    df = pd.DataFrame(columns=['Selector', 'Deployer', 'Interpreter', 'Concurrent_Jobs', 'Multiple_Providers', 'Jobs_completed', 'Best_instance', 'Best_CPU', 'Best_Provider', 'Best_Category', 'Best_JobID', 'Best_Result'])
+    df = pd.DataFrame(columns=['ID', 'Selector', 'Deployer', 'Interpreter', 'Concurrent_Jobs', 'Multiple_Providers', 'Jobs_completed', 'Best_instance', 'Best_CPU', 'Best_Provider', 'Best_Category', 'Best_JobID', 'Best_Result', "Time", "Cost"])
     row = 0
     for directory in os.listdir(os.getcwd()+"/spearmint_exps"):
         selector = "exact_match"
@@ -134,17 +135,25 @@ def exps():
         else:
             concurrent_jobs = 1
             multiple_providers = False
-                     
+
+        time, cost = get_time_and_cost(os.getcwd()+"/spearmint_exps/"+directory)            
 
         best_jobfile = open(os.getcwd()+"/spearmint_exps/"+directory+"/jobfiles/"+best_jobid+".json", "r")
         instance_type = json.load(best_jobfile)["selection"]["instance"]
-        df.loc[row] = [selector, deployer, interpreter, concurrent_jobs, multiple_providers, jobs_completed, instance_type, best_cpu, best_provider, best_category, best_jobid, best_result]
+        df.loc[row] = [directory, selector, deployer, interpreter, concurrent_jobs, multiple_providers, jobs_completed, instance_type, best_cpu, best_provider, best_category, best_jobid, best_result, time, cost]
         row += 1
 
     print(df)
     df.to_csv("exps_results.csv")
-        
 
+
+def get_time_and_cost(experiment_folder):
+    job_path_df = pd.read_csv(experiment_folder+"/job_path.csv")
+    price = sum([job_path_df.loc[i,"Price"] for i in job_path_df.index])
+    times = [datetime.datetime.strptime(str(i), '%Y%m%d%H%M%S') for i in job_path_df["Timestamp"]]
+    time = max(times) - min(times)
+    time = time.seconds
+    return time, price
 
 copy("fulllogs.json", "backup.json")
 cloudsuite()

@@ -12,4 +12,29 @@ O.~Alipourfard, H.~H. Liu, J.~Chen, S.~Venkataraman, M.~Yu, M.~Zhang,
   Data Analytics},'' in {\em Proceedings of the 14th USENIX Conference on
   Networked Systems Design and Implementation}, pp.~469--482, 2017.
 
+\bibitem{JunXin2005}
+{Jun Xin}, {Chia-Wen Lin}, and {Ming-Ting Sun}, ``{Digital Video
+  Transcoding},'' {\em Proceedings of the IEEE}, vol.~93, pp.~84--97, jan 2005.
+
+\bibitem{Lottarini2018}
+A.~Lottarini, A.~Ramirez, J.~Coburn, M.~A. Kim, P.~Ranganathan, D.~Stodolsky,
+  M.~Wachsler, A.~Lottarini, A.~Ramirez, J.~Coburn, M.~A. Kim, P.~Ranganathan,
+  D.~Stodolsky, and M.~Wach, ``{vbench : Benchmarking Video Transcoding in the
+  Cloud},'' {\em Proceedings of the Twenty-Third International Conference on
+  Architectural Support for Programming Languages and Operating Systems -
+  ASPLOS '18}, pp.~797--809, 2018.
+
+\bibitem{Palit2016}
+T.~Palit, Y.~Shen, and M.~Ferdman, ``{Demystifying cloud benchmarking},'' in
+  {\em ISPASS 2016 - International Symposium on Performance Analysis of Systems
+  and Software}, pp.~122--132, IEEE, apr 2016.
+
+\bibitem{R}
+{R Core Team}, {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria, 2018.
+
+\bibitem{RStudio}
+{RStudio Team}, {\em RStudio: Integrated Development Environment for R}.
+\newblock RStudio, Inc., Boston, MA, 2016.
+
 \end{thebibliography}

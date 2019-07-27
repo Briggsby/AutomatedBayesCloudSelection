@@ -5,7 +5,7 @@ exps$single_concurrent <- exps$Concurrent_Jobs == 1
 exps$success <- ifelse(exps$Multiple_Providers == "True", exps$Best_instance=="c5.large", exps$Best_instance=="n1-highcpu-2")
 exps$success <- ifelse(exps$Deployer == "ping_testserver", (exps$Best_instance == "c5.large" | exps$Best_instance == "m5.large"), exps$success)
 # Getting test type:
-test_types <- vector(mode="character", length=nrow(vbench))
+test_types <- vector(mode="character", length=nrow(exps))
 for (i in 1:nrow(exps)) {
   if (exps$Deployer[i] == "ping_testserver") {
     test_types[i] <- "Ping test, 1 concurrent job, multiple providers"
@@ -49,8 +49,6 @@ exps$Best_Result_Relative <- ifelse(exps$Deployer == "ping_testserver",
                                       exps$Best_Result/best_result_mean.curltest,
                                       exps$Best_Result_Relative)
 
-vbench <- exps[exps$Deployer=="vbench",]
-curl_test <- exps[exps$Deployer=="ping_testserver",]
 
 library(dplyr)
 library(ggplot2)
@@ -104,6 +102,12 @@ ggarrange(results.plot + rremove("legend"),
           cost.plot +rremove("legend"),
           cowplot::get_legend(results.plot),
           labels=c('A', 'B', 'C'))
+
+vbench <- exps[exps$Deployer=="vbench",]
+curl_test <- exps[exps$Deployer=="ping_testserver",]
+
+
+time.mod <- 
 
 
 ggplot(exps.summ, aes(test_type, mean_rel_result)) +

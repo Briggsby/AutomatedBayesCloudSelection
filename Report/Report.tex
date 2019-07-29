@@ -41,32 +41,29 @@ of your success in solving it. You should include the aims
 and objectives of the project in order of importance and
 try to outline key aspects of your project for the reader to look for in the rest of your report.}
 \subsection{Background}
-%Describe the use of cloud servers
-%Describe how picking cloud configurations are difficult
-%Describe how an automated tool can help
-% Paris makes a cool point that serverless computing just moves this burden to the providers
+Cloud computing, specifically Infrastructure-as-a-Service (IaaS), has opened the doors to allow organizations and developers to utilize a diverse range of computer resources on demand without any up-front commitment or cost \cite{Armbrust2009}. These resources are generally provided in the form of Virtual Machines (VMs) with a diverse range of options, and correctly selecting the most appropriate cloud configuration for a given task or service can reduce costs for the user and free up underutilized resources for the cloud provider. Depending on the task, choosing a sub-optimal configuration can lead to up to 12 times higher costs in the worst case, but choosing randomly can lead, on average, to around twice the cost. \cite{Alipourfard2017}. While newer 'serverless' cloud options remove the challenge of selecting the optimal  configuration from the user, they instead  present providers the challenge of selecting optimal cloud configurations for a wide range of unknown applications.
+
+\paragraph{}
+Selecting the 'optimal' cloud configuration for a given job is not trivial, however. This is due to the large diversity in service, the difficulty in predicting performance, and the flexibility of the term 'optimal.' \\
+The diversity in services provided by different cloud providers creates a large search space. At the time of writing, Amazon EC2\footnote{\url{https://aws.amazon.com/ec2/}} alone offers over 200 predefined instance models\footnote{\url{https://www.ec2instances.info}}, while Google Compute Engine\footnote{\url{https://cloud.google.com/compute/}} allows users to define their own machine types, ranging from small VMs with 1 vCPU and 1 GB of RAM to 96 vCPUs with 624 GB of RAM, and includes options for specifying the CPU platform or adding GPUs. \\
+Once given a specific configuration, predicting its performance for a given job is difficult. A number of recent studies have shown that previously reported variability \cite{Leitner2014} in performance for different instances of a given instance type has dramatically improved \cite{Scheuner2018,Davatz2017,Laaber2019}, particularly for AWS, leading to much more consistent performance on a given instance type. However, even when stable, predicting performance is still far from trivial. \\ 'Larger' VM types may not provide improved performance \cite{Yadwadkar2017}, or may do so at a far less cost-efficient rate. Optimizing for a good mean performance may fail to optimize for the tail when variance or high stress leads to lower than expected performance. In addition, workload resource requirements are hard to model, with jobs using different resources at different times, and performance may have non-linear relationships with these resources\cite{Alipourfard2017}. A method to predict performance should account for these hurdles.
+A costly option is to simply run the job or service itself on the instance type and measure the performance directly. For batch jobs, the cost of the initial performance testing can be offset by later repeats. In 2012, it was reported that up to 40\% of Microsoft's analytics jobs are recurring \cite{Agarwal2012,Ferguson2012b}. Another, faster, option is to run benchmarks or micro-benchmarks on the target machine, and use these to estimate performance. Benchmarking suites such as Cloud workbench \cite{Scheuner2018a} and CloudSuite \cite{Palit2016} allow application-specific performance prediction, and micro-benchmarking has shown success in rapidly estimating performance of appropriate applications with errors between 10-20\% \cite{Scheuner2018, Varghese2016a, Varghese2016}. However, using benchmarks to predict performance requires knowing how the benchmarked resources will relate to job performance, which limits the flexibility of an automated solution. \\
+Finally, what is meant by the 'optimal' configuration may differ. For a batch job, it may simply be the cheapest option to complete the job, or it may be the cheapest option that can complete the job within a given time-constraint. For a service, there will likely be a trade-off between consistency, latency, and cost, and where the optimal balance lies will depend on the user's preferences or requirements.
+In order to discover the optimal cloud configuration for a job, a user must first decide what 'optimal' means, find a way to evaluate the performance of a configuration given that metric, and either search or model the diverse range of available configurations according to this evaluation until they are confident they have found the best available configuration.
 
 \subsection{Aims and Objectives}
-%Safe spot
-Algorithm
-%Generalizable tool to use a given objective fit measure to find the optimal cloud configuration
-%Extensions
-Multiple cloud providers
-Latency/response tests from a separate machine
-Concurrent jobs to reduce search time
+We aim to design a framework and associated tool for searching through cloud configurations for any given cloud-based application, and estimating the optimal available cloud configuration according to a user-provided objective measure.
+\paragraph{Objectives:}
+\begin{itemize}
+\item To provide a framework for optimizing the cloud configuration for any form of cloud-based application, such as a webserver or machine-learning job
+\item Develop a tool that can provision instances, specified by various attributes, from multiple possible cloud providers
+\item Develop a tool that deploys a given application on these provisioned instances and returns their logs for evaluation
+\item Implement an optimization algorithm on top of the above tools.
+\end{itemize}
 \subsection{Contributions}
-% Made a good framework for automated cloud testing
-% Experimentally shown how Bayesian Optimization's effectiveness changes based on search space and parallelisation (reduced search space increases effectiveness, parallelisation reduces search time but also effectiveness without stricter stopping conditions)
-% AWS consistently outperformed Google's instances of the same hardware specifications for a video transcoding benchmark, both in raw scores and cost-effectiveness, likely due to the difference in CPU model.
-
-\subsection{Dissertation Overview}
-% Context summary, describing previous work and availabe tools that will be used.
-% Formalizng the requirements specification
-% Describing Software engineering process and the design
-% Explaining and describing the final implementation
-% Evaluate and critically discuss it.
-% Conclude by discussing future extensions and ways to make it more consumer-facing
-
+We successfully met all aims and objectives laid out in the above section. A framework was developed and is available at the project's Github\footnote{https://github.com/briggsby/AutomatedBayesCloudSelection}. We developed and evaluated tools, showing that we could effectively replicate and expand on previous cloud searching tools such as Cherrypick\cite{Alipourfard2017}.
+We additionally showed how the optimization algorithm Bayesian Optimization was affected by different search configurations. It was shown that searching across multiple providers did not reduce the effectiveness of using Bayesian optimization, despite the increased search space. It was also shown that while running two concurrent jobs reduced search time without increasing search cost or reducing effectiveness, increasing the number of concurrent jobs further led to both reduced effectiveness and higher search costs, and did so with diminishing reductive effects on search time.
+It was also clear from our testing that Amazon EC2 machines consistently outperformed Google Compute Engine machines of the same instance category and vCPU number at video transcoding operations.
 
 \section{Literature Survey}
 \textbf{Surveying the context, the background literature and any
@@ -104,7 +101,7 @@ The solution will, preferably, also be capable of running multiple concurrent sa
 While many of these requirements are either met, or a means of performing them provided through APIs or other tools, we hope to provide an implementation that combines them into a single generalizable automated cloud selection tool. 
 
 
-We should be capable of effectively replicating previous optimization methods such as CherryPick\cite{Alipourfard2017}, Ernest\cite{Venkataraman2016}, or PARIS\cite{Yadwadkar2017} in our system. We must also ensure that our solution is capable of provisioning instance and deploying applications on machines from multiple providers, and as such cannot rely on any provider-specific API or command-line interface, but will use one of several Infrastructure-as-code tools now available. This is just one of the ways that extending a search space to include multiple providers causes additional problems. To ensure that any optimization algorithm will be effective, we must encode the search space for cloud configurations such that instances are described in terms of a set of descriptive variables. At the time this is written, no universal or cross-provider API exists in the  Infrastructure-as-code tool we implemented (Terraform) that allows instance types to be looked up based on their specifications, and so we must develop our own method for describing them for lookup by the optimization algorithms.  
+We should be capable of effectively replicating previous optimization methods such as CherryPick\cite{Alipourfard2017}, Ernest\cite{Venkataraman2016}, or PARIS\cite{Yadwadkar2017} in our system. We must also ensure that our solution is capable of provisioning instance and deploying applications on machines from multiple providers, and as such cannot rely on any provider-specific API or command-line interface, but will use one of several Infrastructure-as-code tools now available. This is just one of the ways that extending a search space to include multiple providers causes additional problems. To ensure that any optimization algorithm will be effective, we must encode the search space for cloud configurations such that instances are described in terms of a set of descriptive variables. At the time this is written, no universal or cross-provider API exists in the Infrastructure-as-code tool we implemented (Terraform) that allows instance types to be looked up based on their specifications, and so we must develop our own method for describing them for lookup by the optimization algorithms.  
 
 \section{Design}
 \begin{figure}[!ht]

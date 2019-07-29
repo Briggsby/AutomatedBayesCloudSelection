@@ -1,0 +1,159 @@
+\documentclass{report}
+\usepackage[
+top    = 2.75cm,
+bottom = 2.50cm,
+left   = 3.00cm,
+right  = 2.50cm]{geometry}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{setspace}
+\usepackage{algorithm}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\title{\vspace{-2.0cm} A Generalizable Framework for Automated Cloud Configuration Selection \\ \vspace{0.5cm} \large Supervisors: Adam Barker \& Yuhui Lin}
+\date{2019-06-06}
+\author{Jack Briggs - 140011358 \\ MSc Data-Intensive Analysis}
+\doublespacing
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+\newpage
+\chapter*{Abstract}
+Outline of the project using at most 250 words
+\newpage
+\chapter*{Declaration}
+I declare that the material submitted for assessment
+is my own work except where credit is explicitly
+given to others by citation or acknowledgement. This
+work was performed during the current academic year
+except where otherwise stated.
+The main text of this project report is NN,NNN* words
+long, including project specification and plan.
+In submitting this project report to the University of St
+Andrews, I give permission for it to be made
+available for use in accordance with the regulations of the University Library. I also give permission for the title and abstract to be published and for copies of the report to be made and supplied at cost to any bona fide library or research worker, and to be made available on the World Wide Web. I retain the copyright in this work.
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
+\pagenumbering{arabic}
+
+
+\chapter{Introduction}
+\section{Background}
+\subsection{Cloud Computing}
+Cloud computing is an ever-growing field that now ranges from Infrastructure-as-a-service (IaaS) to Software-as-a-service(SaaS). Services under cloud computing are characterised by their ability to offer access to a shared pool of highly elastic on-demand computing resources that offer broad network access \cite{Pallis2010, Mell2011}. Cloud services as an industry has had an explosive growth, and it has been predicted that 83\% of enterprise (Companies with 1000+ employees) workloads will be in the cloud by 2020\cite{Intricately2019}, with 41\% run on public cloud platforms such as Amazon AWS and Microsoft Azure. Services offered range from various levels and forms of abstractions, from directly provisioning Virtual Machines (VMs) or storage services, allowing users full control over their cloud infrastructure, to deploying 'serverless' containers, where the actual managing of the hardware is instead handled by the cloud provider.
+
+\paragraph{}
+The appeal is obvious, with cloud services allowing organizations and developers to utilize a diverse range of computational resources on demand without any up-front commitment or cost \cite{Armbrust2009}. This can lead to both significant cost-savings as well as improved revenue through better customer experiences and enabling risk-free experimentation\cite{Power2018}. Academics, too, are utilizing the available services as volumes of data grow impractical to store and analyse on local machines\cite{Berriman2013, Ruiz-Alvarez2011}. This includes large-scale collaborative projects involving huge data sets hosted on the cloud such as the 1000 Genomes Project\footnote{https://aws.amazon.com/1000genomes} or Common Crawl\footnote{commoncrawl.org}.
+
+\subsection{Cloud optimization}
+A wide range of applications are now deployed on cloud machines or make use of objects stored on them, from large-scale data analytics jobs mentioned to media-streaming servers such as Netflix or Twitch\cite{Bilal2017}. The resource dependencies of these applications similarly vary widely, from the CPU dependent data analysis tasks to network-heavy streaming services. Virtual machines offered by different cloud providers vary in terms of memory amounts of number and speed of virtual CPUs (vCPUs), and each application's performance will have different relationships with these options. While medium-length video transcoding operations will benefit primarily from faster processing speeds, data analysis tasks involving large datasets may find a more cost-effective option in prioritising VMs with a local solid-state drive (SSD) offering high I/O performance. Non-critical batch workloads can often benefit from using 'pre-emptible' or 'spot' instances, which offer large discounts on the condition that your machine can be terminated with little notice to free up resources.
+
+\subsection{Benefits}
+It is desirable for both users and providers to maximise the optimize purchased cloud configurations to best serve the needs of their applications. Users or developers who fail to do this risk paying far more than they need to for the same performance. A given data analysis task can cost around 3.4 times as much on an average configuration compared to the optimal available option\cite{Alipourfard2017}. Even serverless frameworks simply shift the burden of optimization from the users to the cloud providers. For cloud providers too, efficient deployment across available Virtual Machines frees up extra resources available for other purposes or other customers. In addition, energy-related costs make up to 42\% of managing a data-centre, and the ability to idle inactive resources would lead to a significant reduction both in energy cost and environmental impacts. \cite{Berl2010}.
+% Examples of optimization
+\subsection{Difficulties}
+\subsubsection{Search space}
+% Size, range, encoding
+\subsubsection{Heterogeneity}
+% Difference in hardware, difference in API and nomenclature
+\subsubsection{Variation}
+% Noisy neighbour, variance in results
+\subsubsection{Application range}
+% Types of applications deployed on the cloud
+\subsubsection{Objective measure}
+% What is considered optimal
+\section{Aims and Objectives}
+% Aim is to create the tool
+% Objectives are basically the benefits and overcoming difficulties
+\section{Contributions}
+% Do after evaluation
+\section{Dissertation Outline}
+% Structure
+\chapter{Literature Survey}
+\section{Cloud prevalence}
+% Evidence of the cloud market growing
+% Examples of its use, and how optimization is used
+% Types of cloud offers that now exist (Kubernetes clusters, serverless, etc.)
+\section{Cloud variability}
+% How variability of the cloud has been reported
+\section{Optimization methods}
+% Previous optimization methods that have been attempted
+% Modelling vs Benchmarking vs Searching
+%http://www.brendangregg.com/blog/2017-12-31/reinvent-netflix-ec2-tuning.html
+\subsection{CherryPick}
+\subsection{PARIS}
+\subsection{Ernest}
+\subsection{Daleel}
+\subsection{OTHERS, LOOK UP}
+\subsection{Exhaustive search}
+% Not exactly an actual type, but the obvious alternative.
+\section{Benchmarks}
+% When using benchmarks, some choice as to which one to use. What makes a good benchmark.
+\subsection{Cloudsuite}
+\subsection{vBench}
+\subsection{OTHERS, LOOK UP}
+\section{Infrastructure-as-code}
+\subsection{Terraform}
+\subsection{Apache Libcloud}
+\subsection{Chef}
+\subsection{Puppet}
+\chapter{Requirements specification}
+\section{Use-case}
+\section{Requirements}
+\section{Optional Requirements}
+\chapter{Design}
+\section{Numerical Optimization}
+\section{Modular approach}
+\section{System Architecture}
+\section{Searcher}
+\subsection{Bayesian Optimization}
+\section{Selector}
+\subsection{Exact vs. Closest Match}
+\section{Deployer}
+\subsection{VM Provisioner}
+\subsection{Docker Deployer}
+\subsection{Ping server}
+\subsection{Simulated Deployment}
+\section{Interpreter}
+\chapter{Implementation}
+\section{General usage}
+\section{Driver}
+\section{Searcher}
+\subsection{Spearmint}
+\section{Selector}
+\subsection{Exact Match}
+\section{Deployer}
+\subsection{VM Provisioner}
+\subsection{Terraform}
+\subsection{Docker deployer}
+\subsection{Cloudsuite}
+\subsection{Ping servers}
+\section{Interpreter}
+\subsection{Sysbench}
+\subsection{Cloudsuite}
+\subsection{vBench}
+\subsection{Fake Deploy}
+\chapter{Evaluation}
+\section{Functionality}
+\section{Results Analysis}
+\subsection{Exhaustive search}
+\subsection{Bayesian Optimization}
+\subsubsection{Cross-provider}
+\subsubsection{Concurrent Jobs}
+\chapter{Discussion}
+\section{Functionality}
+\section{Testing}
+\section{Future work}
+\chapter{Critical Appraisal}
+\chapter{Conclusion}
+
+\newpage
+\bibliographystyle{IEEEtran}
+\bibliography{Dissertation}
+\newpage
+\section*{Appendices}
+\subsection*{Testing Summary}
+\subsection*{User Manual}
+\end{document}

@@ -106,10 +106,9 @@ J.~Snoek, H.~Larochelle, and R.~P. Adams, ``{Practical Bayesian Optimization of
   Conference on Neural Information Processing Systems - Volume 2},
   pp.~2951--2959, 2012.
 
-\bibitem{Agarwal2012}
-S.~Agarwal, S.~Kandula, N.~Bruno, M.-C. Wu, I.~Stoica, and J.~Zhou,
-  ``{Re-optimizing data-parallel computing},'' in {\em NSDI'12 Proceedings of
-  the 9th USENIX Symposium on Networked Systems Design and Implementation},
-  pp.~281--294, USENIX, 2012.
+\bibitem{Palit2016}
+T.~Palit, Y.~Shen, and M.~Ferdman, ``{Demystifying cloud benchmarking},'' in
+  {\em ISPASS 2016 - International Symposium on Performance Analysis of Systems
+  and Software}, pp.~122--132, IEEE, apr 2016.
 
 \end{thebibliography}

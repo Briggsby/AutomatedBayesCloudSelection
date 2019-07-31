@@ -145,16 +145,18 @@ asdf
 \chapter{Generic Automated Cloud Configuration Optimization Framework}
 % Architecture shows predifined subroutines for each component, we go into details of what these entail in their respective sections
 % START HERE
-\section{Motivations}
+\section{Design Motivations}
 \subsection{Numerical Optimization}
 In any optimisation process, the value of some objective function is minimised or maximised by adjusting its input variables or parameters. An optimisation algorithm begin with an initial guess of these variables and iterates through improved estimates until they terminate, hopefully providing an estimated solution \cite{Nocedal2006}. An optimization function effectively takes previous an objective function, along with its previous inputs and outputs as arguments, and outputs either the next sample to take, or the predicted best input if the stopping condition is met. \\
 In our generalized case, the optimisation method and objective function are both unknown, but we know that our objective function will always involve selecting some cloud configuration based on the inputs that describe that configuration, deploying some application onto this configuration, and interpreting its performance to give some objective measure.
+ 
+
 \subsection{Modularity}
 In our generalized case, we do not yet know the optimization method or objective function. As shown in our Literature review, a number of optimization algorithms have been attempted and are available, such as exhaustive search, Bayesian optimization\cite{Alipourfard2017}, analytical methods that directly model the application's relationships with configuration variables\cite{Venkataraman2016}, and a data-driven approach predicting performance by its relationship with pre-run benchmarks\cite{Yadwadkar2017}.
 
 Much like how our objective measure will differ from application to application, the best optimization method may also differ depending on the type of application tested. Applications whose performance is accurately reflected by known benchmarks may benefit from PARIS's data-driven approach, while situations with unclear non-linear relationships to configuration variables will be well suited to Bayesian optimization. Because of this, while we will focus on developing an implementation of Bayesian optimization, as per our use case, it is desirable to ensure that our example optimization method can be replaced by another if the user deems it more appropriate to their use-case.
 
-Because of this, we are left with multiple parts of our system which are highly dependent on a user's individual use-case, namely the objective function, the objective measure to be optimized, the search space constraints, and the application itself. Because of this, we have taken a highly modular approach to our design. While our implementation should be self-sufficient to run its example case, it should also be made up of several replaceable components for future extensions.
+Because of this, we are left with multiple parts of our system which are highly dependent on a user's individual use-case, namely the objective function, the objective measure to be optimized, the search space constraints, and the application itself. Because of this, we have taken a highly modular approach to our design. While our implementation should be self-sufficient to run its example case, it should also be made up of several replaceable components for future extensions. The framework itself should be well suited to any case, while each individual component, the user can pick the specific implementation that is best suited for their use-case.
  
 \section{System Architecture}
 \begin{figure}[!hb]
@@ -167,7 +169,7 @@ Because of this, we are left with multiple parts of our system which are highly 
 Our optimization process can be broken down into four replaceable components: A Searcher, which runs the optimisation algorithm, testing out various inputs in an attempt to maximise or minimise the objective function; a Selector, which interprets the inputs to determine what cloud configuration is being tested; a Deployer, which provisions the machines needed for that cloud configuration, deploys the application, and once it has terminated returns any required logs from it; and an Interpreter, which takes these logs to calculate the objective measure which is returned to the Searcher as the returned value for the objective function. A diagram of this breakdown is shown in figure \ref{fig:design}. The components themselves are examined in further detail in the following sections.
  
 \paragraph{}
-Overall, the system performs an optimization algorithm shown in Procedure \ref{alg:Optimization}, such as Bayesian optimization, coordinate descent, random search, or exhaustive search, and drives the optimization process by iterating through potential input variables. For each set of these inputs, it take a sample from a single 'job,' where it runs through a single loop of the Selector, Deployer, and Interpreter components. The Searcher component then uses the results from inputs tried so far to choose the next set of input variables to sample, as well as provide the current estimate of the best possible set of input variables to minimize or maximize that result. Once the stopping conditions are met, the latest estimate for the best input variables is output by the system.
+Overall, the system drives forward an optimization algorithm shown in Algorithm \ref{alg:Optimization}, such as Bayesian optimization, coordinate descent, random search, or exhaustive search, by iterating through potential input variables. For each set of these inputs, it take a sample from a single 'job,' where it runs through a single loop of the Selector, Deployer, and Interpreter components. The Searcher component then uses the results from inputs tried so far to choose the next set of input variables to sample, as well as provide the current estimate of the best possible set of input variables to minimize or maximize that result. Once the stopping conditions are met, the latest estimate for the best input variables is output by the system.
 
 \begin{algorithm}
 \caption{Optimization Procedure}
@@ -192,7 +194,9 @@ Overall, the system performs an optimization algorithm shown in Procedure \ref{a
  
 
 \paragraph{}
-It is assumed that in the vast majority of cases, the user would provide their own Interpreter and Selector. Interpreters and Selectors are very dependent on the form these logs will take, and the form the search space will take, and are extremely hard to generalise. For this reason, the modular design of our solution should make it simple for any component to be supplied or replaced by the user. In only some cases should the user need to provide their own Deployer. Applications can often be contained within Docker containers, and aside from occasional setup, for example in multi-node clusters or multi-container applications, a Deployer which provisions a given configuration from a given provider, and then deploys and attaches to a user-provided docker image to collect its logs will be sufficient.  Only in rare cases would the user be required to provide their own Searcher. This is because optimization algorithms can be applied to any deployment, with only small modifications necessary in rare cases for specific cases, and an implementation of Bayesian Optimization will be provided. 
+It is assumed that in the vast majority of cases, the user would provide their own Interpreter and Selector. Interpreters and Selectors are very dependent on the form these logs will take, and the form the search space will take, and are extremely hard to generalise. For this reason, the modular design of our solution should make it simple for any component to be supplied or replaced by the user.  \\
+While Interpreters and Selectors are highly specific, in only some cases should the user need to provide their own Deployer. Applications can often be contained within Docker containers, complete with requirements and runtime instructions. Because of this, aside from occasional setup, for example in multi-node clusters or multi-container applications, a Deployer which provisions a given configuration from a given provider, and then deploys and attaches to a user-provided docker image to collect its logs will be sufficient.  \\
+Only in rare cases would the user be required to provide their own Searcher. This is because optimization algorithms themselves should be applicable to any deployment. While, as mentioned, in some cases different searchers may be more effective, Bayesian Optimization is a good general method for predicting an application's optimal cloud configuration with reasonable accuracy with very few samples. A Bayesian Optimization implementation will be provided.
 
 
 \section{Inputs and outputs}
@@ -203,17 +207,47 @@ The figure also shows the relevant outputs created by the system, in the form of
 Algorithm \ref{alg:Optimization} shows the general form the optimization process takes with only one concurrent job allowed at any time, showing the expected input and output of each individual component. These are explained in more detail within each component's individual section below.
 
 \section{Searcher}
-The Searcher component is actually responsible for handling the optimization algorithm itself. The searcher takes the results from previous jobs and determines either the next best sample to take within the available search space, or to terminate the process and return the current best prediction for the optimal configuration. A perfect Searcher is one that returns a perfect prediction of the optimal configuration in as few samples as possible. Fewer samples means a reduction in the time and cost taken to perform the search. Often, there is a trade-off here, where extending a search to include more and more samples, such as by setting less restrictive stopping conditions, increases its predictive accuracy. Some search methods, such as PARIS\cite{Yadwadkar2017}, can leverage past search experiments to reduce the number of samples taken. Generally however, the stopping conditions and search method will control this trade-off, and can be set according to the user's search budget or time constraints. 
+The Searcher component is actually responsible for handling the optimization algorithm itself. The Searcher takes the results from previous jobs and determines either the next best sample to take within the available search space, or to terminate the process and return the current best prediction for the optimal configuration. 
+
+\paragraph{}
+A perfect Searcher is one that returns a perfect prediction of the optimal configuration in as few samples as possible. Fewer samples means a reduction in the time and cost taken to perform the search. Often, there is a trade-off here, where extending a search to include more and more samples, such as by setting less restrictive stopping conditions, increases its predictive accuracy.
+
+\paragraph{}
+As an example, in an exhaustive search every possible combination of the inputs is sampled, giving a complete analysis of the entire search space. This obviously takes many samples, $n * \prod_{i=1}^{j} x_{i}$ where $x_{i}$ is the number of options for the \textit{i}th of J variables, and n is the number of samples taken from each configuration. This results in a large or even infinite search cost and time, but is almost certain to return the optimal result, depending on the amount of randomness involved in sampling.
+
+\paragraph{}
+Unless a job is repeated on an extremely regular basis, a user will likely desire to give up a small degree of accuracy or generalizability for a dramatically reduced search cost or search time. Some search methods, such as PARIS\cite{Yadwadkar2017}, can leverage past search experiments to reduce the number of samples taken. Generally however, the stopping conditions and search method will control this trade-off, and can be set according to the user's search budget or time constraints. 
 
 \paragraph{}
 In order to accurately predict the best next sample to take, the Searcher must know the available search space.  A description of how to encode cloud configurations into a set of variables and constraints is done in the Selector section. Ideally, we want our searcher to be capable of performing multiple jobs concurrently.
- 
-Here we describe and compare the design considerations of two important examples of Searchers which will be used for the evaluation of our implementation.
 
-\subsubsection{Exhaustive search}
-In an exhaustive search, every possible combination of the inputs is sampled, giving a complete analysis of the entire search space. This obviously takes many samples, $n * \prod_{i=1}^{j} x_{i}$ where $x_{i}$ is the number of options for the \textit{i}th of J variables, and n is the number of samples taken from each configuration. This results in a large or even infinite search cost and time, but is almost certain to return the optimal result, depending on the amount of randomness involved in sampling.
+\section{Selector}
+The Selector interprets the variables provided by the Searcher component into the form of an available cloud configuration. Cloud configurations have a number of variables that can describe them, such as vCPU number, memory amount, disk speed, number of instances, instance category, machine type, and cloud provider. The selector must use whatever combination of these is provided and find either the exact or most similar cloud configuration available, passing this information on to the Deployer. In the tools used for our implementation, no cross-provider API was available to directly translate machine specifications into the virtual machine types available from different providers.
 
-\subsubsection{Bayesian Optimization}
+\subsection{Exact vs. Closest Match}
+For finding an exact match, the Selector can simply lookup the appropriate instance type from a dataset according to the input variables stored as each instance type's attributes. Looking for a closest match rather than an exact one gives more flexibility in how the input variables can be encoded, but means more complicated decisions such as attribute priority must be made, and extra assurances made to not repeat unnecessary samples when multiple sets of inputs describe the same closest input type. For our use-case, we will specifically use the simpler Exact Match method, but thanks to the modular design it will be easy to extend to include a Closest Match Selector option if time allows.
+
+
+\section{Deployer}
+The Deployer deploys the user-provided application, batch job, or benchmark onto the selected cloud configuration, and collect any necessary analysis from it. Typically this will involve provisioning the necessary machines from the given provider, followed by deploying the given application onto these machines, and either collecting logs from them or from a networked instance or cluster. 
+
+\subsection{VM Provision}
+Aside from in serverless computing, a necessary step of deploying any cloud-based application is provisioning the virtual machines themselves from a cloud provider. The Deployer should be capable of requesting any virtual machine chosen by the Selector, regardless of provider. This can be simplified using Infrastructure as code (IaC) tools such as Terraform, which offers the ability to codify the APIs from many different providers into declarative configuration files. As long as configuration files and credentials for use by an IaC tool are supplied for each possible provider, then a Deployer can call the corresponding IaC tool to provision the machines. 
+There are several requirements for the IaC tool that is used. As instance type and number of machines will be supplied by the Selector, and therefore cannot be known until the machines are provisioned, either they must be declarable as variables when the tool is run, or the configuration files must be suitable for automated editing just beforehand. Along with this, the tool must support multiple concurrent tasks with their own specifications and outputs, if we hope to allow the Searcher to take multiple samples at once.
+
+\subsection{Application Deployment}
+Once the Virtual Machines themselves are provisioned, the application must be set up on them and run. There are many forms this application can take. For our use-case, we have assumed the application is fully contained within a single Docker image. This enables effective deployment both on single machines as well as by cluster-based container-orchestration systems such as Kubernetes. Pre-built Kubernetes clusters are offered by several leading cloud providers. However, other types of applications are common, such as micro-service based web applications. Alternatively, an application's performance might be best estimated by its response over a network, and poorly estimated internally. Once again, the modular design allows users to implement their own Deployers to deal with alternative situations. 
+
+\subsection{Simulated Deployment}
+It may be advantageous, especially during debugging or if using a 'closest match' approach to configuration selection, to instead either simulate the response from provisioning and deployment of an application, or to return a previously sampled response. To this end, it may be useful to ensure full logs of any deployment are stored so that, if desired, future calls to 'Deploy' an already sampled configuration for a given application can simply be responded with a randomly distributed value based on previous results from the same configuration.
+
+\section{Interpreter}
+The Interpreter must interpret whatever logs and other information is returned by the Deployer, along with the cost of the cloud configuration provided by the Selector, in order to return an objective measure for the sampled cloud configuration. It is this returned value that the Searcher will be attempting to minimise or maximize. We leave it to the user to develop an Interpreter for their use-case. This will likely involve extracting relevant information from the deployed application's logs, and applying constraints based on the time taken or machine pricing. 
+
+\chapter{Bayesian VM Optimization System}
+In this chapter we describe the design considerations for the example use-case implementation we provide for our framework.
+
+\section{Bayesian Optimization}
 Bayesian Optimization is an optimization method specifically designed for situations where the objective functions itself is unknown beforehand and expensive to perform, but can have its outputs directly observed through experiments\cite{Snoek2012}. It models the objective function as a stochastic process, a 'prior function,' and computes its confidence intervals based on samples. Using these confidence intervals and a pre-defined acquisition function it decides future samples to take based on where there it estimates there to be the most potential gain. A diagram showing this process is shown in figure \ref{fig:cherrypic}. By this process Bayesian Optimization can find optimal or near-optimal solutions for any non-parametric problem in a relatively small number of samples compared to other optimization methods. In addition, whereas other methods, such as exhaustive search, may handle uncertainty through sampling results from the same inputs multiple times, Bayesian Optimization can incorporate this uncertainty into its estimates, further reducing the number of samples needed.
 
 \begin{figure}[!hb]
@@ -224,14 +258,10 @@ Bayesian Optimization is an optimization method specifically designed for situat
 \end{figure}
 
 There are a number of possible prior functions, acquisition functions, and stopping conditions that can be used with BO, and the Cherrypick paper goes into detail on the reasoning behind which options are best for cloud configuration selection specifically\cite{Alipourfard2017}. Some notable differences in our case, however, is that CherryPick was specifically focused on batch jobs, where what is measured is simply a function of an instance type's cost and its time taken to perform a given job. Its acquisition function is specified to this purpose, minimizing costs but biased towards configurations which satisfy a soft performance constraint by successfully performing the batch job within a given time. In our case, our acquisition function must be more general, and we will therefore be relying on the user to ensure that whatever objective measure it returned by their Interpreter has already taken into account soft or hard performance constraints such as this.
-\section{Selector}
-The Selector interprets the variables provided by the Searcher component into the form of an available cloud configuration. Cloud configurations have a number of variables that can describe them, such as vCPU number, memory amount, disk speed, number of instances, instance category, machine type, and cloud provider. The selector must use whatever combination of these is provided and find either the exact or most similar cloud configuration available, passing this information on to the Deployer. In the tools used for our implementation, no cross-provider API was available to directly translate machine specifications into the virtual machine types available from different providers. 
-% Though Apache libcloud does offer this
+\section{VM Docker Deployment}
+Once the VM itself has been provisioned, the application must be deployed onto them. In the use case, we assume that the application being tested is available in the form of a Docker image, and that a single instance is provisioned on which to run that application. Docker offers a remote API with which to direct the host machine to download an image and run a container based on it, as well as returning an application's logs. In order to deploy an application onto a VM, that instance must first have Docker installed onto it and Docker directed to a public-facing port. The Deployer can then use the public facing IP of the provisioned machine along with user-provided security credentials to deploy the application. The Deployer can then obtain and return any and all logs the deployment produces for use by the interpreter.
 
-\subsection{Exact vs. Closest Match}
-For finding an exact match, the Selector can simply lookup the appropriate instance type from a dataset according to the input variables stored as each instance type's attributes. Looking for a closest match rather than an exact one gives more flexibility in how the input variables can be encoded, but means more complicated decisions such as attribute priority must be made, and extra assurances made to not repeat unnecessary samples when multiple sets of inputs describe the same closest input type. For our use-case, we will specifically use the simpler Exact Match method, but thanks to the modular design it will be easy to extend to include a Closest Match Selector option if time allows.
-
-\subsection{Encoding the Search space}
+\section{Search space encoding}
 Whether using exact or closest match, it must be decided how to encode cloud configurations into a set of input variables. This problem is further complicated by the fact that constraints for certain inputs may depend on the values of others, as is often the case in cloud computing. Large memory amounts are often only available on machines with more vCPUs, and some providers may offer available configurations others do not. Google Cloud Platform allows users to specify custom machine types, but even these do not allow any possible combination (for example, Memory constraints are tied to vCPU number, and vCPU number must be divisible by 2).
 
 \paragraph{}
@@ -255,68 +285,114 @@ Despite these problems, there at at least clear patterns prevailing throughout l
 \label{tab:config-encode}
 \end{table}
 
-
 In the end,  however, the important features and constraints for the search space will differ for each user, and it may be beneficial to run multiple experiments in different search spaces before settling on a final decision for an instance type. While we provide in our associated implementation an example of how to encode and select available cloud configurations for our Bayesian Optimization tool, we think it best to ultimately leave it to the user to design and implement a Selector system that works well for their specific use-case.
-
-\section{Deployer}
-The Deployer deploys the user-provided application, batch job, or benchmark onto the selected cloud configuration, and collect any necessary analysis from it. Typically this will involve provisioning the necessary machines from the given provider, followed by deploying the given application onto these machines, and either collecting logs from them or from a networked instance or cluster. 
-
-\subsection{VM Provision}
-Aside from in serverless computing, the first step of deploying any cloud-based application is likely to be provisioning the virtual machines themselves from a cloud provider. The Deployer should be capable of requesting any virtual machine chosen by the Selector, regardless of provider. This can be simplified using Infrastructure as code (IaC) tools such as Terraform, which offers the ability to codify the APIs from many different providers into declarative configuration files. As long as configuration files and credentials for use by an IaC tool are supplied for each possible provider, then a Deployer can call the corresponding IaC tool to provision the machines. 
-There are several requirements for the IaC tool that is used. As instance type and number of machines will be supplied by the Selector, and therefore cannot be known until the machines are provisioned, either they must be declarable as variables when the tool is run, or the configuration files must be suitable for automated editing just beforehand. Along with this, the tool must support multiple concurrent tasks with their own specifications and outputs, if we hope to allow the Searcher to take multiple samples at once.
-
-\subsection{Docker Deployment}
-Once the virtual machines themselves have been provisioned, the application must be deployed onto them. In the most basic case, we assume that the application being tested is available in the form of a Docker image, and that a single instance is provisioned on which to run that application. and that the machines provisioned operate as either a Kubernetes based cluster or a single instance. While other forms of application or cluster architecture may be used, ready-made Kubernetes clusters are available on several major cloud providers. The modular design allows users to implement their own Deployers to deal with alternative situations. 
-
-Both Kubernetes and Docker offer remote APIs. For Kubernetes clusters available on cloud providers, no set up is required, while for single machines the VM provisioner must install Docker and direct it to a public-facing port. The remote APIs can be utilized as long as the VM Provisioner is capable of returning the public facing IP of the provisioned machines, and that security credentials are provided. The Deployer must attach to any deployment, or wait for its completion, and obtain and return any and all logs it produces for use by the Interpreter.
-
-\subsection{Ping server}
-
-\subsection{Simulated Deployment}
-It may be advantageous, especially during debugging or if using a 'closest match' approach to configuration selection, to instead either simulate the response from provisioning and deployment of an application, or to return a previously sampled response. To this end, it may be useful to ensure full logs of any deployment are stored so that, if desired, future calls to 'Deploy' an already sampled configuration for a given application can simply be responded with a randomly distributed value based on previous results from the same configuration.
-
-\subsection{Interpreter}
-The Interpreter must interpret whatever logs and other information is returned by the Deployer, along with the cost of the cloud configuration provided by the Selector, in order to return an objective measure for the sampled cloud configuration. It is this returned value that the Searcher will be attempting to minimise or maximize. We leave it to the user to develop an Interpreter for their use-case. This will likely involve extracting relevant information from the deployed application's logs, and applying constraints based on the time taken or machine pricing. 
-\section{Interpreter}
-\chapter{Bayesian VM Optimization System}
-\section{Bayesian Optimization}
-\section{Benchmark Deployment}
-\section{Search space encoding}
 \section{Objective Measure}
+Our video transcoding benchmark returns the time taken to transcode a given video file, relative to a reference. We have assumed that our ultimate goal is to find the cloud configuration that will maximise the amount of video transcoding performed per unit cost.  In a competitive business environment, even a small increase in transcoding speed may translate to large increases in customer uptake, but our simple metric should effectively show how an benchmark score can be used with an instance price to generate an objective measure.
+
+The vBench benchmark used, 'vod', returns a 0 if the video quality is not of a sufficient quality following transcoding. This effectively sets a hard constraint on performance, ensuring that no matter how cheap an instance is, it must achieve a certain level of performance to be selected.
+Cherrypick\cite{Alipourfard2017} instead incorporates constraints into the Bayesian Optimziation algorithm itself by including it within the acquisition function. This is not an easily generalized solution, and so it not replicable in our case. We have instead incorporated performance constraints within the objective measurement itself.
+
 \chapter{Implementation}
 \section{General usage}
-\section{Driver}
+Our solution was implemented with a combination of Bash scripts and Python 3. Exhaustive search was performed using simple Bash scripts. The Searcher component was implemented using Spearmint\cite{Snoek2012}, an implementation of Bayesian Optimization in Python. Due to the design of Spearmint, the Searcher component was made to call a single core python script that would call user-specified functions that make up the Selector, Deployer, and Interpreter components. Several components were implemented, each in the form of separate Python functions. Extension of the solution by adding additional components is easily done by writing new Python functions that either directly perform the component's job or calls another tool to do so.
+
+User-provided options, such as what Selector, Deployer, and Interpreter to use, as well as other user supplied variables can be provided in the form of a JSON file that is read and loaded as a Python dictionary by this core script. This dictionary is passed as input to each component, which are able to update it with any information needed by other components in the form of key-value pairs. At the end of any job, this dictionary object is saved in JSON format for later analysis and recovery of previous results.
+
 \section{Searcher}
 \subsection{Spearmint}
+Spearmint is an implementation of Bayesian Optimization written in Python. The user submits a single python script with an appropriate 'main' function which has its inputs optimized. It provides numerous settings for changing variables like the maximum number of concurrent jobs, acquisition function, and sampling noise assumptions. However, the latest available implementation of Spearmint was found to be outdated and incompatible with the latest versions of various Python modules used in later steps. 
+Because of this, for the sake of generalisability we first updated Spearmint to be compatible with Python 3 and newer versions of its dependencies such as Google Protocol Buffers. This implementation of spearmint has been made available\footnote{https://github.com/briggsby/spearmint3}. The edits mostly included changes to syntax inconsistent with new versions of its dependencies.
+
+\subsection{Search space encoding}
+Spearmint uses their own protocol buffers to allow users to specify the available input variables. Each variable must be typed as either an integer (INT), floating-point number (FLOAT), or categorical variable (ENUM). For the first two, minimum and maximum limits must be set, while for categorical variables each available option must be specified. For all variables, a 'size' is specified, and each variable is passed to the function as a Numpy\cite{Klein2014} array with a number of elements equal to its 'size.' Each of these elements is optimized individually.
+
+This format of encoding variables sets some limitations. Constraints for numeric values are limited to minimum or maximums. For example, vCPU number for custom instance types on Google Compute Engine are limited to even numbers. While there are methods to get around this, such as encoding vCPU number as an integer which is then multiplied by 2 by the submitted script, it can lead to repeated job failures as impossible inputs are repeatedly attempted.
+
+To get around this problem, the vCPU number was specified instead as a categorical variable, and other than that the encoding is identical to that described in the Design section:
+\begin{enumerate}
+\item vCPU number was encoded as a categorical variable of size 1 with options '2', '4', and '8.' 
+\item Provider was encoded as a categorical variable of size 1 with options 'aws' and 'google', corresponding to Amazon EC2 and Google Compute Engine respectively.
+\item Category was encoded as a categorical variable of size 1 with options 'General,' 'Memory,' and 'CPU.'
+\end{enumerate}
+\section{Driver}
+The Driver script is a single python file called by Spearmint, and as such must take as parameters only the Job ID (a number used to identify jobs within a single spearmint experiment) and input variables as a multidimensional array.\\
+The Driver immediately reads a local configuration file in JSON format and loads it as a Python dictionary. This configuration dictionary stored relevant information in a set of key-value pairs, such as the user-specified Selector, Deployment, and Interpreter components, and other variables such as the Docker image address and container runtime commands. The key and value are specified within the files to make sure the system is extensible to any later added components. This configuration dictionary is updated with the input variables submitted with that job, is passed as a parameter to the functions specified as the framework components, and is saved to a local JSON file at the end of the job for record-keeping and debugging purposes. \\
+The driver file responds with a single value, the objective measure to be minimized by the Bayesian Optimization process.
 \section{Selector}
 \subsection{Exact Match}
+A CSV file was created with the following variables for the instance types used in our evaluation:
+
+\begin{itemize}
+\item API Name - Name of instance type used in that provider's APIs (string)
+\item Provider - Cloud provider offering the instance type (string)
+\item CPU - Number of vCPUs (float)
+\item Memory - Amount of memory in GB (float)
+\item Category - Category of machine type, such as Compute or Memory optimized, in a consistent form between providers (string) 	
+\item Price - Hourly cost of the machine for an On-demand Linux image (float)
+\end{itemize}
+
+The selector loads this dataset as a Pandas dataframe, and filters it according to the input variables provided. The configuration dictionary is then updated with the API name and hourly cost for the cheapest option remaining, and returned by the function. If not configuration is left in the filtered dataframe, these values are instead set to a Null value, to indicate that no configuration exists.
+
 \section{Deployer}
-asdf 
 \subsection{VM Provisioner}
-\subsection{Terraform}
+The first stage of any tested deployment was to first provision the necessary virtual machines from their cloud provider. To do this, we implemented the Infrastructure-as-code tool Terraform, using a Python library python-terraform\footnote{https://github.com/beelit94/python-terraform}. 
+\subsubsection{Terraform}
+Terraform operates by applying 'plans' based on Terraform configuration files and variables provided either during the applying step or in separate 'tfvars' files. For each provider, a separate folder was created with a corresponding Terraform configuration file. The configuration files would, when applied using Terraform, provision a number of machines of a given type, and set up a publicly accessible Docker host on each machine. This is done by first setting up a security rule exposing a specific port later used by Docker. The machine of the given type is provisioned, and using SSH Docker is installed, using either the Amazon Linux Extra library\footnote{\url{https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html\#extras-library}} for AWS machines, or using a downloaded script from \url{https://get.docker.com} for Google Cloud Platform machines. In either case, configuration files are uploaded and the Docker service restarted to expose it to an external port for remote access in later steps.
+
+The number and type of machines, specified by the input variables, are input when the Terraform plan is applied based on the job being run. Other important variables, such as credentials files are placed by the user beforehand in a single 'tfvars' file in the same folder as our driving Python script. This file is shared between all Terraform plans, regardless of provider. The Terraform plan outputs a timestamp, configuration details, and the public IP, which are used used by later Deployment steps. These outputs are placed in the configuration dictionary for use by later Deployment steps.
+
+When Terraform is directed to a folder, it automatically applies plans from all Terraform files located in that folder. It was important that we could run multiple Terraform plans at once, but using a separate configuration setup for every job would lead to extremely large disk usage and overhead, as Terraform must download necessary modules into the local folder for initilization before applying plans. Because of this, each deployment job was instead made to use the same plan, but a different 'local back-end,' storing the state files in a separate folder. Output values are only taken from the standard output returned when the configuration plan is first applied, as attempting to get the outputs later can lead to returning outputs from different back-ends when separate deployments attempt to obtain this information at the same time.
+
+The public IP address is used with the Python Docker library to deploy docker images onto the provisioned instances.
 \subsection{Docker deployer}
-\subsection{Cloudsuite}
+Once the provisioned VM is finished setting up as a Docker host, control is returned to the deployer, which then connects to the Docker host through its public IP. This is done using the Python Docker library. The docker image specified in the configuration dictionary is then deployed on the connected client, and any parameters stored in the configuration dictionary under \textit{docker\_params} is passed as well, allowing additional entrypoint commands or hosted volumes to be specified. The Deployer attaches to the container until its runtime is completed, and then places the container's logs in the configuration dictionary for use by the Interpreter. \\
+No Docker image was available for vBench at the time of writing, and so we created an image containing vBench that installs all its necessary dependencies, as well as containing all video files used for a reference image. This is available on a public DockerHub repository at \textit{briggsby/vbench:ubuntu}. It takes command-line arguments in the form "\textless type\textgreater [filter]". 'type' specifies the type of benchmark to run, one of 'upload', 'live', 'vod', 'popular', or 'platform'. 'filter', if present, is a string that tells vBench to run the benchmark only on files whose filenames match that string, using asterisks as wildcards.
+
+\paragraph{Simulated vBench}
+Also included is a Deployer component that uses results taken from our evaluation to simulate vBench deployments (for the 'house' video file using the 'vod' benchmark) on the tested instance types. This can be useful when debugging to avoid search costs and drastically reduce the search time by preventing the system from having to provision and set up virtual machines. The simulated results come from a normal distribution with the same mean and standard deviation as the results taken during evaluation.
+
+\subsubsection{Cloudsuite}
+The above component option assumes a single instance and a single Docker image, but this is not always the case. Included in our implementation is a deployment option for deploying the Cloudsuite3\cite{Palit2016} media-streaming server benchmark. This was originally planned to be used as the evaluated benchmark, but was found to be far too variable and showed no clear relationships with any input variables. \\
+The Cloudsuite3 media streaming benchmark requires multiple Docker containers to be set up on the same device on the same Docker network. The Deployer first deploys an image containing a dataset used by the benchmark server, followed by deploying the benchmark server itself and pointing it at this dataset. \\
+The third part of the Cloudsuite3 media streaming benchmark is an image that simulates multiple clients attempting to utilize the media streaming server at a time. However, the maximum number of clients used by the provided image was far too low in all cases. The Deployer instead builds a new image based on the original Cloudsuite3 image that allows command-line arguments to specify maximum number of sessions and number of clients when deployed. The files necessary for this are included with our implementation.\\
+Once again, this Docker container is left to run until it has finished, and the logs are then saved to the configuration dictionary for interpretation.
+ 
 \subsection{Ping servers}
+In some cases, internal performance measures from within an application may not be best suited to benchmark its performance, or it may simply be more convenient not to develop a whole new application that can self-report performance when an alternative is to use information from an application's connecting clients. 
+In these cases, a separate server can be used to simulate network requests to a tested application. As this is a dramatically different approach to application performance testing compared to our Docker Deployment method described above, we wanted to include its implementation to highlight the flexibility of our framework.
+For the Ping server Deployer, a separate Kubernetes cluster must be provisioned beforehand, and its details and credential file locations written into the configuration file. This Kubernetes cluster is used as a 'ping cluster,' and logs are taken from it rather than from the application itself. The application is deployed on the specified cloud configuration as normal, but no logs are taken from it. Instead, a pinging Docker image is deployed onto the ping cluster and its logs taken when its runtime has completed. These logs are interpreted instead of the application's. In our example implementation, the application itself is a webserver than simply calculates the highest prime number below a number requested by a client. The client Docker image deployed on the ping server repeatedly uses \textit{curl}, directed to the public IP of the application using a random number request from a normal distribution, and returns the time taken to receive the response for each request along with the number requested.  
+\subsection{Instance removal and Interruption handling}
+Once the logs have been taken from a sample deployment, the instances provisioned must be terminated so as not to continue accruing costs or use up cloud provider quotas. Terraform includes a 'destroy' command which uses the state files and Terraform plans to go through and remove any settings and terminate any virtual machines or services set up by that plan.
+When the plan is first applied, a handler is set up to catch keyboard interruption signals and immediately trigger the Terraform destroy process, to ensure even if an experiment or individual job is stopped early, cloud services are still immediately dismantled. 
 \section{Interpreter}
-\subsection{Sysbench}
-\subsection{Cloudsuite}
+As described previously, log interpreters are highly specific to any given use-case. They use the information extracted from the application logs by the Deployer, along with the price of the cloud configuration supplied by the Selector, to calculate the objective measure to be optimized by the Searcher. This objective measure is saved to the configuration dictionary as the final value to be returned by the core driver file. Here we describe the three Interpreter components implemented.
 \subsection{vBench}
-\subsection{Fake Deploy}
+The vBench interpreter extracts from the first video file transcoded the final vBench score provided and divides its negative by the price of the cloud configuration tested. The value's sign is reversed to ensure that the value is maximised by the optimization algorithm rather than minimized, as a higher score reflects a higher performance. The score is 0 when a performance threshold is met, and if that performance threshold is met reports the time taken to transcode the video file relative to a reference. Once divided by the price, it gives the objective measure of the rate of video transcoding per hourly cost of the instance in US dollars. 
+\subsection{Sysbench}
+Sysbench is a lightweight commonly used micro-benchmarking tool. In our case, we used it to measure how many times the instance can calculate the prime numbers up to 5000 in 10 seconds. The Interpreter uses regular expressions to extract the reported 'events per seconds.' Once again, this score has its sign reversed and is divided by the price of the configuration.
+\subsection{Cloudsuite}
+The Cloudsuite3 media-streaming server benchmark Interpreter uses regular expressions to extract from the application logs the maximum number of sessions for which the benchmark succeeded. If the maximum number attempted was too low for the benchmark to ever fail, it instead uses this maximum number attempted. Once again, this extracted value has its sign reversed and is divided by the price of the configuration.
 \chapter{Evaluation}
+% WORK OUT HOW TO STRUCTURE EVALUATION
 \section{Evaluation Approach}
 % Explain how you are evaluating your system, what it shows and why you did it that way
 % Talk about the variation reported by your results, do they match up to previous variability
 \subsection{Framework evaluation}
 % Use objectives 
 \subsection{Bayesian Optimization}
-\subsection{Evalutaion objectives}
 \section{Results Analysis}
 \subsection{Exhaustive search}
+\subsubsection{Results}
+\subsubsection{Discussion}
 % Extremely little variation
 % Because of this, no log transformation necessary for Bayesian Optimization
 \subsection{Bayesian Optimization}
-\subsubsection{Cross-provider}
-\subsubsection{Concurrent Jobs}
+\subsubsection{Results}
+\paragraph{Cross-provider}
+\paragraph{Concurrent Jobs}
+\subsubsection{Discussion}
+\paragraph{Cross-provider}
+\paragraph{Concurrent Jobs}
 %\section{Discussion}
 %\subsection{Functionality}[51], 
 %\subsection{Testing}
@@ -325,7 +401,6 @@ asdf
 \chapter{Conclusion}
 
 \newpage
-\cite{Agarwal2012}
 \bibliographystyle{ieeetr}
 \bibliography{Dissertation}
 \newpage

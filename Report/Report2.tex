@@ -39,8 +39,7 @@ available for use in accordance with the regulations of the University Library. 
 \newpage
 \pagenumbering{arabic}
 \chapter{Introduction}
-\section{Background}
-\subsection{Cloud Computing}
+\section{Cloud Computing}
 Cloud computing is an ever-growing field that now ranges from Infrastructure-as-a-service (IaaS) to Software-as-a-service(SaaS). Services under cloud computing are characterised by their ability to offer access to a shared pool of highly elastic on-demand computing resources that offer broad network access \cite{Pallis2010, Mell2011}. Cloud services as an industry has had an explosive growth, and it has been predicted that 83\% of enterprise (Companies with 1000+ employees) workloads will be in the cloud by 2020\cite{Intricately2019}, with 41\% run on public cloud platforms such as Amazon AWS and Microsoft Azure. Services offered range from various levels and forms of abstractions, from directly provisioning Virtual Machines (VMs) or storage services, allowing users full control over their cloud infrastructure, to deploying 'serverless' containers, where the actual managing of the hardware is instead handled by the cloud provider.
 
 \paragraph{}
@@ -54,7 +53,7 @@ It is desirable for both users and providers to maximise the optimize purchased 
 % It'd be nice to show some hard numbers to show the benefit of optimizations, like the market share or something, but obvoiusly that's pretty hard
 % Cloudability?
 
-\subsection{Difficulties}
+\subsection{Challenges}
 Picking an optimal cloud configuration for any given application is far from trivial. 'Larger' VM types may not provide improved performance \cite{Yadwadkar2017}, or may do so at a far less cost-efficient rate. Even if one knows their exact budget along with the constraints placed on their application's performance, they must still find a way to search or model across the entire range of cloud providers to ensure they have found the optimal cloud configuration for their application. This is further complicated by the variety of instance types available across multiple providers, and the variation in performance between virtual machines of the same specification due to differences in underlying hardware, network traffic, and co-located tenants located on the same physical machine.
 
 \subsubsection{Search space}
@@ -79,6 +78,7 @@ Finally, the very meaning of the word optimal can depend on the application and 
 To truly automate an optimization process for any provided application, an 'objective measure' must be provided, dependent on cost and performance, which reflects the ultimate goal of the optimization process. An optimization method must be able to accommodate different user requirements through flexibility regarding the objective measure used.
 
 \section{Aims and Objectives}
+% Also say that you'll use the results to see how different search options are affected/variability, whatevs
 The aim of this project is both to present a framework for completely automated selection of an optimal cloud configuration for any given application, as well as to deliver a fully functional implementation of this framework for an indicative use-case. To achieve this aim, the framework must achieve the following objectives:
 \begin{itemize}
 \item Present a fully automated process for optimization cloud configuration.
@@ -131,29 +131,31 @@ asdf
 \subsection{OTHERS, LOOK UP}
 \section{Infrastructure-as-code}
 \subsection{Terraform}
-\subsection{Apache Libcloud}
+\subsection{Apache Libcloud}  
 \subsection{Chef}
 \subsection{Puppet}
 \chapter{Requirements specification}
 \section{Use-case}
+\subsection{Bayesian Optimization}
+\subsection{Video transcoding}
 \section{Requirements}
 % Accommodating flexibility with how confident the program must be
 % Reduced predictive power may be acceptable for substantially reduced search cost/time, depending on the user 
 \section{Optional Requirements}
-\chapter{Design and Motivations}
+\chapter{Generic Automated Cloud Configuration Optimization Framework}
 % Architecture shows predifined subroutines for each component, we go into details of what these entail in their respective sections
 % START HERE
-\section{Numerical Optimization}
+\section{Motivations}
+\subsection{Numerical Optimization}
 In any optimisation process, the value of some objective function is minimised or maximised by adjusting its input variables or parameters. An optimisation algorithm begin with an initial guess of these variables and iterates through improved estimates until they terminate, hopefully providing an estimated solution \cite{Nocedal2006}. An optimization function effectively takes previous an objective function, along with its previous inputs and outputs as arguments, and outputs either the next sample to take, or the predicted best input if the stopping condition is met. \\
 In our generalized case, the optimisation method and objective function are both unknown, but we know that our objective function will always involve selecting some cloud configuration based on the inputs that describe that configuration, deploying some application onto this configuration, and interpreting its performance to give some objective measure.
-\section{Modularity}
+\subsection{Modularity}
 In our generalized case, we do not yet know the optimization method or objective function. As shown in our Literature review, a number of optimization algorithms have been attempted and are available, such as exhaustive search, Bayesian optimization\cite{Alipourfard2017}, analytical methods that directly model the application's relationships with configuration variables\cite{Venkataraman2016}, and a data-driven approach predicting performance by its relationship with pre-run benchmarks\cite{Yadwadkar2017}.
 
 Much like how our objective measure will differ from application to application, the best optimization method may also differ depending on the type of application tested. Applications whose performance is accurately reflected by known benchmarks may benefit from PARIS's data-driven approach, while situations with unclear non-linear relationships to configuration variables will be well suited to Bayesian optimization. Because of this, while we will focus on developing an implementation of Bayesian optimization, as per our use case, it is desirable to ensure that our example optimization method can be replaced by another if the user deems it more appropriate to their use-case.
 
 Because of this, we are left with multiple parts of our system which are highly dependent on a user's individual use-case, namely the objective function, the objective measure to be optimized, the search space constraints, and the application itself. Because of this, we have taken a highly modular approach to our design. While our implementation should be self-sufficient to run its example case, it should also be made up of several replaceable components for future extensions.
  
-
 \section{System Architecture}
 \begin{figure}[!hb]
   \centering
@@ -165,10 +167,10 @@ Because of this, we are left with multiple parts of our system which are highly 
 Our optimization process can be broken down into four replaceable components: A Searcher, which runs the optimisation algorithm, testing out various inputs in an attempt to maximise or minimise the objective function; a Selector, which interprets the inputs to determine what cloud configuration is being tested; a Deployer, which provisions the machines needed for that cloud configuration, deploys the application, and once it has terminated returns any required logs from it; and an Interpreter, which takes these logs to calculate the objective measure which is returned to the Searcher as the returned value for the objective function. A diagram of this breakdown is shown in figure \ref{fig:design}. The components themselves are examined in further detail in the following sections.
  
 \paragraph{}
-Overall, the system performs an optimization algorithm shown in algorithm \ref{alg:Optimization}, such as Bayesian optimization, coordinate descent, random search, or exhaustive search, and drives the optimization process by iterating through potential input variables. For each set of these inputs, it take a sample from a single 'job,' where it runs through a single loop of the Selector, Deployer, and Interpreter components. The Searcher component then uses the results from inputs tried so far to choose the next set of input variables to sample, as well as provide the current estimate of the best possible set of input variables to minimize or maximize that result. Once the stopping conditions are met, the latest estimate for the best input variables is output by the system.
+Overall, the system performs an optimization algorithm shown in Procedure \ref{alg:Optimization}, such as Bayesian optimization, coordinate descent, random search, or exhaustive search, and drives the optimization process by iterating through potential input variables. For each set of these inputs, it take a sample from a single 'job,' where it runs through a single loop of the Selector, Deployer, and Interpreter components. The Searcher component then uses the results from inputs tried so far to choose the next set of input variables to sample, as well as provide the current estimate of the best possible set of input variables to minimize or maximize that result. Once the stopping conditions are met, the latest estimate for the best input variables is output by the system.
 
 \begin{algorithm}
-\caption{Optimization Algorithm}
+\caption{Optimization Procedure}
 \label{alg:Optimization}
 \begin{algorithmic}
 \Procedure{Optimization}{$Starting \ variables, Stopping \ conditions, Searcher, Selector, \newline
@@ -200,7 +202,7 @@ The figure also shows the relevant outputs created by the system, in the form of
 \paragraph{}
 Algorithm \ref{alg:Optimization} shows the general form the optimization process takes with only one concurrent job allowed at any time, showing the expected input and output of each individual component. These are explained in more detail within each component's individual section below.
 
-\subsection{Searcher}
+\section{Searcher}
 The Searcher component is actually responsible for handling the optimization algorithm itself. The searcher takes the results from previous jobs and determines either the next best sample to take within the available search space, or to terminate the process and return the current best prediction for the optimal configuration. A perfect Searcher is one that returns a perfect prediction of the optimal configuration in as few samples as possible. Fewer samples means a reduction in the time and cost taken to perform the search. Often, there is a trade-off here, where extending a search to include more and more samples, such as by setting less restrictive stopping conditions, increases its predictive accuracy. Some search methods, such as PARIS\cite{Yadwadkar2017}, can leverage past search experiments to reduce the number of samples taken. Generally however, the stopping conditions and search method will control this trade-off, and can be set according to the user's search budget or time constraints. 
 
 \paragraph{}
@@ -276,6 +278,11 @@ It may be advantageous, especially during debugging or if using a 'closest match
 \subsection{Interpreter}
 The Interpreter must interpret whatever logs and other information is returned by the Deployer, along with the cost of the cloud configuration provided by the Selector, in order to return an objective measure for the sampled cloud configuration. It is this returned value that the Searcher will be attempting to minimise or maximize. We leave it to the user to develop an Interpreter for their use-case. This will likely involve extracting relevant information from the deployed application's logs, and applying constraints based on the time taken or machine pricing. 
 \section{Interpreter}
+\chapter{Bayesian VM Optimization System}
+\section{Bayesian Optimization}
+\section{Benchmark Deployment}
+\section{Search space encoding}
+\section{Objective Measure}
 \chapter{Implementation}
 \section{General usage}
 \section{Driver}
@@ -296,8 +303,13 @@ asdf
 \subsection{vBench}
 \subsection{Fake Deploy}
 \chapter{Evaluation}
+\section{Evaluation Approach}
+% Explain how you are evaluating your system, what it shows and why you did it that way
 % Talk about the variation reported by your results, do they match up to previous variability
-\section{Functionality}
+\subsection{Framework evaluation}
+% Use objectives 
+\subsection{Bayesian Optimization}
+\subsection{Evalutaion objectives}
 \section{Results Analysis}
 \subsection{Exhaustive search}
 % Extremely little variation
@@ -305,16 +317,16 @@ asdf
 \subsection{Bayesian Optimization}
 \subsubsection{Cross-provider}
 \subsubsection{Concurrent Jobs}
-\chapter{Discussion}
-\section{Functionality}
-\section{Testing}
-\section{Future work}
-\chapter{Critical Appraisal}
+%\section{Discussion}
+%\subsection{Functionality}[51], 
+%\subsection{Testing}
+\chapter{Related and Future work}
+% GPU testing
 \chapter{Conclusion}
 
 \newpage
 \cite{Agarwal2012}
-\bibliographystyle{IEEEtran}
+\bibliographystyle{ieeetr}
 \bibliography{Dissertation}
 \newpage
 \section*{Appendices}

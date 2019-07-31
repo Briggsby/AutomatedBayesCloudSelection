@@ -1,7 +1,4 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces A diagram of the design.}}{10}{figure.1}% 
-\contentsline {figure}{\numberline {2}{\ignorespaces Distribution of vBench scores}}{19}{figure.2}% 
-\contentsline {figure}{\numberline {3}{\ignorespaces Distribution of objective function values}}{20}{figure.3}% 
-\contentsline {figure}{\numberline {4}{\ignorespaces Distribution of vBench scores in frequency polygons}}{21}{figure.4}% 
-\contentsline {figure}{\numberline {5}{\ignorespaces Optimal configurations suggested after convergence for Bayesian Optimization searches}}{22}{figure.5}% 
-\contentsline {figure}{\numberline {6}{\ignorespaces Paths of example Bayesian Optimization jobs}}{22}{figure.6}% 
-\contentsline {figure}{\numberline {7}{\ignorespaces Values, search costs and times for different Bayesian Optimization searches. Single large outlier removed from search time graph from Single provider, 3 concurrent jobs.}}{24}{figure.7}% 
+\contentsline {figure}{\numberline {1}{\ignorespaces A diagram of the design.}}{8}{figure.1}% 
+\contentsline {figure}{\numberline {2}{\ignorespaces Distribution of objective function values}}{11}{figure.2}% 
+\contentsline {figure}{\numberline {3}{\ignorespaces Distribution of objective function values}}{12}{figure.3}% 
+\contentsline {figure}{\numberline {4}{\ignorespaces Optimal configurations found after convergence for Bayesian Optimization}}{13}{figure.4}% 

@@ -1,0 +1,33 @@
+So we also have conditions where Bayesian Optimization is not great. 
+Could provide alternative, or at least mention what that could be.
+Saying when a search space is a good fit for BO, when it's not.
+	Not when memory is more variable than a few enums
+
+
+Pick a good benchmark, perhaps one that's more extensive that simply checking CPU
+Particularly good if is both narrow and actually used
+	E.g. video compression/decompression
+
+Definitely plan the search space properly. Don't pick one arbitrarily. 
+	E.g. very general, or very specific application
+Once got search space, get those instances, get real results for them, then see how well BO detects the best one.
+
+Don't have time to do noise testing, and isn't in scope of our research anyway, especially since could be negligible anyway.
+Parameterize the noise so that it can be provided. And can show that higher noise will only lengthen the search task, 'should' (check this in an experiment) never lead to less correct results
+
+
+To do now:
+	Pick a benchmark (video compression/decompression)
+	Pick a search space (very general or very specific, think about BO limitations and how you might show/specify for them)
+		Maybe one that is good for Bayes and one that is bad
+	Get real results for each of these (sample a few to get mean)
+	Then see, under different parameters:
+		How many samples it takes
+		How long it takes
+		How frequently it is correctly optimized (how often does it get second best for example) in given times	
+
+
+Extras (low prio):
+	Webserver test version
+	Azure
+	Compare to gradient-descent or others

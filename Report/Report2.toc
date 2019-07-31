@@ -1,10 +1,9 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}% 
-\contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}% 
-\contentsline {subsection}{\numberline {1.1.1}Cloud Computing}{1}{subsection.1.1.1}% 
+\contentsline {section}{\numberline {1.1}Cloud Computing}{1}{section.1.1}% 
 \contentsline {paragraph}{}{1}{section*.5}% 
-\contentsline {subsection}{\numberline {1.1.2}Cloud optimization}{2}{subsection.1.1.2}% 
-\contentsline {subsection}{\numberline {1.1.3}Benefits}{2}{subsection.1.1.3}% 
-\contentsline {subsection}{\numberline {1.1.4}Difficulties}{2}{subsection.1.1.4}% 
+\contentsline {subsection}{\numberline {1.1.1}Cloud optimization}{2}{subsection.1.1.1}% 
+\contentsline {subsection}{\numberline {1.1.2}Benefits}{2}{subsection.1.1.2}% 
+\contentsline {subsection}{\numberline {1.1.3}Challenges}{2}{subsection.1.1.3}% 
 \contentsline {subsubsection}{Search space}{3}{section*.6}% 
 \contentsline {paragraph}{}{3}{section*.7}% 
 \contentsline {subsubsection}{Hardware and Software Heterogeneity}{3}{section*.8}% 
@@ -39,59 +38,67 @@
 \contentsline {subsection}{\numberline {2.5.4}Puppet}{8}{subsection.2.5.4}% 
 \contentsline {chapter}{\numberline {3}Requirements specification}{9}{chapter.3}% 
 \contentsline {section}{\numberline {3.1}Use-case}{9}{section.3.1}% 
+\contentsline {subsection}{\numberline {3.1.1}Bayesian Optimization}{9}{subsection.3.1.1}% 
+\contentsline {subsection}{\numberline {3.1.2}Video transcoding}{9}{subsection.3.1.2}% 
 \contentsline {section}{\numberline {3.2}Requirements}{9}{section.3.2}% 
 \contentsline {section}{\numberline {3.3}Optional Requirements}{9}{section.3.3}% 
-\contentsline {chapter}{\numberline {4}Design and Motivations}{10}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Numerical Optimization}{10}{section.4.1}% 
-\contentsline {section}{\numberline {4.2}Modularity}{10}{section.4.2}% 
-\contentsline {section}{\numberline {4.3}System Architecture}{11}{section.4.3}% 
+\contentsline {chapter}{\numberline {4}Generic Automated Cloud Configuration Optimization Framework}{10}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Motivations}{10}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Numerical Optimization}{10}{subsection.4.1.1}% 
+\contentsline {subsection}{\numberline {4.1.2}Modularity}{11}{subsection.4.1.2}% 
+\contentsline {section}{\numberline {4.2}System Architecture}{11}{section.4.2}% 
 \contentsline {paragraph}{}{12}{section*.15}% 
-\contentsline {paragraph}{}{12}{section*.16}% 
-\contentsline {section}{\numberline {4.4}Inputs and outputs}{13}{section.4.4}% 
-\contentsline {paragraph}{}{13}{section*.17}% 
-\contentsline {paragraph}{}{13}{section*.18}% 
-\contentsline {subsection}{\numberline {4.4.1}Searcher}{13}{subsection.4.4.1}% 
+\contentsline {paragraph}{}{13}{section*.16}% 
+\contentsline {section}{\numberline {4.3}Inputs and outputs}{13}{section.4.3}% 
+\contentsline {paragraph}{}{14}{section*.17}% 
+\contentsline {paragraph}{}{14}{section*.18}% 
+\contentsline {section}{\numberline {4.4}Searcher}{14}{section.4.4}% 
 \contentsline {paragraph}{}{14}{section*.19}% 
-\contentsline {subsubsection}{Exhaustive search}{14}{section*.20}% 
-\contentsline {subsubsection}{Bayesian Optimization}{14}{section*.21}% 
-\contentsline {section}{\numberline {4.5}Selector}{15}{section.4.5}% 
-\contentsline {paragraph}{}{16}{section*.22}% 
-\contentsline {paragraph}{}{16}{section*.23}% 
-\contentsline {subsection}{\numberline {4.5.1}Exact vs. Closest Match}{17}{subsection.4.5.1}% 
-\contentsline {section}{\numberline {4.6}Deployer}{17}{section.4.6}% 
-\contentsline {subsection}{\numberline {4.6.1}VM Provisioner}{17}{subsection.4.6.1}% 
-\contentsline {subsection}{\numberline {4.6.2}Docker Deployer}{17}{subsection.4.6.2}% 
-\contentsline {subsection}{\numberline {4.6.3}Ping server}{17}{subsection.4.6.3}% 
-\contentsline {subsection}{\numberline {4.6.4}Simulated Deployment}{17}{subsection.4.6.4}% 
-\contentsline {section}{\numberline {4.7}Interpreter}{17}{section.4.7}% 
-\contentsline {chapter}{\numberline {5}Implementation}{18}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}General usage}{18}{section.5.1}% 
-\contentsline {section}{\numberline {5.2}Driver}{18}{section.5.2}% 
-\contentsline {section}{\numberline {5.3}Searcher}{18}{section.5.3}% 
-\contentsline {subsection}{\numberline {5.3.1}Spearmint}{18}{subsection.5.3.1}% 
-\contentsline {section}{\numberline {5.4}Selector}{18}{section.5.4}% 
-\contentsline {subsection}{\numberline {5.4.1}Exact Match}{18}{subsection.5.4.1}% 
-\contentsline {section}{\numberline {5.5}Deployer}{18}{section.5.5}% 
-\contentsline {subsection}{\numberline {5.5.1}VM Provisioner}{19}{subsection.5.5.1}% 
-\contentsline {subsection}{\numberline {5.5.2}Terraform}{19}{subsection.5.5.2}% 
-\contentsline {subsection}{\numberline {5.5.3}Docker deployer}{19}{subsection.5.5.3}% 
-\contentsline {subsection}{\numberline {5.5.4}Cloudsuite}{19}{subsection.5.5.4}% 
-\contentsline {subsection}{\numberline {5.5.5}Ping servers}{19}{subsection.5.5.5}% 
-\contentsline {section}{\numberline {5.6}Interpreter}{19}{section.5.6}% 
-\contentsline {subsection}{\numberline {5.6.1}Sysbench}{19}{subsection.5.6.1}% 
-\contentsline {subsection}{\numberline {5.6.2}Cloudsuite}{19}{subsection.5.6.2}% 
-\contentsline {subsection}{\numberline {5.6.3}vBench}{19}{subsection.5.6.3}% 
-\contentsline {subsection}{\numberline {5.6.4}Fake Deploy}{19}{subsection.5.6.4}% 
-\contentsline {chapter}{\numberline {6}Evaluation}{20}{chapter.6}% 
-\contentsline {section}{\numberline {6.1}Functionality}{20}{section.6.1}% 
-\contentsline {section}{\numberline {6.2}Results Analysis}{20}{section.6.2}% 
-\contentsline {subsection}{\numberline {6.2.1}Exhaustive search}{20}{subsection.6.2.1}% 
-\contentsline {subsection}{\numberline {6.2.2}Bayesian Optimization}{20}{subsection.6.2.2}% 
-\contentsline {subsubsection}{Cross-provider}{20}{section*.24}% 
-\contentsline {subsubsection}{Concurrent Jobs}{20}{section*.25}% 
-\contentsline {chapter}{\numberline {7}Discussion}{21}{chapter.7}% 
-\contentsline {section}{\numberline {7.1}Functionality}{21}{section.7.1}% 
-\contentsline {section}{\numberline {7.2}Testing}{21}{section.7.2}% 
-\contentsline {section}{\numberline {7.3}Future work}{21}{section.7.3}% 
-\contentsline {chapter}{\numberline {8}Critical Appraisal}{22}{chapter.8}% 
-\contentsline {chapter}{\numberline {9}Conclusion}{23}{chapter.9}% 
+\contentsline {subsubsection}{Exhaustive search}{15}{section*.20}% 
+\contentsline {subsubsection}{Bayesian Optimization}{15}{section*.21}% 
+\contentsline {section}{\numberline {4.5}Selector}{16}{section.4.5}% 
+\contentsline {subsection}{\numberline {4.5.1}Exact vs. Closest Match}{16}{subsection.4.5.1}% 
+\contentsline {subsection}{\numberline {4.5.2}Encoding the Search space}{17}{subsection.4.5.2}% 
+\contentsline {paragraph}{}{17}{section*.22}% 
+\contentsline {section}{\numberline {4.6}Deployer}{18}{section.4.6}% 
+\contentsline {subsection}{\numberline {4.6.1}VM Provision}{18}{subsection.4.6.1}% 
+\contentsline {subsection}{\numberline {4.6.2}Docker Deployment}{18}{subsection.4.6.2}% 
+\contentsline {subsection}{\numberline {4.6.3}Ping server}{19}{subsection.4.6.3}% 
+\contentsline {subsection}{\numberline {4.6.4}Simulated Deployment}{19}{subsection.4.6.4}% 
+\contentsline {subsection}{\numberline {4.6.5}Interpreter}{19}{subsection.4.6.5}% 
+\contentsline {section}{\numberline {4.7}Interpreter}{19}{section.4.7}% 
+\contentsline {chapter}{\numberline {5}Bayesian VM Optimization System}{20}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Bayesian Optimization}{20}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}Benchmark Deployment}{20}{section.5.2}% 
+\contentsline {section}{\numberline {5.3}Search space encoding}{20}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Objective Measure}{20}{section.5.4}% 
+\contentsline {chapter}{\numberline {6}Implementation}{21}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}General usage}{21}{section.6.1}% 
+\contentsline {section}{\numberline {6.2}Driver}{21}{section.6.2}% 
+\contentsline {section}{\numberline {6.3}Searcher}{21}{section.6.3}% 
+\contentsline {subsection}{\numberline {6.3.1}Spearmint}{21}{subsection.6.3.1}% 
+\contentsline {section}{\numberline {6.4}Selector}{21}{section.6.4}% 
+\contentsline {subsection}{\numberline {6.4.1}Exact Match}{21}{subsection.6.4.1}% 
+\contentsline {section}{\numberline {6.5}Deployer}{21}{section.6.5}% 
+\contentsline {subsection}{\numberline {6.5.1}VM Provisioner}{22}{subsection.6.5.1}% 
+\contentsline {subsection}{\numberline {6.5.2}Terraform}{22}{subsection.6.5.2}% 
+\contentsline {subsection}{\numberline {6.5.3}Docker deployer}{22}{subsection.6.5.3}% 
+\contentsline {subsection}{\numberline {6.5.4}Cloudsuite}{22}{subsection.6.5.4}% 
+\contentsline {subsection}{\numberline {6.5.5}Ping servers}{22}{subsection.6.5.5}% 
+\contentsline {section}{\numberline {6.6}Interpreter}{22}{section.6.6}% 
+\contentsline {subsection}{\numberline {6.6.1}Sysbench}{22}{subsection.6.6.1}% 
+\contentsline {subsection}{\numberline {6.6.2}Cloudsuite}{22}{subsection.6.6.2}% 
+\contentsline {subsection}{\numberline {6.6.3}vBench}{22}{subsection.6.6.3}% 
+\contentsline {subsection}{\numberline {6.6.4}Fake Deploy}{22}{subsection.6.6.4}% 
+\contentsline {chapter}{\numberline {7}Evaluation}{23}{chapter.7}% 
+\contentsline {section}{\numberline {7.1}Evaluation Approach}{23}{section.7.1}% 
+\contentsline {subsection}{\numberline {7.1.1}Framework evaluation}{23}{subsection.7.1.1}% 
+\contentsline {subsection}{\numberline {7.1.2}Bayesian Optimization}{23}{subsection.7.1.2}% 
+\contentsline {subsection}{\numberline {7.1.3}Evalutaion objectives}{23}{subsection.7.1.3}% 
+\contentsline {section}{\numberline {7.2}Results Analysis}{23}{section.7.2}% 
+\contentsline {subsection}{\numberline {7.2.1}Exhaustive search}{23}{subsection.7.2.1}% 
+\contentsline {subsection}{\numberline {7.2.2}Bayesian Optimization}{23}{subsection.7.2.2}% 
+\contentsline {subsubsection}{Cross-provider}{23}{section*.23}% 
+\contentsline {subsubsection}{Concurrent Jobs}{23}{section*.24}% 
+\contentsline {chapter}{\numberline {8}Related and Future work}{24}{chapter.8}% 
+\contentsline {chapter}{\numberline {9}Conclusion}{25}{chapter.9}% 

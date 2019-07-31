@@ -21,6 +21,18 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{Alipourfard2017}
+\BIBentryALTinterwordspacing
+O.~Alipourfard, H.~H. Liu, J.~Chen, S.~Venkataraman, M.~Yu, M.~Zhang,
+  Y.~University, H.~{Harry Liu}, J.~Chen, S.~Venkataraman, M.~Yu, and M.~Zhang,
+  ``{CherryPick: Adaptively Unearthing the Best Cloud Configurations for Big
+  Data Analytics},'' in \emph{Proceedings of the 14th USENIX Conference on
+  Networked Systems Design and Implementation}, 2017, pp. 469--482. [Online].
+  Available:
+  \url{https://www.usenix.org/conference/nsdi17/technical-sessions/presentation/alipourfard
+  https://dl.acm.org/citation.cfm?id=3154669}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Pallis2010}
 \BIBentryALTinterwordspacing
 G.~Pallis, ``{Cloud Computing: The New Frontier of Internet Computing},''
@@ -84,20 +96,14 @@ K.~Bilal and A.~Erbad, ``{Impact of multiple video representations in live
   streaming: A cost, bandwidth, and QoE analysis},'' in \emph{Proceedings -
   2017 IEEE International Conference on Cloud Engineering, IC2E 2017}, 2017,
   pp. 88--94. [Online]. Available:
-  \url{https://ieeexplore.ieee.org/ielx7/7922463/7923761/07923791.pdf?tp={\&}arnumber=7923791{\&}isnumber=7923761{\&}ref=aHR0cHM6Ly9pZWVleHBsb3JlLmllZWUub3JnL2Fic3RyYWN0L2RvY3VtZW50Lzc5MjM3OTE=}
+  \url{https://ieeexplore.ieee.org/ielx7/7922463/7923761/07923791.pdf}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Alipourfard2017}
-\BIBentryALTinterwordspacing
-O.~Alipourfard, H.~H. Liu, J.~Chen, S.~Venkataraman, M.~Yu, M.~Zhang,
-  Y.~University, H.~{Harry Liu}, J.~Chen, S.~Venkataraman, M.~Yu, and M.~Zhang,
-  ``{CherryPick: Adaptively Unearthing the Best Cloud Configurations for Big
-  Data Analytics},'' in \emph{Proceedings of the 14th USENIX Conference on
-  Networked Systems Design and Implementation}, 2017, pp. 469--482. [Online].
-  Available:
-  \url{https://www.usenix.org/conference/nsdi17/technical-sessions/presentation/alipourfard
-  https://dl.acm.org/citation.cfm?id=3154669}
-\BIBentrySTDinterwordspacing
+\bibitem{Pu2010}
+X.~Pu, L.~Liu, Y.~Mei, S.~Sivathanu, Y.~Koh, and C.~Pu, ``{Understanding
+  performance interference of I/O workload in virtualized cloud
+  environments},'' in \emph{Proceedings - 2010 IEEE 3rd International
+  Conference on Cloud Computing, CLOUD 2010}, 2010, pp. 51--58.
 
 \bibitem{Berl2010}
 \BIBentryALTinterwordspacing
@@ -106,6 +112,88 @@ A.~Berl, E.~Gelenbe, M.~{Di Girolamo}, G.~Giuliani, H.~{De Meer}, M.~Q. Dang,
   Computer Journal}, vol.~53, no.~7, pp. 1045--1051, sep 2010. [Online].
   Available:
   \url{https://academic.oup.com/comjnl/article-lookup/doi/10.1093/comjnl/bxp080}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Gkatzikis2013}
+L.~Gkatzikis and I.~Koutsopoulos, ``{Migrate or not? Exploiting dynamic task
+  migration in mobile cloud computing systems},'' \emph{IEEE Wireless
+  Communications}, vol.~20, no.~3, pp. 24--32, 2013.
+
+\bibitem{Yadwadkar2017}
+\BIBentryALTinterwordspacing
+N.~J. Yadwadkar, B.~Hariharan, J.~E. Gonzalez, B.~Smith, and R.~H. Katz,
+  ``{Selecting the best VM across multiple public clouds},'' in
+  \emph{Proceedings of the 2017 Symposium on Cloud Computing - SoCC '17}.\hskip
+  1em plus 0.5em minus 0.4em\relax Santa Clara, CA, USA: ACM Press, 2017, pp.
+  452--465. [Online]. Available:
+  \url{http://dl.acm.org/citation.cfm?doid=3127479.3131614}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Leitner2014}
+\BIBentryALTinterwordspacing
+P.~Leitner and J.~Cito, ``{Patterns in the Chaos - a Study of Performance
+  Variation and Predictability in Public IaaS Clouds},'' \emph{ACM Transactions
+  on Internet Technology}, vol.~16, no.~3, pp. 1--23, apr 2014. [Online].
+  Available: \url{http://dl.acm.org/citation.cfm?doid=2926746.2885497
+  http://arxiv.org/abs/1411.2429}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Davatz2017}
+\BIBentryALTinterwordspacing
+C.~Davatz, C.~Inzinger, J.~Scheuner, and P.~Leitner, ``{An Approach and Case
+  Study of Cloud Instance Type Selection for Multi-Tier Web Applications},'' in
+  \emph{Proceedings - 2017 17th IEEE/ACM International Symposium on Cluster,
+  Cloud and Grid Computing, CCGRID 2017}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, may 2017, pp. 534--543. [Online]. Available:
+  \url{http://ieeexplore.ieee.org/document/7973740/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Laaber2019}
+\BIBentryALTinterwordspacing
+C.~Laaber, J.~Scheuner, and P.~Leitner, ``{Software microbenchmarking in the
+  cloud. How bad is it really?}'' \emph{Empirical Software Engineering}, pp.
+  1--40, apr 2019. [Online]. Available:
+  \url{http://link.springer.com/10.1007/s10664-019-09681-1}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Scheuner2018a}
+J.~Scheuner and P.~Leitner, ``{A Cloud Benchmark Suite Combining Micro and
+  Applications Benchmarks},'' 2018, pp. 161--166.
+
+\bibitem{Nocedal2006}
+\BIBentryALTinterwordspacing
+J.~Nocedal and S.~Wright, \emph{{Numerical Optimization 2nd Ed}}, ser. Springer
+  Series in Operations Research and Financial Engineering.\hskip 1em plus 0.5em
+  minus 0.4em\relax Springer New York, 2006, no. 9781447122234. [Online].
+  Available:
+  \url{http://esc-web.lib.cbs.dk/login?url=http://dx.doi.org/10.1007/978-0-387-40065-5
+  http://link.springer.com/10.1007/978-0-387-40065-5}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Venkataraman2016}
+S.~Venkataraman, Z.~Yang, M.~Franklin, B.~Recht, and I.~Nsdi, ``{Ernest :
+  Efficient Performance Prediction for Large-Scale Advanced Analytics},''
+  \emph{NSDI'16 Proceedings of the 13th USENIX conference on Networked Systems
+  Design and Implementation}, pp. 363--378, 2016.
+
+\bibitem{Snoek2012}
+\BIBentryALTinterwordspacing
+J.~Snoek, H.~Larochelle, and R.~P. Adams, ``{Practical Bayesian Optimization of
+  Machine Learning Algorithms},'' \emph{Proceedings of the 25th International
+  Conference on Neural Information Processing Systems - Volume 2}, pp.
+  2951--2959, 2012. [Online]. Available:
+  \url{https://dl.acm.org/citation.cfm?id=2999464
+  http://arxiv.org/abs/1206.2944}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Agarwal2012}
+\BIBentryALTinterwordspacing
+S.~Agarwal, S.~Kandula, N.~Bruno, M.-C. Wu, I.~Stoica, and J.~Zhou,
+  ``{Re-optimizing data-parallel computing},'' in \emph{NSDI'12 Proceedings of
+  the 9th USENIX Symposium on Networked Systems Design and
+  Implementation}.\hskip 1em plus 0.5em minus 0.4em\relax USENIX, 2012, pp.
+  281--294. [Online]. Available:
+  \url{https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final228.pdf}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

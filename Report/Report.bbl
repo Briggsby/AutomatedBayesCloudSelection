@@ -91,10 +91,6 @@ J.~Snoek, H.~Larochelle, and R.~P. Adams, ``{Practical Bayesian Optimization of
   Conference on Neural Information Processing Systems - Volume 2},
   pp.~2951--2959, 2012.
 
-\bibitem{JunXin2005}
-{Jun Xin}, {Chia-Wen Lin}, and {Ming-Ting Sun}, ``{Digital Video
-  Transcoding},'' {\em Proceedings of the IEEE}, vol.~93, pp.~84--97, jan 2005.
-
 \bibitem{Lottarini2018}
 A.~Lottarini, A.~Ramirez, J.~Coburn, M.~A. Kim, P.~Ranganathan, D.~Stodolsky,
   M.~Wachsler, A.~Lottarini, A.~Ramirez, J.~Coburn, M.~A. Kim, P.~Ranganathan,
@@ -102,13 +98,5 @@ A.~Lottarini, A.~Ramirez, J.~Coburn, M.~A. Kim, P.~Ranganathan, D.~Stodolsky,
   Cloud},'' {\em Proceedings of the Twenty-Third International Conference on
   Architectural Support for Programming Languages and Operating Systems -
   ASPLOS '18}, pp.~797--809, 2018.
-
-\bibitem{R}
-{R Core Team}, {\em R: A Language and Environment for Statistical Computing}.
-\newblock R Foundation for Statistical Computing, Vienna, Austria, 2018.
-
-\bibitem{RStudio}
-{RStudio Team}, {\em RStudio: Integrated Development Environment for R}.
-\newblock RStudio, Inc., Boston, MA, 2016.
 
 \end{thebibliography}

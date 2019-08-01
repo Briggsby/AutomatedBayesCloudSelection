@@ -10,6 +10,7 @@ right  = 2.50cm]{geometry}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{graphicx}
+\usepackage{rotating}
 \graphicspath{ {./images/} }
 \title{\vspace{-2.0cm} A Generalizable Framework for Automated Cloud Configuration Selection \\ \vspace{0.5cm} \large Supervisors: Adam Barker \& Yuhui Lin}
 \date{2019-06-06}
@@ -138,6 +139,8 @@ asdf
 \section{Use-case}
 \subsection{Bayesian Optimization}
 \subsection{Video transcoding}
+Video streaming is one of the most common services for which cloud servers are used, where video files are transcoded to an appropriate file type and streamed to an end-user's device\cite{JunXin2005a, Lottarini2018}.
+The deployment to be used was originally planned to be Cloudsuite3's media streaming benchmark\cite{Palit2016}, however this was found to be extremely variable and dependent entirely on network bandwidth, and so instead the vBench video transcoding benchmark was used\cite{Lottarini2018}. We will use this benchmark to measure a single instance type's relative rate of transcoding a single 5 second 1920x1080 video file of the inside of a house.
 \section{Requirements}
 % Accommodating flexibility with how confident the program must be
 % Reduced predictive power may be acceptable for substantially reduced search cost/time, depending on the user 
@@ -373,29 +376,80 @@ Sysbench is a lightweight commonly used micro-benchmarking tool. In our case, we
 \subsection{Cloudsuite}
 The Cloudsuite3 media-streaming server benchmark Interpreter uses regular expressions to extract from the application logs the maximum number of sessions for which the benchmark succeeded. If the maximum number attempted was too low for the benchmark to ever fail, it instead uses this maximum number attempted. Once again, this extracted value has its sign reversed and is divided by the price of the configuration.
 \chapter{Evaluation}
-% WORK OUT HOW TO STRUCTURE EVALUATION
 \section{Evaluation Approach}
 % Explain how you are evaluating your system, what it shows and why you did it that way
 % Talk about the variation reported by your results, do they match up to previous variability
-\subsection{Framework evaluation}
-% Use objectives 
-\subsection{Bayesian Optimization}
+To demonstrate the effectiveness of our framework and associated implementation, we wanted to show both that it could take any individual sample within the implemented search space without problem, and also that it could carry out an entire optimization process. 
+\paragraph{}
+For the former, to show the implementation's ability to take individual samples, we wanted to show both that the individual components for Selecting, Deploying, and Interpreting logs of a single application deployment job effectively carried out their purpose. To do this, we performed an Exhaustive search of the implemented search space for our vBench benchmark, taking 20 samples of each available configuration.\\
+For the latter, to show the framework and implementation's ability to correctly select the optimal cloud configuration for a given application, we wanted to show that an optimization algorithm or Searcher that utilizes this sampling process for individual jobs functioned. To do this, we attempted to replicate CherryPick's\cite{Alipourfard2017} process and perform our Bayesian Utilization use-case and ensure it was effective at selecting the optimal configuration. The optimal configuration itself could be determined using the results from exhaustive search. We will show how this search varies according to different options used, such as the number of concurrent jobs allowed or the number of providers included in the search.\\
+To show the flexibility of the Framework, we also wanted to test out a Bayesian Optimization search for the Ping server Deployer described in our Implementation chapter. This Deployer is impossible to run concurrently without multiple ping clusters, and so performing Exhaustive search was extremely time-consuming. \\
+Finally, through this process we will generate many results regarding vBench scores across different machines, and how the Bayesian optimization process is affected by factors such as the number of concurrent jobs allowed and the size of the search space. We will present, statistically analyse, and discuss these findings.
+
+Where not otherwise specified, statistical results are quoting the p-values returned from a Tukey's Honest Significant differences test to correct for multiple comparisons. Analysis was performed in RStudio\cite{RCoreTeam2018,RStudioTeam2016}, and full logs as well and scripts used for analysis are available on the project's Github repository. Generally, P values were reported while effect sizes were not, as the effect sizes are extremely dependent on the test run and performance measure used and likely to be of no concern, if not outright misleading, when compared with other results.
+
+\subsection{vBench}
+Our objective function, a deployment of the vBench benchmark, measured an instance type's relative rate of transcoding of a single 5 second 1920x1080 video file, returning a score of 0 if the quality was below a given threshold, divided by the hourly price of that instance. This is the score given using the 'vod' benchmark type in vBench.\\
+Effectively, we maximised the rate of transcoding a unit of video length at a sufficient quality per hourly cost. We had hoped to show that incorporating the soft constraint on video quality within the value returned by the Interpreter, rather than within the Acquisition function as was done in Cherrypick, did not hinder the optimization process, however no instance type tested failed to achieve the threshold video quality in any case.
+
+\subsection{Search Space}
+For choosing the boundaries of the search space, we decided to reduce costs by using only machines ranging from 2 vCPUs to 8 vCPUs. This was also convenient as to use more powerful machines would have required requesting additional raised quotas from the providers used, and so would be less easily replicable by others wishing to repeat our evaluation. As we wanted to show that the implementation worked with multiple providers, and were were ensuring our input variables matched exactly to an available instance type, we could not rely on Google cloud platform's custom machine types and had to find some way to categorize possible variables. Rather than including memory as a variable, CPU instead was coded as a categorical variable (2, 4, or 8), along with machine category (General, Memory, CPU), each with a different amount of memory. Table \ref{tab:instance-types} show which machine types corresponded to each option. 
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{ |c||c|c|  }
+ \hline
+ & \multicolumn{2}{|c|}{Provider} \\
+ \hline
+ Machine Category & Amazon EC2 & Google Compute Engine \\
+ \hline
+ General& n1-standard & m5\\
+ Memory & n1-highmem  & r5\\
+ CPU    & n1-highcpu  & c5\\
+ \hline
+\end{tabular}
+\caption{Machine types corresponding to different instance categories for the two providers}
+\label{tab:instance-types}
+\end{table}
+
+For more resource-intensive situations, the search space could follow this same pattern, with the CPU variable extended, possibly instead as an integer between 1 and 6 which 2 is raised to the power of to determine vCPU number, as this covers many of the available CPU options.
+
+The 18 machine types decided upon (3 vCPU numbers for 3 machine categories for the 2 providers) were stored in a single CSV dataset for use with the instance Selector. A vBench Deployer was used which utilized Terraform to provision a single instance of the given machine type, on which the remote docker API was used to deploy and collect logs from an docker image containing vBench. An Interpreter then isolated the vBench score from these logs, and divided it by the hourly cost of that machine type to return the final value.
+
+\section{Framework Evaluation}
+Looking back at our first chapter, we are confident the evaluation below shows that we have succeeded at all aims and objectives previously presented. The Bayesian Optimization results show that the framework was capable of fully automating the process of selecting an optimal cloud configuration for a given application. We have shown that this is not application or provider specific, performing the process across multiple providers (Amazon EC2, Google Compute Engine) and utilizating multiple cloud services (Kubernetes clusters, single VM instances), to test it across two very different applications (Web serving application, video transcoding benchmark). This process accounted for the recorded variation within instance types for application performance, and succeeded regardless. 
+Using our implementation, we successfully sampled application performance and cost-effectiveness across every available configuration within our search space, performing an exhaustive search. Using this complete analysis of the potential configuration options and their relative performance, we were able to measure the success of our Bayesian optimization implementation with various search options.
+
 \section{Results Analysis}
 \subsection{Exhaustive search}
 \subsubsection{Results}
+\begin{sidewaysfigure}
+  \centering
+   \includegraphics[scale=0.6]{exh_search}
+   \caption{Boxplots showing the distribution of vBench scores and objective measure values (both plotted on y-axis, different scales), varied across different machines, differentiated by cloud provider (colour), instance category (columns), and number of vCPUs (x axis). vBench benchmark was run using the 'vod' benchmark type and the provided 5 second 'house\_ 1920x1080\_ 30.mkv' video file reference score.}
+  \label{fig:exh-search}
+\end{sidewaysfigure}
+\begin{figure}[!ht]
+  \centering
+   \includegraphics[scale=0.7]{vbench_dists}
+   \caption{Distribution of vBench scores in frequency polygons. Higher peaks represent more common scores. The columns separate the instance category, rows separate the cloud providers, while color distinguishes the number of vCPUs available in that instance. vBench benchmark was run using the 'vod' benchmark type and the provided 5 second 'house\_ 1920x1080\_ 30.mkv' video file reference score.}
+  \label{fig:vbench-dists}
+\end{figure}
+
+The results of the exhaustive search are shown in figures \ref{fig:exh-search} while the distribution of scores for each instance type are shown in frequency polygon form in figure \ref{fig:vbench-dists}.
+
+Relative standard deviation for all scores measured were extremely low, the highest being $\pm 0.0323\%$ for the n1-standard-8 instance type. No relationship with this variance was found for any of the three search variables.
+
+The raw scores (time taken to transcode relative to the reference) show clear overlap between many possible configurations. While in general they show a significant difference between 2 vCPUs and either 4 ($P < .001$) or 8 ($P < .001$) vCPUs, and between 4 and 8 vCPUs ($P < .001$), where the score increases with vCPU number, when accounting for differences between provider and machine category. However, the effect size is dramatically diminished between the 4 to 8 categories ($\Delta \bar{x} = 0.0116$) than between the 2 to 4 categories ($\Delta \bar{x} = 0.0526$).
+
+
 \subsubsection{Discussion}
 % Extremely little variation
 % Because of this, no log transformation necessary for Bayesian Optimization
+% Very notable diminishing returns above 4 vCPUs between 2 and 4 vCPUs, an approximately 5-fold reduction in score gain. Price increase, however, is XX. Bigger was not better for between 4 and 8, suggesting either diminishing returns of a limit of the benchmark to utilize more vCPU cores.
 \subsection{Bayesian Optimization}
 \subsubsection{Results}
-\paragraph{Cross-provider}
-\paragraph{Concurrent Jobs}
 \subsubsection{Discussion}
-\paragraph{Cross-provider}
-\paragraph{Concurrent Jobs}
-%\section{Discussion}
-%\subsection{Functionality}[51], 
-%\subsection{Testing}
 \chapter{Related and Future work}
 % GPU testing
 \chapter{Conclusion}

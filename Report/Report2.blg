@@ -1,6 +1,48 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: Report2.aux
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Report2.aux
 The style file: ieeetr.bst
 Database file #1: Dissertation.bib
-Warning--I didn't find a database entry for "Klein2014"
 Warning--empty booktitle in Scheuner2018a
-(There were 2 warnings)
+You've used 26 entries,
+            1876 wiz_defined-function locations,
+            663 strings with 9472 characters,
+and the built_in function-call counts, 7780 in all, are:
+= -- 745
+> -- 357
+< -- 0
++ -- 129
+- -- 103
+* -- 579
+:= -- 1107
+add.period$ -- 27
+call.type$ -- 26
+change.case$ -- 27
+chr.to.int$ -- 0
+cite$ -- 27
+duplicate$ -- 380
+empty$ -- 710
+format.name$ -- 103
+if$ -- 1866
+int.to.chr$ -- 0
+int.to.str$ -- 26
+missing$ -- 23
+newline$ -- 82
+num.names$ -- 26
+pop$ -- 99
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 278
+stack$ -- 0
+substring$ -- 541
+swap$ -- 157
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 84
+width$ -- 28
+write$ -- 248
+(There was 1 warning)

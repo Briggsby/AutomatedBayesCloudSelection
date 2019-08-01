@@ -2,10 +2,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces A flowchart showing the processes involved in and information flow through the designed system.}}{12}{figure.4.1}% 
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A flowchart showing the processes involved in and information flow through the designed system.}}{12}{figure.4.1}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces An example of BO's working process. Taken from Figure 5 in \cite {Alipourfard2017}}}{19}{figure.5.1}% 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces An example of BO's working process. Taken from Figure 5 in \cite {Alipourfard2017}}}{19}{figure.5.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Boxplots showing the distribution of vBench scores and objective measure values (both plotted on y-axis, different scales), varied across different machines, differentiated by cloud provider (colour), instance category (columns), and number of vCPUs (x axis). vBench benchmark was run using the 'vod' benchmark type and the provided 5 second 'house\_ 1920x1080\_ 30.mkv' video file reference score.}}{34}{figure.7.1}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Distribution of vBench scores in frequency polygons. Higher peaks represent more common scores. The columns separate the instance category, rows separate the cloud providers, while color distinguishes the number of vCPUs available in that instance. vBench benchmark was run using the 'vod' benchmark type and the provided 5 second 'house\_ 1920x1080\_ 30.mkv' video file reference score.}}{35}{figure.7.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

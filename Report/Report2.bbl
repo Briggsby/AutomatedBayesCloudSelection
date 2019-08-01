@@ -89,6 +89,23 @@ C.~Laaber, J.~Scheuner, and P.~Leitner, ``{Software microbenchmarking in the
 J.~Scheuner and P.~Leitner, ``{A Cloud Benchmark Suite Combining Micro and
   Applications Benchmarks},'' pp.~161--166, 2018.
 
+\bibitem{JunXin2005a}
+{Jun Xin}, {Chia-Wen Lin}, and {Ming-Ting Sun}, ``{Digital Video
+  Transcoding},'' {\em Proceedings of the IEEE}, vol.~93, pp.~84--97, jan 2005.
+
+\bibitem{Lottarini2018}
+A.~Lottarini, A.~Ramirez, J.~Coburn, M.~A. Kim, P.~Ranganathan, D.~Stodolsky,
+  M.~Wachsler, A.~Lottarini, A.~Ramirez, J.~Coburn, M.~A. Kim, P.~Ranganathan,
+  D.~Stodolsky, and M.~Wach, ``{vbench : Benchmarking Video Transcoding in the
+  Cloud},'' {\em Proceedings of the Twenty-Third International Conference on
+  Architectural Support for Programming Languages and Operating Systems -
+  ASPLOS '18}, pp.~797--809, 2018.
+
+\bibitem{Palit2016}
+T.~Palit, Y.~Shen, and M.~Ferdman, ``{Demystifying cloud benchmarking},'' in
+  {\em ISPASS 2016 - International Symposium on Performance Analysis of Systems
+  and Software}, pp.~122--132, IEEE, apr 2016.
+
 \bibitem{Nocedal2006}
 J.~Nocedal and S.~Wright, {\em {Numerical Optimization 2nd Ed}}.
 \newblock No.~9781447122234 in Springer Series in Operations Research and
@@ -106,9 +123,15 @@ J.~Snoek, H.~Larochelle, and R.~P. Adams, ``{Practical Bayesian Optimization of
   Conference on Neural Information Processing Systems - Volume 2},
   pp.~2951--2959, 2012.
 
-\bibitem{Palit2016}
-T.~Palit, Y.~Shen, and M.~Ferdman, ``{Demystifying cloud benchmarking},'' in
-  {\em ISPASS 2016 - International Symposium on Performance Analysis of Systems
-  and Software}, pp.~122--132, IEEE, apr 2016.
+\bibitem{Klein2014}
+B.~Klein and B.~Klein, ``{NumPy},'' in {\em Einf{\"{u}}hrung in Python 3},
+  pp.~377--398, Carl Hanser Verlag GmbH {\&} Co. KG, oct 2014.
+
+\bibitem{RCoreTeam2018}
+{R Core Team}, ``{R: A Language and Environment for Statistical Computing},''
+  2018.
+
+\bibitem{RStudioTeam2016}
+{RStudio Team}, ``{RStudio: Integrated Development Environment for R},'' 2016.
 
 \end{thebibliography}

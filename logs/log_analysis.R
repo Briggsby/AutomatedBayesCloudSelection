@@ -16,6 +16,7 @@ levels(logs$provider) <- c("Amazon EC2", "Google Compute Engine")
 # logs$score <- logs$throughput
 
 ns <- c()
+norms <- c()
 ## Score
 score_means = c()
 score_sds = c()
@@ -37,7 +38,9 @@ for (i in instance_types) {
   score_sds <- c(score_sds, s_sd)
   score_relsds <- c(score_relsds, s_sd/s_mean)
   qqnorm(logs[logs$instance==i,]$score, main=i)
-  # print(shapiro.test(logs[logs$instance==i,]$score))
+  norm <- shapiro.test(logs[logs$instance==i,]$score)
+  print(norm)
+  norms <- c(norms, norm$p.value)
   v_mean <- mean(logs[logs$instance==i,]$value)
   v_sd <- sd(logs[logs$instance==i,]$value)
   print(paste("Mean:", v_mean))
@@ -47,7 +50,8 @@ for (i in instance_types) {
   value_relsds <- c(value_relsds, v_sd/v_mean)
 }
 
-
+names(ns) <- instance_types
+names(norms) <- instance_types
 names(score_means) <- instance_types
 names(score_sds) <- instance_types
 names(score_relsds) <- instance_types 
@@ -55,6 +59,18 @@ names(score_relsds) <- instance_types
 names(value_means) <- instance_types
 names(value_sds) <- instance_types
 names(value_relsds) <- instance_types 
+
+library(dplyr)
+logs.summ <- logs %>% group_by(instance) %>%
+  summarise(cpu=names(table(cpu)[which.max(table(cpu))]),
+            type=names(table(type)[which.max(table(type))]),
+            provider=names(table(provider)[which.max(table(provider))]),
+            n = n(),
+            mean_score =mean(score),
+            sd_score = sd(score),
+            relsd_score = sd_score/mean_score,
+            mean_val = mean(value))
+            
 
 mod <- lm(score ~ instance, data=logs)
 aov <- aov(mod)
@@ -76,7 +92,7 @@ ggplot(logs, aes(score)) +
   geom_histogram() +
   facet_wrap(~instance)
 
-ggplot(logs, aes(as.factor(cpu), score, color=provider)) +
+v.scores <- ggplot(logs, aes(as.factor(cpu), score, color=provider)) +
   geom_boxplot() + 
   xlab("vCPU #") + ylab("vBench Score") +
   labs(title="vBench scores for different cloud configurations", color="Provider") +
@@ -106,12 +122,19 @@ ggplot(logs, aes(score, fill=as.factor(cpu))) +
 ggplot(logs, aes(x=cpu, y=score, shape=provider, color=type)) + geom_point(size=3)
 
 
-ggplot(logs, aes(as.factor(cpu), value, color=provider)) +
+v.vals <- ggplot(logs, aes(as.factor(cpu), value, color=provider)) +
   geom_boxplot() + 
   xlab("vCPU #") + ylab("Score/Price") +
   labs(title="Objective function result (vBench score / price per hour) \nfor different cloud configurations",
        color="Provider") +
   facet_grid(cols=vars(type), scales="free_y")
+
+library(ggpubr)
+ggarrange(v.scores + rremove("legend"),
+          v.vals + rremove("legend"),
+          cowplot::get_legend(v.vals),
+          labels = c("A", "B"),
+          nrow=1, widths=c(3, 3, 1))
 
 ggplot(logs, aes(as.factor(cpu), value)) +
   geom_boxplot() + 

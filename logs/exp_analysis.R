@@ -103,11 +103,17 @@ ggarrange(results.plot + rremove("legend"),
           cowplot::get_legend(results.plot),
           labels=c('A', 'B', 'C'))
 
+
+val.mod <- lm(Best_Result_Relative ~ test_type, exps)
+TukeyHSD(aov(val.mod))
+time.mod <- lm(Time ~ test_type, exps)
+TukeyHSD(aov(time.mod))
+cost.mod <- lm(cost_scale ~ test_type, exps)
+TukeyHSD(aov(cost.mod))
+
+
 vbench <- exps[exps$Deployer=="vbench",]
 curl_test <- exps[exps$Deployer=="ping_testserver",]
-
-
-time.mod <- 
 
 
 ggplot(exps.summ, aes(test_type, mean_rel_result)) +

@@ -65,6 +65,7 @@ logs.summ <- logs %>% group_by(instance) %>%
   summarise(cpu=names(table(cpu)[which.max(table(cpu))]),
             type=names(table(type)[which.max(table(type))]),
             provider=names(table(provider)[which.max(table(provider))]),
+            price = names(table(price)[which.max(table(price))]),
             n = n(),
             mean_score =mean(score),
             sd_score = sd(score),
@@ -87,6 +88,7 @@ TukeyHSD(aov.value)
 mod.value2 <- lm(value ~ as.factor(cpu)*provider*type, logs)
 aov.value2 <- aov(mod.value2)
 TukeyHSD(aov.value2)
+
 
 ggplot(logs, aes(score)) +
   geom_histogram() +

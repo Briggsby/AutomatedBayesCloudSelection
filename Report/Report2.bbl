@@ -53,6 +53,12 @@ X.~Pu, L.~Liu, Y.~Mei, S.~Sivathanu, Y.~Koh, and C.~Pu, ``{Understanding
   environments},'' in {\em Proceedings - 2010 IEEE 3rd International Conference
   on Cloud Computing, CLOUD 2010}, pp.~51--58, 2010.
 
+\bibitem{Reiss2012}
+C.~Reiss, A.~Tumanov, G.~R. Ganger, R.~H. Katz, and M.~A. Kozuch,
+  ``{Heterogeneity and dynamicity of clouds at scale},'' in {\em Proceedings of
+  the Third ACM Symposium on Cloud Computing - SoCC '12}, (New York, New York,
+  USA), pp.~1--13, ACM Press, 2012.
+
 \bibitem{Berl2010}
 A.~Berl, E.~Gelenbe, M.~{Di Girolamo}, G.~Giuliani, H.~{De Meer}, M.~Q. Dang,
   and K.~Pentikousis, ``{Energy-Efficient Cloud Computing},'' {\em The Computer
@@ -85,9 +91,71 @@ C.~Laaber, J.~Scheuner, and P.~Leitner, ``{Software microbenchmarking in the
   cloud. How bad is it really?},'' {\em Empirical Software Engineering},
   pp.~1--40, apr 2019.
 
+\bibitem{Scheuner2018}
+J.~Scheuner and P.~Leitner, ``{Estimating Cloud Application Performance Based
+  on Micro-Benchmark Profiling},'' in {\em IEEE International Conference on
+  Cloud Computing, CLOUD}, vol.~2018-July, pp.~90--97, IEEE, jul 2018.
+
 \bibitem{Scheuner2018a}
 J.~Scheuner and P.~Leitner, ``{A Cloud Benchmark Suite Combining Micro and
   Applications Benchmarks},'' pp.~161--166, 2018.
+
+\bibitem{Farley2012}
+B.~Farley, A.~Juels, V.~Varadarajan, T.~Ristenpart, K.~D. Bowers, and M.~M.
+  Swift, ``{More for your money},'' in {\em Proceedings of the Third ACM
+  Symposium on Cloud Computing - SoCC '12}, (New York, New York, USA),
+  pp.~1--14, ACM Press, 2012.
+
+\bibitem{Venkataraman2016}
+S.~Venkataraman, Z.~Yang, M.~Franklin, B.~Recht, and I.~Nsdi, ``{Ernest :
+  Efficient Performance Prediction for Large-Scale Advanced Analytics},'' {\em
+  NSDI'16 Proceedings of the 13th USENIX conference on Networked Systems Design
+  and Implementation}, pp.~363--378, 2016.
+
+\bibitem{Agarwal2012}
+S.~Agarwal, S.~Kandula, N.~Bruno, M.-C. Wu, I.~Stoica, and J.~Zhou,
+  ``{Re-optimizing data-parallel computing},'' in {\em NSDI'12 Proceedings of
+  the 9th USENIX Symposium on Networked Systems Design and Implementation},
+  pp.~281--294, USENIX, 2012.
+
+\bibitem{Ferguson2012b}
+A.~D. Ferguson, P.~Bodik, S.~Kandula, E.~Boutin, and R.~Fonseca, ``{Jockey:
+  Guaranteed Job Latency in Data Parallel Clusters},'' in {\em EuroSys '12
+  (Proceedings of the 7th ACM European Conference on Computer Systems)},
+  pp.~99--112, 2012.
+
+\bibitem{Bottou2008}
+L.~Bottou and B.~Olivier, ``{The Tradeoffs of Large Scale Learning},'' in {\em
+  Advances in Neural Information Processing Systems}, pp.~161--168, NIPS
+  Foundation, 2008.
+
+\bibitem{Xi2004}
+B.~Xi, Z.~Liu, M.~Raghavachari, C.~H. Xia, and L.~Zhang, ``{A smart
+  hill-climbing algorithm for application server configuration},'' in {\em
+  Proceedings of the 13th conference on World Wide Web - WWW '04}, (New York,
+  New York, USA), pp.~287--296, ACM Press, 2004.
+
+\bibitem{McKay2000}
+M.~D. McKay, R.~J. Beckman, and W.~J. Conover, ``{A comparison of three methods
+  for selecting values of input variables in the analysis of output from a
+  computer code},'' {\em Technometrics}, vol.~42, pp.~55--61, may 2000.
+
+\bibitem{Herodotou2011}
+H.~Herodotou, F.~Dong, and S.~Babu, ``{No one (cluster) size fits all},'' in
+  {\em Proceedings of the 2nd ACM Symposium on Cloud Computing - SOCC '11},
+  (New York, New York, USA), pp.~1--14, ACM Press, 2011.
+
+\bibitem{Samreen}
+F.~Samreen, Y.~Elkhatib, M.~Rowe, and G.~S. Blair, ``{Daleel: Simplifying cloud
+  instance selection using machine learning},'' in {\em Proceedings of the NOMS
+  2016 - 2016 IEEE/IFIP Network Operations and Management Symposium},
+  pp.~557--563, 2016.
+
+\bibitem{Bodik2009}
+P.~Bodik, R.~Griffith, C.~Sutton, A.~Fox, M.~I. Jordan, and D.~A. Patterson,
+  ``{Automatic exploration of datacenter performance regimes},'' in {\em
+  Proceedings of the 1st workshop on Automated control for datacenters and
+  clouds - ACDC '09}, (New York, New York, USA), p.~1, ACM Press, 2009.
 
 \bibitem{JunXin2005a}
 {Jun Xin}, {Chia-Wen Lin}, and {Ming-Ting Sun}, ``{Digital Video
@@ -110,12 +178,6 @@ T.~Palit, Y.~Shen, and M.~Ferdman, ``{Demystifying cloud benchmarking},'' in
 J.~Nocedal and S.~Wright, {\em {Numerical Optimization 2nd Ed}}.
 \newblock No.~9781447122234 in Springer Series in Operations Research and
   Financial Engineering, Springer New York, 2006.
-
-\bibitem{Venkataraman2016}
-S.~Venkataraman, Z.~Yang, M.~Franklin, B.~Recht, and I.~Nsdi, ``{Ernest :
-  Efficient Performance Prediction for Large-Scale Advanced Analytics},'' {\em
-  NSDI'16 Proceedings of the 13th USENIX conference on Networked Systems Design
-  and Implementation}, pp.~363--378, 2016.
 
 \bibitem{Snoek2012}
 J.~Snoek, H.~Larochelle, and R.~P. Adams, ``{Practical Bayesian Optimization of

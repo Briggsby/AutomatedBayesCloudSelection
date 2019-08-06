@@ -4,6 +4,7 @@ top    = 2.75cm,
 bottom = 2.50cm,
 left   = 3.00cm,
 right  = 2.50cm]{geometry}
+\usepackage[hyphens]{url}
 \usepackage{hyperref}
 \usepackage{cite}
 \usepackage{setspace}
@@ -50,7 +51,7 @@ The appeal is obvious, with cloud services allowing organizations and developers
 A wide range of applications are now deployed on cloud machines or make use of objects stored on them, from large-scale data analytics jobs mentioned to media-streaming servers such as Netflix or Twitch\cite{Bilal2017}. The resource dependencies of these applications similarly vary widely, from the CPU dependent data analysis tasks to network-heavy streaming services. Virtual machines offered by different cloud providers vary in terms of memory amounts of number and speed of virtual CPUs (vCPUs), and each application's performance will have different relationships with these options. While medium-length video transcoding operations will benefit primarily from faster processing speeds, data analysis tasks involving large datasets may find a more cost-effective option in prioritising VMs with a local solid-state drive (SSD) offering high I/O performance. Non-critical batch workloads can often benefit from using 'pre-emptible' or 'spot' instances, which offer large discounts on the condition that your machine can be terminated with little notice to free up resources. 
 
 \subsection{Benefits}
-It is desirable for both users and providers to maximise the optimize purchased cloud configurations to best serve the needs of their applications. Users or developers who fail to do this risk paying far more than they need to for the same performance. A given data analysis task can cost around 3.4 times as much on an average configuration compared to the optimal available option\cite{Alipourfard2017}. Even serverless frameworks simply shift the burden of optimization from the users to the cloud providers. For cloud providers too, efficient deployment across available Virtual Machines frees up extra resources available for other purposes or other customers. Alternatively, identifying and avoiding the co-location of CPU intensive workloads can reduce resource contention amongst users, leading to improved performance \cite{Pu2010}. In addition, energy-related costs make up to 42\% of managing a data-centre, and the ability to idle inactive resources would lead to a significant reduction both in energy cost and environmental impacts. \cite{Berl2010, Gkatzikis2013}. 
+It is desirable for both users and providers to maximise the optimize purchased cloud configurations to best serve the needs of their applications. Users or developers who fail to do this risk paying far more than they need to for the same performance. A given data analysis task can cost around 3.4 times as much on an average configuration compared to the optimal available option\cite{Alipourfard2017}. Even serverless frameworks simply shift the burden of optimization from the users to the cloud providers. For cloud providers too, efficient deployment across available Virtual Machines frees up extra resources available for other purposes or other customers. Alternatively, identifying and avoiding the co-location of CPU intensive workloads can reduce resource contention amongst users, leading to improved performance \cite{Pu2010}. Cloud datacenters exhibit very low resource utilization\cite{Reiss2012}. In addition, energy-related costs make up to 42\% of managing a data-centre, and the ability to idle inactive resources would lead to a significant reduction both in energy cost and environmental impacts. \cite{Berl2010, Gkatzikis2013}. 
 % It'd be nice to show some hard numbers to show the benefit of optimizations, like the market share or something, but obvoiusly that's pretty hard
 % Cloudability?
 
@@ -70,7 +71,7 @@ When searching across multiple instance types, the hardware and software heterog
 \subsubsection{Variation}
 Even when run on identical cloud configurations from the same provider, the same application or benchmark can have significantly different performance, more so than is observed when run in on-premise environments\cite{Leitner2014}. This is in part due to the hardware heterogeneity in underlying machines described above, but can also occur due to multitenancy. Multiple customers may share computational resources by running VMs on the same physical machine. This can lead to a slowdown in one instance due to the behaviour of another colocated tenant. This problem is referred to as the 'noisy neighbour' problem\cite{Gkatzikis2013}. Disk I/O operations or network traffic between instances and storage disks could similarly be affected by the machine's relative locations within or between datacentres. 
 \paragraph{}
-All the above problems causing variation within instance types are generally out of the control of the customer. Cloud providers may be develop methods of minimising the problems, shown by the reduction in the variation of intra-cloud network performance\cite{Scheuner2018a} and CPU performance between identical instance types \cite{Davatz2017, Laaber2019}.  Nonetheless, in cloud configurations where this variation is still significant, it add a significant element of randomness to the performance of various applications on cloud services. This randomness must be accounted for by any method used to optimize cloud configurations, and rules out assumptions of deterministic application performance. 
+All the above problems causing variation within instance types are generally out of the control of the customer. Cloud providers may be developing methods of minimising the problems, shown by the recent reduction in the variation of intra-cloud network performance\cite{Scheuner2018, Scheuner2018a} and CPU performance between identical instance types \cite{Davatz2017, Laaber2019, Scheuner2018}.  Nonetheless, in cloud configurations where this variation is still significant, it add a significant element of randomness to the performance of various applications on cloud services. This randomness must be accounted for by any method used to optimize cloud configurations, and rules out assumptions of deterministic application performance. 
 \subsubsection{Application range}
 As mentioned earlier, numerous types of applications are deployed on the cloud, from long-running web-servers and media-streaming services to one-time data analytics jobs. The performance and cost-effectiveness of these applications can have very different non-linear relationships with cloud configurations, making them difficult to model analytically, even if the contents of the application are known exactly. In some cases, such as in serverless container services such as Google Cloud Run\footnote{\url{https://cloud.google.com/run/}} the application is not known at all, and must be treated as a black box. \\
 To ensure an optimization method is as generalizable as possible, it must be able to utilize user's specifications and the outputs of an application, but must treat the application itself as a black box, and not make hard assumptions regarding any of its characteristics or relationships with configuration options.
@@ -101,53 +102,115 @@ In addition, we wish to deliver a fully functional implementation for an indicat
 \item Interpret logs based on the performance and cost of a given application on a given cloud configuration.
 \end{itemize}
 \section{Contributions}
-% Do after evaluation
+For this project we designed a generalizable automated cloud configuration selection framework, provided an implementation of it with a Bayesian optimization use-case, and analysed the results to look at trends in cloud performance, its variability, and how job concurrency or number of cloud providers can affect a Bayesian Optimization search.
+
+Some highlighted contributions are:
+\begin{enumerate}
+\item We present a framework for fully automated selection of the optimal cloud configuration for any search space and any type of application.
+\item We present and have made publicly available an implementation of a Bayesian Optimization search for the most cost-effective video transcoding machine available on Amazon EC2 or Google Compute Engine.
+\item The above implementation consists of modular components that can easily be switched out depending on use-case, and we show how this can be done.
+\item We show that variability in performance between instances of the same type has dramatically decreased in recent years.
+\item We show that, at the time of writing, Amazon EC2 instances consistently outperform Google Compute Engine instances at video transcoding tasks.
+\item We show that Bayesian Optimization does not reduce in effectiveness when the search space is expanded to include multiple providers, at least when there is a clear performance difference between them.
+\item We show that allowing additional concurrent sampling jobs for a Bayesian optimization search was beneficial at first, but allowing too many (3 in our case) reduced search accuracy.
+\end{enumerate}
+ 
 \section{Dissertation Outline}
-% Structure
+This report consists of 9 chapters, which together identify and explain the problem of cloud configuration selection, eventually describing the development and evaluation of a tool to enable generalized automated selection of the optimal cloud configuration for an application.
+
+\paragraph{Chapter 1 (Introduction):} Describes the background of selecting optimal cloud configurations, and identifies the importance and challenges with an automated and generalizable tool to do so. Also presents our overall contributions and this outline of our submitted report.
+\paragraph{Chapter 2 (Literature Survey):} Surveys the literature surrounded cloud configuration selection. Specifically goes into detail on the services available and the various Infrastructure-as-Code (IaC) tools that can be used to deploy onto them. The chapter then discusses previous studies examining cloud performance variability, automated configuration selection, and benchmarks used to evaluate performance. 
+\paragraph{Chapter 3 (Requirement Specifications):} We present an example use-case of an application that needs an optimal cloud configuration found within a specified search space, and use this to define the requirements our framework and implementation must achieve to be considered successful.
+\paragraph{Chapter 4 (Generic Automated Cloud Configuration Optimization Framework):} We present the full design of our generalizable framework, including motivations.
+\paragraph{Chapter 5 (Bayesian VM Optimization System):} We present the additional design considerations for our specific implementation of the framework described in Chapter 4, guided by our example use-case described in Chapter 3.
+\paragraph{Chapter 6 (Implementation)}: Implementation notes for our developed implementation of our example use-case, explaining use of associated tools or libraries and describing modifications or changes made to them.
+\paragraph{Chapter 7 (Evaluation)}: We evaluate our framework and implementation against the project goals, as well as analyse results from our experiments to look at how searches and performance are affected by search settings or cloud configuration options.
+\paragraph{Chapter 9 (Conclusion):} We conclude by critically discussing our project as a whole, and comparing it against other related work. We examine the impact of our contributions and discuss directions for further research.
+
 \chapter{Literature Survey}
 \section{Cloud services}
-% Evidence of the cloud market growing
-% Examples of its use, and how optimization is used
-% Types of cloud offers that now exist (Kubernetes clusters, serverless, etc.)
-\section{Cloud variability}
-% How variability of the cloud has been reported
-\section{Optimization methods}
-% Previous optimization methods that have been attempted
-% Modelling vs Benchmarking vs Searching
-%http://www.brendangregg.com/blog/2017-12-31/reinvent-netflix-ec2-tuning.html
-\subsection{CherryPick}
-\subsection{PARIS}
-\subsection{Ernest}
-\subsection{Daleel}
-\subsection{Okta}
-\subsection{OTHERS, LOOK UP}
-asdf
-\subsection{Exhaustive search}
+There is now a huge array of cloud services offered, specialized for different forms of applications or use-cases. Going into detail on every service offered would be a vast, if impossible, task, so here we focus on 'compute' services. These provide Infrastructure as a service (IaaS) in the form of Virtual Machines to run applications such as data analysis jobs or web-severs. AWS alone offers many compute services, ranging from Amazon EC2 where the user can specify individual VMs in the form of 'instances' of various types each with their own set computational resources, to AWS Fargate\footnote{\url{https://aws.amazon.com/fargate/}}, a 'serverless' option where users provide containerized applications in the to run and the provider manages any hardware management, load balancing, and administration. Most of these services have analogues on other providers, such as Google Compute Engine for Amazon EC2 or Google Cloud Run\footnote{\url{https://cloud.google.com/run/}, beta at the time of writing} for AWS Fargate. Once a service is selected, along with the chosen cloud provider, there is usually a number of configuration options available for users. For example, even for AWS Fargate users must specify the CPU and Memory requirements of their application. For Amazon EC2, as described in the previous section, there are over 200 instance type options to choose from, depending on region, each with their own computational resource specifications.
 
-% Not exactly an actual type, but the obvious alternative.
-\section{Benchmarks}
+This creates a huge search space for any optimization task, and the differences in terminology or API specifications between providers complicate automated tasks. To help manage this, various tools described as 'Infrastructure-as-code' (IAC) have been developed which provides higher-level abstractions for many of the specifications that must be provided when utilizing IaaS-based cloud services. 
+
+As mentioned in the previous chapter, another hurdle is the variability in performance for applications hosted on cloud services. Even performance for the same application in the same VM can vary more than is observed for on-premise environments \cite{Leitner2014}. Here, we look at the literature examining the variation and see how it has decreased over time, and determine if it is still an important factor in a search for an optimal configuration.
+
+\subsection{Cloud variability}
+An extensive review of cloud variability showed that in 2014, the performance variability was quite significant and relative standard deviations for performance metrics for were generally above 5\%, depending on providers and instance types\cite{Leitner2014}. For I/O-based tasks on some Microsoft Azure\footnote{\url{https://azure.microsoft.com/}} or AWS VMs especially, huge variation in tasks meant that performance on one VM could be almost double that of another VM of the same instance type. For CPU-based tasks, the variability could range from almost negligible to over 20\%, though usually dropped to extremely small values when differences in underlying hardware were taken into account. Network performance too varied considerably, enough to, along with the other hardware-dependent variations, encourage 'placement gaming' strategies to actively exploit performance heterogeneity to lower costs\cite{Farley2012}. Some time has passed since these studies however, which looked at, for example, 1st to 3rd generation AWS instance types. The 3rd generation AWS instance types looked at in \cite{Leitner2014} had considerably less variable performance than those from the 1st generation.
+
+In 2018, a study into a cloud benchmarking suite found that intra-cloud network performance had achieved 'almost perfect stability'\cite{Scheuner2018, Scheuner2018a}. CPU performance, too, had become predictable with less than 0.3\% relative standard deviation\cite{Scheuner2018}. I/O variability could also be drastically reduced by switching from HDD to SSD disks. Several benchmarks already reported much more stable performance measures using newer cloud instances, often below 5\%\cite{Davatz2017, Laaber2019} These reductions in variability have reduced the incentive for placement gaming approaches, and may serve to reduce or even eliminate the impact sampling noise has on performance measurements of cloud configurations.
+
+\section{Previous Work}
+Many previous studies have addressed the issue of cloud configuration optimization, and many have presented possible solutions. However, these solutions are usually limited in scope, such as to single providers or specific application types. In addition, they rarely, if ever, provide an available associated implementation capable of carrying out the processes they design and evaluate. In this section, we look in detail at previous notable solutions to the problem, and .
+
+The optimization methods previous performed generally utilize one or more of the following important methods: modelling, searching, and benchmarking. 
+
+Modelling methods try to analytically estimate relationships an application type will have with the computational resources provided by different instance types. If not performed together with a search, this requires at least a cursory understanding of the application itself, such as its bounding resource or disk capacity requirements, but can provide an estimate extremely rapidly. Modelling methods can range from simple decision-trees or flowcharts, to be followed by an automated system or a human, to complex predictions of large data analysis jobs based on the same job performed on smaller datasets. This latter method is performed by Ernest\cite{Venkataraman2016}.
+
+Searching methods take multiple samples from the available range of cloud configurations and use these to either approximate an effective option by returning the best-tested configuration, or use searching to generate a model for how that application's performance will change based on configuration options. Searches can be as simple as an exhaustive search, a brute-force method by which samples every available cloud configuration, possible multiple times, to return with utter confidence the optimal cloud configuration. Alternatively, it can be used together with modelling or benchmarking to predict application performance on some configurations indirectly, reducing the number of samples necessary.
+In a non-recurring batch job, searching alone is useless, as it would require the job to be run multiple times just to find out which machine would have done it best. However, for batch jobs the cost of the initial performance testing can be offset by later repeats. In 2012, it was reported that up to 40\% of Microsoft's analytics jobs are recurring \cite{Agarwal2012,Ferguson2012b}. Searching has the benefit of not requiring any prior understanding of the application itself, an essential quality in our aim of generalizability, but the drawback of requiring costly sampling from the cloud configuration. Most of the previous solutions examined in this section use some searching.
+
+Finally, methods may indirectly approximate the performance of an application by instead using indicative benchmarks or micro-benchmarks. When used with searching, benchmarks can dramatically reduce or even eliminate the cost of searching, as a benchmark run once can be later used to predict the performance of several applications with a known relationship with it. However, benchmarking can sometimes be a poor indicator of performance for an actual application, and use of it at all still requires some understanding of how that benchmark relates to the applications performance. We describe the state of cloud Benchmarking and examples in more detail in the Benchmarking section below.
+
+\subsection{Ernest}
+Ernest\cite{Venkataraman2016} is a framework that aims to specifically predict the performance of given data analytics jobs by generating a performance model based on the job's performance based on different samples of the input. These performance samples typically take much less time and resources to run than the full job, reducing the overhead for finding an optimal instance type for the full job. This relies on the assumption that there is a relatively simple relationships between computational resources and the job performance, such that it can be modelled well by estimating a few pre-set linear terms. This assumption generally holds when it comes to big data analytics jobs, as the size of the jobs have encouraged algorithms that scale well in a linear or quasi-linear manner\cite{Bottou2008}. In cases where more complex models are needed, small extensions can be used to adapt the model to the use-case. In their evaluation, it is shown that Ernest provides predictions for job performance with ~15\% error with a training time ~4\% of the total job runtime.
+
+While Ernest is an effective method for reducing search cost and time without impacting predictive capabilities, it is very specific for data analytics jobs. It is unlikely that many other applications can be modelled in terms of computational resources through pre-set simple linear or quasi-linear terms. It also does not cover the task of provisioning the instances from cloud providers, but rather requires instances to be already set up running an Apache Spark cluster. No associated publicly available implementation is provided.
+
+\subsection{CherryPick}
+CherryPick \cite{Alipourfard2017} is similar to Ernest in that it uses samples from the search space to model relationships between the performance and computational resources for a given batch job. However, CherryPick does so using Bayesian Optimization, a very generalizable process that models the relationships as Gaussian processes without making assumptions as to linearity or monotonicity. Bayesian optimization has the added benefits of incorporating sampling noise and minimizing number of samples. Despite reducing samples through this method, CherryPick assumes that the full job must be used for samples, and so is only beneficial for recurring jobs. CherryPick was directly compared to Ernest, and for that comparison was found to produce much better estimates but did so with 11 times the search time and 3.8 times the search cost. 
+
+Along with PARIS, CherryPick presents the most promising solution we detail here for a truly generalized method, through its use of Bayesian Optimization. It includes in its design a 'Cloud controller' component to provide the entire VM provisioning process, as well as a 'Cloud monitor' to monitor performance noise in the cloud for use by the Bayesian optimization engine. However, in the framework described it is limited to recurring batch jobs, as it bases its decisions entirely based on the time taken to perform the submitted job and the cost of the configuration used. In addition, the paper details very little about the design and implementation of these Cloud components, and no publicly available implementation of the framework is provided.
+
+\subsection{PARIS}
+PARIS \cite{Yadwadkar2017} presents an ingenuitive method of predicting performance by using random forests to model how an application's performance relates to a benchmark's performance, rather than to cloud configuration variables directly. It can then compare this to historical benchmark data to predict performance.  For instance types hosted on AWS, this allowed predictions with $<$20\% error using only samples from a few reference VMs.
+
+PARIS is an extremely promising solution, offering both generalizability and comparatively very low overhead by levering historical benchmark performances, along with various other performance metrics collected during these benchmarks. While generating this initial benchmark data is expensive, in terms of cost and time, to acquire, but can be reused for many different applications, depending on the breadth of the benchmarks. That said, the solution is dependent on the breadth of these benchmarks and how well their performance can be modelled to the performance of the tested application. Once again, no associated publicly available implementation is provided, and the framework does not include any details on VM provisioning or communication with the cloud provider.
+
+\subsection{Smart Hill-Climbing}
+A Smart Hill-Cimbing for finding optimal configurations for web-server based applications was introduced in 2004\cite{Xi2004}, without any mention of cloud computing (AWS was released in 2006\footnote{\url{https://aws.amazon.com/about-aws/whats-new/2006/08/24/announcing-amazon-elastic-compute-cloud-amazon-ec2---beta/}} or any form of IaaS. It modelled a web-server based application as a black box function with an output of some metric to be minimized or maximised such as throughput, response time, or a value related to multiple other metrics. In Smart Hill-climbing, a weighted form of Latin Hypercube Sampling\cite{McKay2000} is used together with modelling small locally bound relationships between the function's output and its variables as quadratic terms to rapidly sample across the entire search space searching for a global minimum.
+
+While an old paper, with no notes on implementation with regards to cloud-based deployments, the paper presents an effective method of modelling an application like a web server as an objective function for a generalized optimization algorithm. Smart Hill-Climbing makes use of repeated Latin Hypercube Sampling to avoid falling into local minima, and makes use of locally bounded quadratic function models to guide the search without making specific assumptions about the objective function. Like Bayesian optimization, it is effective for optimizing expensive functions due to the low number of samples required to make confident predictions. 
+
+\subsection{Others}
+To briefly mention other related works; Elastisizer\cite{Herodotou2011} uses previously generated profiles and recursive random searches to model the performance of MapReduce tasks on cloud clusters. Daleel\cite{Samreen} presents a framework for collecting and utilizing data for generating machine-learning-based models for predicting application performance on cloud configurations. \cite{Bodik2009} uses non-linear regression models and to find the cheapest configuration that satisfies user-provided Service Level Agreements (SLA) for a horizontally-scaled webserver. It does this by exploring configurations through increasing or decreasing the number of instances in a cluster according to whether a latency threshold set by the SLA is being breached or met. 
+
+\subsection{Benchmarks}
 % When using benchmarks, some choice as to which one to use. What makes a good benchmark.
-\subsection{Cloudsuite}
-\subsection{vBench}
-\subsection{OTHERS, LOOK UP}
-\section{Infrastructure-as-code}
-\subsection{Terraform}
-\subsection{Apache Libcloud}  
-\subsection{Chef}
-\subsection{Puppet}
+\subsection{Okta}
+Okta \cite{Davatz2017} is a framework for benchmarking 
+\subsubsection{Cloudsuite}
+\subsubsection{vBench}
 \chapter{Requirements specification}
 \section{Use-case}
+% Didn't replicate PARIS due to the costly benchmark generation.
+Here we present a specific use-case with which to implement and evaluate our designed framework. This use-case should be relatively general while still providing a good example to fully assess the effectiveness of our framework. To this end we have chosen the following use-case: Performing a Bayesian Optimization search to predict the most cost-effective instance type for a vBench benchmark score, out of instance types available without quotas on Amazon EC2 and Google Compute engine.
+\subsection{Search space}
+We chose the search space to best enable replication in the future by ensuring that all instances were available without requesting additional quotas from the cloud providers, as well as being relatively cheap options so as to reduce search costs. We wanted to ensure that our search could span multiple cloud providers, and so we chose two leading providers who had equivalent instance types that fit the above criteria. We opted not to go for a serverless option due to the lack of an Infrastructure-as-code implementation for Google Cloud Run and to increase the number of available variables that could be optimized by a search.
 \subsection{Bayesian Optimization}
+We chose Bayesian Optimization as it seemed like one of the more generalizable and effective solution, and was considerably less complex or costly to implement than others such as the PARIS design, which would require extensive costly benchmarking before any evaluation. We were confident Bayesian Optimization would function for any application for which we could extract or return a single objective measure to minimize or maximize, with relatively few samples necessary. We will use the findings from the CherryPick paper, such as effective stopping conditions, to inform our design and implementation, but will attempt to expand on their findings to see how Bayesian optimization is affected by search spaces spanning multiple cloud providers and multiple concurrent jobs.
 \subsection{Video transcoding}
 Video streaming is one of the most common services for which cloud servers are used, where video files are transcoded to an appropriate file type and streamed to an end-user's device\cite{JunXin2005a, Lottarini2018}.
 The deployment to be used was originally planned to be Cloudsuite3's media streaming benchmark\cite{Palit2016}, however this was found to be extremely variable and dependent entirely on network bandwidth, and so instead the vBench video transcoding benchmark was used\cite{Lottarini2018}. We will use this benchmark to measure a single instance type's relative rate of transcoding a single 5 second 1920x1080 video file of the inside of a house.
 \section{Requirements}
-% Accommodating flexibility with how confident the program must be
-% Reduced predictive power may be acceptable for substantially reduced search cost/time, depending on the user 
-\section{Optional Requirements}
+The framework should enable:
+\begin{itemize}
+\singlespacing
+\item Fully automated deployment of applications on given cloud configurations across multiple providers
+\item Optimization algorithms to select and request sampling jobs which will carry out the above deployment
+\item Extraction of relative performance measures and costs from sampling jobs
+\end{itemize}
+The implementation should include:
+\begin{itemize}
+\singlespacing
+\item A Bayesian Optimization engine searching variables representing an encoded search space of cloud configurations across multiple providers
+\item Configurations for an IaC tool, which provision a specified cloud configuration from a given provider, that cover the entire provided search space
+\item A deployment method to run the provided vBench benchmark on the provisioned VMs and return performance scores
+\item The ability for the Bayesian Optimization engine to request multiple sampling jobs at a time from the IaC tool and deployment method
+\item Return a prediction from Bayesian Optimization for the cloud configuration with the best performance/cost ratio. The error in this prediction should be relatively low, accommodating the flexibility to allow reduced predictive power in return for substantially reduced search cost/time
+\end{itemize}
+
 \chapter{Generic Automated Cloud Configuration Optimization Framework}
-% Architecture shows predifined subroutines for each component, we go into details of what these entail in their respective sections
-% START HERE
 \section{Design Motivations}
 \subsection{Numerical Optimization}
 In any optimisation process, the value of some objective function is minimised or maximised by adjusting its input variables or parameters. An optimisation algorithm begin with an initial guess of these variables and iterates through improved estimates until they terminate, hopefully providing an estimated solution \cite{Nocedal2006}. An optimization function effectively takes previous an objective function, along with its previous inputs and outputs as arguments, and outputs either the next sample to take, or the predicted best input if the stopping condition is met. \\
@@ -162,6 +225,7 @@ Much like how our objective measure will differ from application to application,
 Because of this, we are left with multiple parts of our system which are highly dependent on a user's individual use-case, namely the objective function, the objective measure to be optimized, the search space constraints, and the application itself. Because of this, we have taken a highly modular approach to our design. While our implementation should be self-sufficient to run its example case, it should also be made up of several replaceable components for future extensions. The framework itself should be well suited to any case, while each individual component, the user can pick the specific implementation that is best suited for their use-case.
  
 \section{System Architecture}
+Our optimization process can be broken down into four replaceable components: A Searcher, which runs the optimisation algorithm, testing out various inputs in an attempt to maximise or minimise the objective function; a Selector, which interprets the inputs to determine what cloud configuration is being tested; a Deployer, which provisions the machines needed for that cloud configuration, deploys the application, and once it has terminated returns any required logs from it; and an Interpreter, which takes these logs to calculate the objective measure which is returned to the Searcher as the returned value for the objective function. A diagram of this breakdown is shown in figure \ref{fig:design}. The components themselves are examined in further detail in the following sections.
 \begin{figure}[!hb]
   \centering
    \includegraphics[scale=0.5]{Design_flowchart}
@@ -169,7 +233,6 @@ Because of this, we are left with multiple parts of our system which are highly 
   \label{fig:design}
 \end{figure}
 \newpage
-Our optimization process can be broken down into four replaceable components: A Searcher, which runs the optimisation algorithm, testing out various inputs in an attempt to maximise or minimise the objective function; a Selector, which interprets the inputs to determine what cloud configuration is being tested; a Deployer, which provisions the machines needed for that cloud configuration, deploys the application, and once it has terminated returns any required logs from it; and an Interpreter, which takes these logs to calculate the objective measure which is returned to the Searcher as the returned value for the objective function. A diagram of this breakdown is shown in figure \ref{fig:design}. The components themselves are examined in further detail in the following sections.
  
 \paragraph{}
 Overall, the system drives forward an optimization algorithm shown in Algorithm \ref{alg:Optimization}, such as Bayesian optimization, coordinate descent, random search, or exhaustive search, by iterating through potential input variables. For each set of these inputs, it take a sample from a single 'job,' where it runs through a single loop of the Selector, Deployer, and Interpreter components. The Searcher component then uses the results from inputs tried so far to choose the next set of input variables to sample, as well as provide the current estimate of the best possible set of input variables to minimize or maximize that result. Once the stopping conditions are met, the latest estimate for the best input variables is output by the system.
@@ -304,7 +367,12 @@ User-provided options, such as what Selector, Deployer, and Interpreter to use, 
 \section{Searcher}
 \subsection{Spearmint}
 Spearmint is an implementation of Bayesian Optimization written in Python. The user submits a single python script with an appropriate 'main' function which has its inputs optimized. It provides numerous settings for changing variables like the maximum number of concurrent jobs, acquisition function, and sampling noise assumptions. However, the latest available implementation of Spearmint was found to be outdated and incompatible with the latest versions of various Python modules used in later steps. 
-Because of this, for the sake of generalisability we first updated Spearmint to be compatible with Python 3 and newer versions of its dependencies such as Google Protocol Buffers. This implementation of spearmint has been made available\footnote{https://github.com/briggsby/spearmint3}. The edits mostly included changes to syntax inconsistent with new versions of its dependencies.
+
+Because of this, for the sake of generalisability we first updated Spearmint to be compatible with Python 3 and newer versions of its dependencies such as Google Protocol Buffers.
+
+We also added in stopping condition arguments for the 'chooser' modules. These modules are responsible for performing the acquisition function to determine the next samples to take. Our added arguments allow users to specify stopping conditions for the search based on expected improvement (EI) thresholds and minimum number of samples. This further automates the search, as beforehand the user was required to manually stop the search.
+
+This implementation of spearmint has been made available\footnote{https://github.com/briggsby/spearmint3}. The edits mostly included changes to syntax inconsistent with new versions of its dependencies.
 
 \subsection{Search space encoding}
 Spearmint uses their own protocol buffers to allow users to specify the available input variables. Each variable must be typed as either an integer (INT), floating-point number (FLOAT), or categorical variable (ENUM). For the first two, minimum and maximum limits must be set, while for categorical variables each available option must be specified. For all variables, a 'size' is specified, and each variable is passed to the function as a Numpy\cite{Klein2014} array with a number of elements equal to its 'size.' Each of these elements is optimized individually.
@@ -377,8 +445,6 @@ Sysbench is a lightweight commonly used micro-benchmarking tool. In our case, we
 The Cloudsuite3 media-streaming server benchmark Interpreter uses regular expressions to extract from the application logs the maximum number of sessions for which the benchmark succeeded. If the maximum number attempted was too low for the benchmark to ever fail, it instead uses this maximum number attempted. Once again, this extracted value has its sign reversed and is divided by the price of the configuration.
 \chapter{Evaluation}
 \section{Evaluation Approach}
-% Explain how you are evaluating your system, what it shows and why you did it that way
-% Talk about the variation reported by your results, do they match up to previous variability
 To demonstrate the effectiveness of our framework and associated implementation, we wanted to show both that it could take any individual sample within the implemented search space without problem, and also that it could carry out an entire optimization process. 
 \paragraph{}
 For the former, to show the implementation's ability to take individual samples, we wanted to show both that the individual components for Selecting, Deploying, and Interpreting logs of a single application deployment job effectively carried out their purpose. To do this, we performed an Exhaustive search of the implemented search space for our vBench benchmark, taking 20 samples of each available configuration.\\
@@ -386,11 +452,16 @@ For the latter, to show the framework and implementation's ability to correctly 
 To show the flexibility of the Framework, we also wanted to test out a Bayesian Optimization search for the Ping server Deployer described in our Implementation chapter. This Deployer is impossible to run concurrently without multiple ping clusters, and so performing Exhaustive search was extremely time-consuming. \\
 Finally, through this process we will generate many results regarding vBench scores across different machines, and how the Bayesian optimization process is affected by factors such as the number of concurrent jobs allowed and the size of the search space. We will present, statistically analyse, and discuss these findings.
 
-Where not otherwise specified, statistical results are quoting the p-values returned from a Tukey's Honest Significant differences test to correct for multiple comparisons. Analysis was performed in RStudio\cite{RCoreTeam2018,RStudioTeam2016}, and full logs as well and scripts used for analysis are available on the project's Github repository. Generally, P values were reported while effect sizes were not, as the effect sizes are extremely dependent on the test run and performance measure used and likely to be of no concern, if not outright misleading, when compared with other results.
+Where not otherwise specified, statistical results are quoting P-values returned from a Tukey's Honest Significant differences test to correct for multiple comparisons. This test looks at the probability that means of two difference groups are significantly different, correcting for multiple comparisons, assuming that observations are independent, and that groups are normally distributed with similar within-group variance. Variances across the board were extremely low and consistent. While, using raw vBench scores as an example, several instance types returned a significant result from the Shapiro-Wilk normality test, this test is very powerful and often returns low P-values for samples confidently from a normal distribution. In addition, many  instance groups did not give significant results to the normality test, with several extremely high P-values above .50 returned. This, combined with a visual examination of the distributions of our results, such as those shown in figure \ref{fig:vbench-dists}, as well as the clear patterns observed from our graphical representations of our results, make us confident in the validity of our findings from the Tukey's tests.
+
+Analysis was performed in RStudio\cite{RCoreTeam2018,RStudioTeam2016}, and full logs as well and scripts used for analysis are available on the project's Github repository. Generally, P values were reported while effect sizes were not, as the effect sizes are extremely dependent on the test run and performance measure used and likely to be of no concern, if not outright misleading, when compared with other results.
 
 \subsection{vBench}
 Our objective function, a deployment of the vBench benchmark, measured an instance type's relative rate of transcoding of a single 5 second 1920x1080 video file, returning a score of 0 if the quality was below a given threshold, divided by the hourly price of that instance. This is the score given using the 'vod' benchmark type in vBench.\\
 Effectively, we maximised the rate of transcoding a unit of video length at a sufficient quality per hourly cost. We had hoped to show that incorporating the soft constraint on video quality within the value returned by the Interpreter, rather than within the Acquisition function as was done in Cherrypick, did not hinder the optimization process, however no instance type tested failed to achieve the threshold video quality in any case.
+
+\subsection{Ping server}
+Having performed evaluation on our implementation for a deployment of a simple docker container with our vBench application, analogous to running a single batch job or benchmark and interpreting the results, we then wanted to evaluate the same technique applied to an web-based application. This application type may be better evaluated through its responses to a client, rather than from measuring its performance internally. For this a single 5-node Kubernetes cluster was set up for the same of sending repeated requests to the evaluated deployment, as described for the 'Ping server' deployer and interpreter. This experiment is much more intensive to perform exhaustive search for, as it would require separate pinging clusters to be set up for every sample. The mean response time for requests of a normally distributed load was divided by the hourly cost of the instance to give maximised value. 
 
 \subsection{Search Space}
 For choosing the boundaries of the search space, we decided to reduce costs by using only machines ranging from 2 vCPUs to 8 vCPUs. This was also convenient as to use more powerful machines would have required requesting additional raised quotas from the providers used, and so would be less easily replicable by others wishing to repeat our evaluation. As we wanted to show that the implementation worked with multiple providers, and were were ensuring our input variables matched exactly to an available instance type, we could not rely on Google cloud platform's custom machine types and had to find some way to categorize possible variables. Rather than including memory as a variable, CPU instead was coded as a categorical variable (2, 4, or 8), along with machine category (General, Memory, CPU), each with a different amount of memory. Table \ref{tab:instance-types} show which machine types corresponded to each option. 
@@ -418,6 +489,11 @@ The 18 machine types decided upon (3 vCPU numbers for 3 machine categories for t
 
 \section{Framework Evaluation}
 Looking back at our first chapter, we are confident the evaluation below shows that we have succeeded at all aims and objectives previously presented. The Bayesian Optimization results show that the framework was capable of fully automating the process of selecting an optimal cloud configuration for a given application. We have shown that this is not application or provider specific, performing the process across multiple providers (Amazon EC2, Google Compute Engine) and utilizating multiple cloud services (Kubernetes clusters, single VM instances), to test it across two very different applications (Web serving application, video transcoding benchmark). This process accounted for the recorded variation within instance types for application performance, and succeeded regardless. 
+
+For the vBench benchmark application, in the best experiment setup found (Multiple providers, 2 concurrent jobs) our Bayesian Optimization experiment correctly identified the optimal instance type in 18 out of 20 repetitions. The mean value returned with this search setup was at the 98th percentile of possible scores from the available search space.
+
+From the samples taken during 10 repetitions of the ping server experiment, it seemed that there were no significant difference between the two best performing configurations of c5.large and m5.large instance types ($\Delta \bar{x}=0.0001, P \approx 1.000$). The predictions correctly converged upon one of these instance types in all 20 repetitions of the Bayesian optimization search.
+
 Using our implementation, we successfully sampled application performance and cost-effectiveness across every available configuration within our search space, performing an exhaustive search. Using this complete analysis of the potential configuration options and their relative performance, we were able to measure the success of our Bayesian optimization implementation with various search options.
 
 \section{Results Analysis}
@@ -429,6 +505,9 @@ Using our implementation, we successfully sampled application performance and co
    \caption{Boxplots showing the distribution of vBench scores and objective measure values (both plotted on y-axis, different scales), varied across different machines, differentiated by cloud provider (colour), instance category (columns), and number of vCPUs (x axis). vBench benchmark was run using the 'vod' benchmark type and the provided 5 second 'house\_ 1920x1080\_ 30.mkv' video file reference score.}
   \label{fig:exh-search}
 \end{sidewaysfigure}
+
+The results of the exhaustive search are shown in figures \ref{fig:exh-search} while the distribution of scores for each instance type are shown in frequency polygon form in figure \ref{fig:vbench-dists}.
+
 \begin{figure}[!ht]
   \centering
    \includegraphics[scale=0.7]{vbench_dists}
@@ -436,29 +515,76 @@ Using our implementation, we successfully sampled application performance and co
   \label{fig:vbench-dists}
 \end{figure}
 
-The results of the exhaustive search are shown in figures \ref{fig:exh-search} while the distribution of scores for each instance type are shown in frequency polygon form in figure \ref{fig:vbench-dists}.
 
-Relative standard deviation for all scores measured were extremely low, the highest being $\pm 0.0323\%$ for the n1-standard-8 instance type. No relationship with this variance was found for any of the three search variables.
+Relative standard deviation for all scores measured were extremely low, the highest being $\pm 3.23\%$ for the n1-standard-8 instance type. No relationship with this variance was found for any of the three search variables.
 
 The raw scores (time taken to transcode relative to the reference) show clear overlap between many possible configurations. While in general they show a significant difference between 2 vCPUs and either 4 ($P < .001$) or 8 ($P < .001$) vCPUs, and between 4 and 8 vCPUs ($P < .001$), where the score increases with vCPU number, when accounting for differences between provider and machine category. However, the effect size is dramatically diminished between the 4 to 8 categories ($\Delta \bar{x} = 0.0116$) than between the 2 to 4 categories ($\Delta \bar{x} = 0.0526$).
+
+However, once the scores are divided by that machine's hourly costs, to give the objective measure value, there is much less overlap. If one is purely interested in getting the most video transcoding for a given cost, a clear optimal configuration can be seen in the c5.large machine type. The c5.large machine was significantly better than the next best option, the n1-highcpu-2 ($P < .001$), as well as all other options (All $P < 0.001$). Amazon EC2's  machine types consistently outperformed Google Compute Engine's equivalents of the same category and vCPU number at both raw score (Anova, $F = 32111.456, P < .001$) and value for money (Anova, $F = 22710.7, P < .001$). While provider was the most important determining factor as to whether a cloud configuration gave a higher raw score than others, it was the least important determining factor as to whether a cloud configuration gave a higher objective measure value. For example, the n1-highcpu-2 still gave significantly better values than the m5.large ($P < .001$), or the c5.xlarge ($P < .001$) making it the second most cost-efficient option. 
 
 
 \subsubsection{Discussion}
 % Extremely little variation
-% Because of this, no log transformation necessary for Bayesian Optimization
-% Very notable diminishing returns above 4 vCPUs between 2 and 4 vCPUs, an approximately 5-fold reduction in score gain. Price increase, however, is XX. Bigger was not better for between 4 and 8, suggesting either diminishing returns of a limit of the benchmark to utilize more vCPU cores.
+Our results concerning CPU performance variability within instance types are consistent with a recent study \cite{Scheuner2018} confirming that the newer instance generations are considerably more stable than previous ones \cite{Leitner2014}, drastically reducing performance variability. In many cases, we could likely have assumed noiseless sampling for our Bayesian Optimization searches and received identical results. Our sampling noise values, referring to the original standard deviation for objective measure without division by the mean, was consistent enough between instance types that no log transformation was necessary for the Bayesian Optimization performed, as was done in the Cherrypick measure to ensure sampling noise was consistent and additive even when reported as a value relative to the mean\cite{Alipourfard2017}.
+
+We observed very notable diminishing returns in the increase in performance for increasing vCPU number above 4 vCPUs. Despite the cost of instance types continuing to rise proportional to the number of vCPUs, there was an approximately 5-fold reduction in score gain between 4 and 8 vCPUs compared to 2 and 4 vCPUs. This suggests that the video transcoding process measured by our benchmark either has very diminishing returns past 4 vCPUs, possibly due to an inability to parallelize in such a way to utilize more cores.
+
+Our results also showed that Amazon EC2 instances drastically outperformed the Google Compute Engine instances tested at video transcoding operations, regardless of other variables. Even the best-performing Compute Engine instance returned a score much lower than the worst-performing EC2 instance ($P < .001$). Google in general used older Intel Processor models in their machine, which may account for this disparity in performance.
+
+Once cost-effectiveness was examined instead of raw scores however, cloud provider instead became the least important variable. However, when the other variables of instance category and vCPU number were the same, AWS instances still outperformed their Google compute Engine equivalents.
+
+Our results clearly show, that for maximising the rate of video transcoding for our tested video file per dollar spent, the Amazon EC2 instance type c5.large was the most efficient instance in our tested search space. 
 \subsection{Bayesian Optimization}
 \subsubsection{Results}
-\subsubsection{Discussion}
-\chapter{Related and Future work}
-% GPU testing
-\chapter{Conclusion}
+With the exhaustive search complete, we then used a Spearmint based searcher to perform a Bayesian Optimization search, assuming low noise (-1 to 1) and using the same stopping conditions as used by default in the Cherrypick paper \cite{Alipourfard2017}, namely when the Expected improvement (EI) is less than 10\%, and at least 6 samples have been taken. We were able to successfully run this experiment with both multiple and single providers, as well as with between 1 and 3 multiple concurrent jobs.
 
+\begin{figure}
+  \caption{Optimal configurations suggested after convergence for Bayesian Optimization searches. Bayesian Optimization attempted to maximize the vBench 'vod' score divided by the configuration price. Prior function used was a Gaussian process, with Expected Improvement used as an Acquisition function. Searches were stopped at N $>$ 6 and EI $<$ 10\%, and the shown configuration was the instance with the best returned value.}
+  \label{fig:bo-results}
+  \centering
+  \includegraphics[scale=0.5]{bo_results}
+\end{figure}
+
+The results from these experiments are shown in figure \ref{fig:bo-results}. When testing instances from only a single provider, and running only a single concurrent job at any time, we were able to replicate the findings of the Cherrypick paper \cite{Alipourfard2017}. In 17 of 20 experiments (85\%), Bayesian Optimization was able to reach the same conclusions as Exhaustive search in only 6-12 samples. 
+
+Even when the number of providers was increased from 1 to 2, with only a single concurrent job running, we were also able to replicate the previous results. The correct optimal instance was predicted in 18 out of 20 evaluations (90\%), in only 6-11 samples. For our evaluation, despite doubling the search space, Bayesian Optimization was no less effective.  It may be interesting to note, however, that the incorrectly predicted instance in both failed cases was not the second but third best choice, coming from the same provider rather than the other, resulting in a reduction in the mean score/cost value by ~21.3\%.  Figure \ref{fig:bo-boxplots} shows boxplots for the optimal values, time taken, and search cost for all Bayesian Optimization experiments run. It is clear from this that there was no clear negative effect on the relative effectiveness of the search between single or multiple providers ($ P = .999 $). There was similarly no clear increase in time taken or search cost. Examples of the job paths taken during both one of these successful searches, as well as an unsuccessful one, are shown in figure \ref{fig:paths}-C \& \ref{fig:paths}-D. 
+
+Within figure \ref{fig:bo-boxplots}, the optimal values are presented as a proportion of the best possible result, estimated from the mean result of all jobs run on the instance in that search space with the highest mean value. Search time was calculated from the difference in time between the last and first completed job. This time does not include initial setup or time taken to terminate any unfinished jobs once the search was stopped, however these times were relatively short. Relative search cost was calculated by summing the hourly cost of the instances samples, including repetitions. This assumes that either every job took the same amount of time regardless of instance, or that the applications were short enough ($<$1 minute) to accrue only the minimum possible cost for provisioning each instance type. Even on the slowest instance type tested, our vBench benchmark completed in approximately ~35s, so we are confident that this second assumption holds.
+
+\begin{figure}
+  \caption{Values, search costs and search times for different Bayesian Optimization searches. Single large outlier removed from search time graph from Single provider, 3 concurrent jobs. In single provider tests, only Google compute Engine was involved. Best values shows the values the search returned as a proportion of the optimal possible value the search could attain, calculated from the mean value available from jobs run on the best instance in the search space. Search time calculated by measuring the time between the first and last sample taken. Search cost taken by multiplying each job by that instance's hourly price and summing these values. 'Ping test' test type used latency of responses to a web-server, while other tests used a vBench benchmark.}
+  \label{fig:bo-boxplots}
+  \centering
+  \includegraphics[scale=0.7]{bo_boxplots}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{paths}
+	\caption{Paths of example Bayesian Optimization jobs to optimize a vBench 'vod' score. Number an arrows show the progression of paths, with each points showing a different cloud configuration that was sampled. The y-axis shows the objective measure value returned by the sample. Colour shows cloud provider, either Amazon EC2 (aws) or Google compute engine (google).}
+	\label{fig:paths}
+\end{figure}
+
+We then looked at the changes to the search results when multiple concurrent searches were allowed. By allowing 2 concurrent jobs to be run at any one time, the time taken for the search was reduced to less than half that of before ($P < .001$). Along with this  dramatic reduction in time taken, there was no rise in search cost ($P = .95$). Indeed, tSSShe number of completed jobs performed was still between 6 and 10 in all experiments. Even more impressive, there was also no loss in the optimal value returned ($P \approx 1.00 $), with it still choosing the correct instance in 18 out of 20 repetitions.
+
+However, increasing the number of concurrent jobs higher, to 3, caused a dramatic reduction in effectiveness. For multiple providers, the experiment returned the optimal instance in only 11 out of 20 repetitions (55\%). The probability of returning a sub-optimal value increases compared to 1 concurrent job ($ P = .09$) and 2 concurrent jobs ($P = .08$). The increased maximum allowed job concurrency also increased the search cost compared to 2 concurrent jobs ($P = .03$), and did not lead to any significant further decrease in search time ($P = .81$). To ensure this held true even in a reduced search space, the experiment was repeated with 3 concurrent jobs but only a single provider, to similar results.
+
+\subsubsection{Discussion}
+For a single provider and a single maximum concurrent job, and stopping criteria of an expected improvement less than 10\% with at least 6 jobs completed, similar search conditions to that of the CherryPick paper\cite{Alipourfard2017}, we were able to replicate their results for our video transcoding benchmark. Bayesian Optimization, in few samples, was able to accurately identify the optimal configuration, confirmed by our Exhaustive search, in 85\% of our experiment's repetitions. Even when a less than optimal instance was returned by the search, performance for these instances was still high enough to give a mean returned value in the 95th percentile for performance. Our modifications to spearmint mean that in our provided implementation the stopping conditions can be easily specified at runtime, to allow the user to tighten or loosen these stopping conditions as their use-case requires.
+
+We expanded on previous findings by testing the same search when expanded to multiple providers, and with multiple allowed concurrent jobs.
+
+Bayesian optimization was shown to be very resilient to the increased search space introduced from adding a cloud provider, with no loss of effectiveness or efficiency. This was likely because the large and consistent performance difference between Amazon EC2 instances and Google Compute Engine instances meant that the Searcher was very quickly confident that the 'provider' variable had been optimized throughout the search space. When the performance difference between providers is small rather than large, or if the relationship is more complex and dependent on other variables, Bayesian Optimization would likely take longer.
+
+When 2 concurrent jobs were allowed, the effectiveness and cost-efficiency of the search was unaffected, but the time taken to perform it was dramatically reduced. Past 2 concurrent jobs, allowing further concurrency reduced the search's effectiveness without any further benefit. This suggests that it is beneficial for users to allow 2 concurrent jobs, but not to allow any more. 
+\chapter{Conclusion}
+\section{Related and Future work}
+\subsection{Related work}
+\subsection{Future work}
+\section{Final Discussion}
+% GPU testing
+% Serverless, once APIs are available
 \newpage
 \bibliographystyle{ieeetr}
 \bibliography{Dissertation}
 \newpage
-\section*{Appendices}
-\subsection*{Testing Summary}
-\subsection*{User Manual}
 \end{document}

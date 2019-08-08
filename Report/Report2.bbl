@@ -47,17 +47,17 @@ K.~Bilal and A.~Erbad, ``{Impact of multiple video representations in live
   IEEE International Conference on Cloud Engineering, IC2E 2017}, pp.~88--94,
   2017.
 
-\bibitem{Pu2010}
-X.~Pu, L.~Liu, Y.~Mei, S.~Sivathanu, Y.~Koh, and C.~Pu, ``{Understanding
-  performance interference of I/O workload in virtualized cloud
-  environments},'' in {\em Proceedings - 2010 IEEE 3rd International Conference
-  on Cloud Computing, CLOUD 2010}, pp.~51--58, 2010.
-
 \bibitem{Reiss2012}
 C.~Reiss, A.~Tumanov, G.~R. Ganger, R.~H. Katz, and M.~A. Kozuch,
   ``{Heterogeneity and dynamicity of clouds at scale},'' in {\em Proceedings of
   the Third ACM Symposium on Cloud Computing - SoCC '12}, (New York, New York,
   USA), pp.~1--13, ACM Press, 2012.
+
+\bibitem{Pu2010}
+X.~Pu, L.~Liu, Y.~Mei, S.~Sivathanu, Y.~Koh, and C.~Pu, ``{Understanding
+  performance interference of I/O workload in virtualized cloud
+  environments},'' in {\em Proceedings - 2010 IEEE 3rd International Conference
+  on Cloud Computing, CLOUD 2010}, pp.~51--58, 2010.
 
 \bibitem{Berl2010}
 A.~Berl, E.~Gelenbe, M.~{Di Girolamo}, G.~Giuliani, H.~{De Meer}, M.~Q. Dang,
@@ -156,6 +156,12 @@ P.~Bodik, R.~Griffith, C.~Sutton, A.~Fox, M.~I. Jordan, and D.~A. Patterson,
   ``{Automatic exploration of datacenter performance regimes},'' in {\em
   Proceedings of the 1st workshop on Automated control for datacenters and
   clouds - ACDC '09}, (New York, New York, USA), p.~1, ACM Press, 2009.
+
+\bibitem{Binnig2009}
+C.~Binnig, D.~Kossmann, T.~Kraska, and S.~Loesing, ``{How is the weather
+  tomorrow?},'' in {\em Proceedings of the Second International Workshop on
+  Testing Database Systems - DBTest '09}, (New York, New York, USA), p.~1, ACM
+  Press, 2009.
 
 \bibitem{JunXin2005a}
 {Jun Xin}, {Chia-Wen Lin}, and {Ming-Ting Sun}, ``{Digital Video

@@ -27,11 +27,15 @@
 \contentsline {chapter}{\numberline {2}Literature Survey}{9}{chapter.2}% 
 \contentsline {section}{\numberline {2.1}Cloud services}{9}{section.2.1}% 
 \contentsline {subsection}{\numberline {2.1.1}Cloud variability}{10}{subsection.2.1.1}% 
+\contentsline {paragraph}{}{10}{section*.23}% 
 \contentsline {section}{\numberline {2.2}Previous Work}{11}{section.2.2}% 
+\contentsline {paragraph}{}{11}{section*.24}% 
+\contentsline {paragraph}{}{11}{section*.25}% 
+\contentsline {paragraph}{}{12}{section*.26}% 
 \contentsline {subsection}{\numberline {2.2.1}Ernest}{12}{subsection.2.2.1}% 
 \contentsline {subsection}{\numberline {2.2.2}CherryPick}{12}{subsection.2.2.2}% 
 \contentsline {subsection}{\numberline {2.2.3}PARIS}{13}{subsection.2.2.3}% 
-\contentsline {subsection}{\numberline {2.2.4}Smart Hill-Climbing}{13}{subsection.2.2.4}% 
+\contentsline {subsection}{\numberline {2.2.4}Smart Hill-Climbing}{14}{subsection.2.2.4}% 
 \contentsline {subsection}{\numberline {2.2.5}Others}{14}{subsection.2.2.5}% 
 \contentsline {section}{\numberline {2.3}Benchmarking}{14}{section.2.3}% 
 \contentsline {chapter}{\numberline {3}Requirements specification}{16}{chapter.3}% 
@@ -45,63 +49,71 @@
 \contentsline {subsection}{\numberline {4.1.1}Numerical Optimization}{19}{subsection.4.1.1}% 
 \contentsline {subsection}{\numberline {4.1.2}Modularity}{20}{subsection.4.1.2}% 
 \contentsline {section}{\numberline {4.2}System Architecture}{20}{section.4.2}% 
-\contentsline {paragraph}{}{21}{section*.23}% 
-\contentsline {paragraph}{}{21}{section*.24}% 
+\contentsline {paragraph}{}{21}{section*.27}% 
+\contentsline {paragraph}{}{21}{section*.28}% 
 \contentsline {section}{\numberline {4.3}Inputs and outputs}{22}{section.4.3}% 
-\contentsline {paragraph}{}{23}{section*.25}% 
-\contentsline {paragraph}{}{23}{section*.26}% 
-\contentsline {section}{\numberline {4.4}Searcher}{23}{section.4.4}% 
-\contentsline {paragraph}{}{23}{section*.27}% 
-\contentsline {paragraph}{}{23}{section*.28}% 
 \contentsline {paragraph}{}{23}{section*.29}% 
-\contentsline {paragraph}{}{24}{section*.30}% 
+\contentsline {paragraph}{}{23}{section*.30}% 
+\contentsline {section}{\numberline {4.4}Searcher}{23}{section.4.4}% 
+\contentsline {paragraph}{}{23}{section*.31}% 
+\contentsline {paragraph}{}{23}{section*.32}% 
+\contentsline {paragraph}{}{24}{section*.33}% 
 \contentsline {section}{\numberline {4.5}Selector}{24}{section.4.5}% 
 \contentsline {subsection}{\numberline {4.5.1}Exact vs. Closest Match}{24}{subsection.4.5.1}% 
 \contentsline {section}{\numberline {4.6}Deployer}{24}{section.4.6}% 
-\contentsline {subsection}{\numberline {4.6.1}VM Provision}{24}{subsection.4.6.1}% 
+\contentsline {subsection}{\numberline {4.6.1}VM Provision}{25}{subsection.4.6.1}% 
 \contentsline {subsection}{\numberline {4.6.2}Application Deployment}{25}{subsection.4.6.2}% 
 \contentsline {subsection}{\numberline {4.6.3}Simulated Deployment}{25}{subsection.4.6.3}% 
 \contentsline {section}{\numberline {4.7}Interpreter}{26}{section.4.7}% 
 \contentsline {chapter}{\numberline {5}Bayesian VM Optimization System}{27}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Bayesian Optimization}{27}{section.5.1}% 
+\contentsline {paragraph}{}{27}{section*.34}% 
 \contentsline {section}{\numberline {5.2}VM Docker Deployment}{28}{section.5.2}% 
 \contentsline {section}{\numberline {5.3}Search space encoding}{29}{section.5.3}% 
-\contentsline {paragraph}{}{29}{section*.31}% 
+\contentsline {paragraph}{}{29}{section*.35}% 
+\contentsline {paragraph}{}{29}{section*.36}% 
 \contentsline {section}{\numberline {5.4}Objective Measure}{30}{section.5.4}% 
 \contentsline {chapter}{\numberline {6}Implementation}{31}{chapter.6}% 
 \contentsline {section}{\numberline {6.1}General usage}{31}{section.6.1}% 
-\contentsline {section}{\numberline {6.2}Searcher}{31}{section.6.2}% 
-\contentsline {subsection}{\numberline {6.2.1}Spearmint}{31}{subsection.6.2.1}% 
+\contentsline {paragraph}{}{31}{section*.37}% 
+\contentsline {section}{\numberline {6.2}Searcher}{32}{section.6.2}% 
+\contentsline {subsection}{\numberline {6.2.1}Spearmint}{32}{subsection.6.2.1}% 
 \contentsline {subsection}{\numberline {6.2.2}Search space encoding}{32}{subsection.6.2.2}% 
 \contentsline {section}{\numberline {6.3}Driver}{33}{section.6.3}% 
 \contentsline {section}{\numberline {6.4}Selector}{33}{section.6.4}% 
 \contentsline {subsection}{\numberline {6.4.1}Exact Match}{33}{subsection.6.4.1}% 
 \contentsline {section}{\numberline {6.5}Deployer}{34}{section.6.5}% 
 \contentsline {subsection}{\numberline {6.5.1}VM Provisioner}{34}{subsection.6.5.1}% 
-\contentsline {subsubsection}{Terraform}{34}{section*.32}% 
+\contentsline {subsubsection}{Terraform}{34}{section*.38}% 
+\contentsline {paragraph}{}{35}{section*.39}% 
+\contentsline {paragraph}{}{35}{section*.40}% 
 \contentsline {subsection}{\numberline {6.5.2}Docker deployer}{35}{subsection.6.5.2}% 
-\contentsline {paragraph}{Simulated vBench}{35}{section*.33}% 
-\contentsline {subsubsection}{Cloudsuite}{36}{section*.34}% 
+\contentsline {paragraph}{}{35}{section*.41}% 
+\contentsline {subsubsection}{Simulated vBench}{36}{section*.42}% 
+\contentsline {subsubsection}{Cloudsuite}{36}{section*.43}% 
 \contentsline {subsection}{\numberline {6.5.3}Ping servers}{36}{subsection.6.5.3}% 
 \contentsline {subsection}{\numberline {6.5.4}Instance removal and Interruption handling}{37}{subsection.6.5.4}% 
 \contentsline {section}{\numberline {6.6}Interpreter}{37}{section.6.6}% 
 \contentsline {subsection}{\numberline {6.6.1}vBench}{37}{subsection.6.6.1}% 
-\contentsline {subsection}{\numberline {6.6.2}Sysbench}{37}{subsection.6.6.2}% 
+\contentsline {subsection}{\numberline {6.6.2}Sysbench}{38}{subsection.6.6.2}% 
 \contentsline {subsection}{\numberline {6.6.3}Cloudsuite}{38}{subsection.6.6.3}% 
 \contentsline {chapter}{\numberline {7}Evaluation}{39}{chapter.7}% 
 \contentsline {section}{\numberline {7.1}Evaluation Approach}{39}{section.7.1}% 
-\contentsline {paragraph}{}{39}{section*.35}% 
+\contentsline {paragraph}{}{39}{section*.44}% 
+\contentsline {paragraph}{}{40}{section*.45}% 
+\contentsline {paragraph}{}{40}{section*.46}% 
 \contentsline {subsection}{\numberline {7.1.1}vBench}{40}{subsection.7.1.1}% 
 \contentsline {subsection}{\numberline {7.1.2}Ping server}{41}{subsection.7.1.2}% 
 \contentsline {subsection}{\numberline {7.1.3}Search Space}{41}{subsection.7.1.3}% 
 \contentsline {section}{\numberline {7.2}Framework Evaluation}{42}{section.7.2}% 
-\contentsline {section}{\numberline {7.3}Results Analysis}{44}{section.7.3}% 
-\contentsline {subsection}{\numberline {7.3.1}Exhaustive search}{44}{subsection.7.3.1}% 
-\contentsline {subsubsection}{Results}{44}{section*.36}% 
-\contentsline {subsubsection}{Discussion}{45}{section*.37}% 
+\contentsline {paragraph}{}{42}{section*.47}% 
+\contentsline {section}{\numberline {7.3}Results Analysis}{42}{section.7.3}% 
+\contentsline {subsection}{\numberline {7.3.1}Exhaustive search}{42}{subsection.7.3.1}% 
+\contentsline {subsubsection}{Results}{42}{section*.48}% 
+\contentsline {subsubsection}{Discussion}{45}{section*.49}% 
 \contentsline {subsection}{\numberline {7.3.2}Bayesian Optimization}{46}{subsection.7.3.2}% 
-\contentsline {subsubsection}{Results}{46}{section*.38}% 
-\contentsline {subsubsection}{Discussion}{49}{section*.39}% 
+\contentsline {subsubsection}{Results}{46}{section*.50}% 
+\contentsline {subsubsection}{Discussion}{49}{section*.51}% 
 \contentsline {chapter}{\numberline {8}Conclusion}{51}{chapter.8}% 
 \contentsline {section}{\numberline {8.1}Related and Future work}{51}{section.8.1}% 
 \contentsline {subsection}{\numberline {8.1.1}Related work}{51}{subsection.8.1.1}% 

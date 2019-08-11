@@ -1,0 +1,74 @@
+\documentclass{report}
+\usepackage[
+top    = 2.75cm,
+bottom = 2.50cm,
+left   = 3.00cm,
+right  = 2.50cm]{geometry}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{setspace}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{rotating}
+\graphicspath{ {./images/} }
+\title{\vspace{-2.0cm} A Generalizable Framework for Automated Cloud Configuration Selection \\ \vspace{0.5cm} \large Supervisors: Adam Barker \& Yuhui Lin}
+\date{2019-06-06}
+\author{Jack Briggs - 140011358 \\ MSc Data-Intensive Analysis}
+\doublespacing
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+\newpage
+\chapter{Literature Survey}
+\section{Cloud services}
+% Evidence of the cloud market growing
+% Examples of its use, and how optimization is used
+% Types of cloud offers that now exist (Kubernetes clusters, serverless, etc.)
+\section{Cloud variability}
+% How variability of the cloud has been reported
+% Leitner said in Patterns of the chaos in 2014 that it was generally significant, depending on providers and instance types. This looked at mostly 1st gen AWS instance types, and obvs was 2014 so older types for others. Showed extremely high IO variation for aws and azure, and relatively high standard deviation in most others, usually between 1-10% For CPUs, this was reduced to between 0.15-0.42 for aws once CPU hardware was taken into account
+% Scheuner2018 shows that CPU standard deviation dropped to below 0.3%. Using SSD-based files variation reduced dramatically , and network performance was almost perfect.
+% UNRELATED BUT NOTE: NEED TO GO INTO MORE JUSTIFICATION REGARDING USIG TUKEY HSD, WHAT ARE ITS ASSUMPTIONS, WHY ARE THEY MET?
+\section{Optimization methods}
+% Previous optimization methods that have been attempted
+% Modelling vs Benchmarking vs Searching
+%http://www.brendangregg.com/blog/2017-12-31/reinvent-netflix-ec2-tuning.html
+\subsection{CherryPick}
+\subsection{PARIS}
+\subsection{Ernest}
+\subsection{Daleel}
+\subsection{Okta}
+\subsection{OTHERS, LOOK UP}
+asdf
+\subsection{Exhaustive search}
+
+% Not exactly an actual type, but the obvious alternative.
+\section{Benchmarks}
+% When using benchmarks, some choice as to which one to use. What makes a good benchmark.
+\subsection{Cloudsuite}
+\subsection{vBench}
+\subsection{OTHERS, LOOK UP}
+\section{Infrastructure-as-code}
+\subsection{Terraform}
+\subsection{Apache Libcloud}  
+\subsection{Chef}
+\subsection{Puppet}
+\chapter{Requirements specification}
+\section{Use-case}
+\subsection{Bayesian Optimization}
+\subsection{Video transcoding}
+Video streaming is one of the most common services for which cloud servers are used, where video files are transcoded to an appropriate file type and streamed to an end-user's device\cite{JunXin2005a, Lottarini2018}.
+The deployment to be used was originally planned to be Cloudsuite3's media streaming benchmark\cite{Palit2016}, however this was found to be extremely variable and dependent entirely on network bandwidth, and so instead the vBench video transcoding benchmark was used\cite{Lottarini2018}. We will use this benchmark to measure a single instance type's relative rate of transcoding a single 5 second 1920x1080 video file of the inside of a house.
+\section{Requirements}
+% Accommodating flexibility with how confident the program must be
+% Reduced predictive power may be acceptable for substantially reduced search cost/time, depending on the user 
+\section{Optional Requirements}
+\newpage
+\bibliographystyle{ieeetr}
+\bibliography{Dissertation}
+\newpage
+\section*{Appendices}
+\subsection*{Testing Summary}
+\subsection*{User Manual}
+\end{document}

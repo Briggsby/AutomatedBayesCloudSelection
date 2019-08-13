@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{Alipourfard2017}
+O.~Alipourfard, H.~H. Liu, J.~Chen, S.~Venkataraman, M.~Yu, M.~Zhang,
+  Y.~University, H.~{Harry Liu}, J.~Chen, S.~Venkataraman, M.~Yu, and M.~Zhang,
+  ``{CherryPick: Adaptively Unearthing the Best Cloud Configurations for Big
+  Data Analytics},'' in {\em Proceedings of the 14th USENIX Conference on
+  Networked Systems Design and Implementation}, pp.~469--482, 2017.
+
+\bibitem{Venkataraman2016}
+S.~Venkataraman, Z.~Yang, M.~Franklin, B.~Recht, and I.~Nsdi, ``{Ernest :
+  Efficient Performance Prediction for Large-Scale Advanced Analytics},'' {\em
+  NSDI'16 Proceedings of the 13th USENIX conference on Networked Systems Design
+  and Implementation}, pp.~363--378, 2016.
+
+\bibitem{Yadwadkar2017}
+N.~J. Yadwadkar, B.~Hariharan, J.~E. Gonzalez, B.~Smith, and R.~H. Katz,
+  ``{Selecting the best VM across multiple public clouds},'' in {\em
+  Proceedings of the 2017 Symposium on Cloud Computing - SoCC '17}, (Santa
+  Clara, CA, USA), pp.~452--465, ACM Press, 2017.
+
+\bibitem{Nocedal2006}
+J.~Nocedal and S.~Wright, {\em {Numerical Optimization 2nd Ed}}.
+\newblock No.~9781447122234 in Springer Series in Operations Research and
+  Financial Engineering, Springer New York, 2006.
+
+\bibitem{Snoek2012}
+J.~Snoek, H.~Larochelle, and R.~P. Adams, ``{Practical Bayesian Optimization of
+  Machine Learning Algorithms},'' {\em Proceedings of the 25th International
+  Conference on Neural Information Processing Systems - Volume 2},
+  pp.~2951--2959, 2012.
+
+\end{thebibliography}

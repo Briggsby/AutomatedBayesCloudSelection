@@ -22,9 +22,9 @@ right  = 2.50cm]{geometry}
 \maketitle
 \newpage
 \chapter*{Abstract}
-This study details the development of a system for automated selection of optimal cloud configurations, first designing a generalizable framework for any user-provided application or cloud service. It is composed of modular components: A Searcher, for managing an optimization process; a Selector, for interpreting variables representing the encoded search space and outputting an available cloud configuration; a Deployer, for deploying the user-provided application or benchmarking method and returning its logs; and an Interpreter, for converting these logs into an objective measure to be minimized or maximised by the optimization process. 
+This study details the development of a system for automated selection of optimal cloud configurations. A generalizable framework for any searching strategy across cloud services is first designed, composed of modular components: A Searcher, for managing an optimization process; a Selector, for interpreting variables representing the encoded search space and outputting an available cloud configuration; a Deployer, for deploying the user-provided application and returning its logs; and an Interpreter, for converting these logs into an objective measure to be minimized or maximised by the optimization process. 
 
-A use-case is presented for this framework, where Bayesian Optimization is used to predict the most cost-effective compute instance available on Google Compute Engine or Amazon EC2 for running video transcoding operations. An implementation of the framework is developed that is capable of performing this use-case. An evaluation shows that this implementation selects the optimal configuration with ~90\% accuracy, a similar success rate to other more specialized solutions. Allowing 2 concurrent sampling jobs decreases search time without any negative impact on search effectiveness, but allowing further concurrency causes decreased effectiveness without a further reduction in search time. Within-instance variability for performance of the use-case application was consistently below 3.23\%. AWS instances consistently outperformed Google instances at video transcoding operations, but cloud provider was the least important factor out of vCPU number and instance category in determining cost effectiveness.
+A use-case is presented for this framework, where a Bayesian Optimization searching strategy is used to predict the most cost-effective compute instance available across multiple providers (Google Compute Engine and Amazon EC2) for running video transcoding operations. An instantiation of the framework is implemented, capable of performing this use-case. An evaluation shows that this implementation selects optimal configurations with ~90\% accuracy, a similar success rate to other more specialized solutions. Allowing 2 concurrent sampling jobs decreases search time without negative impacting search effectiveness, but allowing further concurrency causes decreased effectiveness without further reductions in search time. Within-instance variability for performance of the use-case application was consistently below 3.23\%. AWS instances consistently outperformed Google instances at video transcoding operations, but cloud provider was the least important factor out of vCPU number and instance category in determining cost effectiveness.
 
 The study concludes by emphasising the extensibility of the framework and implementation, suggesting future components for replicating previous specialized solutions, or searching serverless services and GPU instances.
 \newpage
@@ -34,7 +34,7 @@ is my own work except where credit is explicitly
 given to others by citation or acknowledgement. This
 work was performed during the current academic year
 except where otherwise stated.
-The main text of this project report is 14,874 words
+The main text of this project report is 14,913 words
 long, including project specification and plan.
 In submitting this project report to the University of St
 Andrews, I give permission for it to be made

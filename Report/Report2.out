@@ -23,7 +23,7 @@
 \BOOKMARK [2][-]{subsection.3.1.3}{Video transcoding}{section.3.1}% 23
 \BOOKMARK [1][-]{section.3.2}{Requirements}{chapter.3}% 24
 \BOOKMARK [2][-]{subsection.3.2.1}{Framework requirements}{section.3.2}% 25
-\BOOKMARK [2][-]{subsection.3.2.2}{Use-case implementation requirements}{section.3.2}% 26
+\BOOKMARK [2][-]{subsection.3.2.2}{Use-case system requirements}{section.3.2}% 26
 \BOOKMARK [0][-]{chapter.4}{Generic Automated Cloud Configuration Optimization Framework}{}% 27
 \BOOKMARK [1][-]{section.4.1}{Design Motivations}{chapter.4}% 28
 \BOOKMARK [2][-]{subsection.4.1.1}{Numerical Optimization}{section.4.1}% 29
@@ -69,8 +69,7 @@
 \BOOKMARK [1][-]{section.7.3}{Results Analysis}{chapter.7}% 69
 \BOOKMARK [2][-]{subsection.7.3.1}{Exhaustive search}{section.7.3}% 70
 \BOOKMARK [2][-]{subsection.7.3.2}{Bayesian Optimization}{section.7.3}% 71
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 72
-\BOOKMARK [1][-]{section.8.1}{Related and Future work}{chapter.8}% 73
-\BOOKMARK [2][-]{subsection.8.1.1}{Related work}{section.8.1}% 74
-\BOOKMARK [2][-]{subsection.8.1.2}{Future work}{section.8.1}% 75
-\BOOKMARK [1][-]{section.8.2}{Final Discussion}{chapter.8}% 76
+\BOOKMARK [0][-]{chapter.8}{Related \046 Future work and Conclusion}{}% 72
+\BOOKMARK [1][-]{section.8.1}{Related work}{chapter.8}% 73
+\BOOKMARK [1][-]{section.8.2}{Future work}{chapter.8}% 74
+\BOOKMARK [1][-]{section.8.3}{Summary}{chapter.8}% 75
